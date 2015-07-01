@@ -1,0 +1,43 @@
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+helm-adaptive-history
+evil-jumps
+savehist
+tramp
+.\#*
+places
+backups/
+recentf
+url/
+
+# elpa (automatically downloaded)
+elpa/
+
+# eshell
+eshell/
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# Projectile
+projectile.cache
+projectile-bookmarks.eld
+
+# Autocomplete
+ac-comphist.dat
+
+# Smex
+.smex-items
+
+# persp-mode / workgroups
+.emacs-wg-session
+persp-confs/
+
+/session.*
+
+ido.last

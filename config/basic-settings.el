@@ -1,0 +1,259 @@
+;; go to beginning of match after search, not the end (not needed with evil)
+;;(add-hook 'isearch-mode-end-hook 'my-goto-match-beginning)
+
+;; try to improve slow performance on windows.
+(setq w32-get-true-file-attributes nil)
+
+;; Remove all backup files
+(setq make-backup-files nil)
+(setq backup-inhibited t)
+(setq auto-save-default nil)
+
+;; warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
+
+;; allow undo/redo of window layout
+(winner-mode 1)
+
+;; Remove useless whitespaces before saving a file
+(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+
+;; don't show trailing whitespace, is already fixed on save
+(setq-default show-trailing-whitespace nil)
+
+;; General programming hooks
+(add-hook 'prog-mode-hook 'ot/pretty-lambdas)
+(add-hook 'prog-mode-hook 'ot/esk-add-watchwords)
+
+;; Turn off auto-fill
+(auto-fill-mode -1)
+(remove-hook 'text-mode-hook 'turn-on-auto-fill)
+(remove-hook 'org-mode-hook 'turn-on-auto-fill)
+
+;; default to utf8
+(set-language-environment 'utf-8)
+(setq locale-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(setq-default buffer-file-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+;; Treat clipboard input as UTF-8 string first; compound text next, etc.
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
+;; Turn on column numbering in modeline
+(setq column-number-mode t)
+
+;; Default to org-mode for txt files as well
+(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+
+;; smex
+(setq smex-save-file (concat user-emacs-directory ".smex-items"))
+(smex-initialize)
+
+;; Truncate lines instead of wrapping
+(set-default 'truncate-lines t)
+
+;; Smooth scrolling
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+(setq auto-window-vscroll nil)
+(setq scroll-margin 2)
+
+;; Highlight selected/marked text
+(transient-mark-mode t)
+
+;; Delete selected/marked text when you start typing (makes it work like other editors)
+(delete-selection-mode t)
+
+;; Go back to the cursor location where you were the last time you opened the file
+(require 'saveplace)
+(setq-default
+ save-place-file (concat user-emacs-directory "places")
+ save-place t)
+
+;; minibuffer history
+(require 'savehist)
+(setq savehist-file (concat user-emacs-directory "savehist")
+      enable-recursive-minibuffers t ; Allow commands in minibuffers
+      history-length 1000
+      savehist-additional-variables '(kill-ring mark-ring global-mark-ring search-ring regexp-search-ring extended-command-history)
+      savehist-autosave-interval 60)
+(savehist-mode +1)
+
+;; bookmarks
+(setq bookmark-default-file (concat user-emacs-directory "bookmarks")
+      ;; save after every change
+      bookmark-save-flag 1
+      url-configuration-directory (concat user-emacs-directory "url")
+      eshell-directory-name (concat user-emacs-directory "eshell" )
+      tramp-persistency-file-name (concat user-emacs-directory "tramp"))
+
+(mouse-wheel-mode t)
+(blink-cursor-mode -1) ; no blinking cursor
+
+(setq
+ inhibit-startup-message   t   ; Don't want any startup message
+ echo-keystrokes 0.1
+ use-dialog-box nil           ; use no dialog boxes, just use the echo area / mini-buffer
+ gc-cons-threshold 20000000
+ redisplay-dont-pause t
+ ns-pop-up-frames nil         ; don't open a new frame when using Open with... for instance
+ search-highlight           t ; Highlight search object
+ query-replace-highlight    t ; Highlight query object
+ mouse-sel-retain-highlight t ; Keep mouse high-lightening
+ read-file-name-completion-ignore-case t
+ x-select-enable-clipboard t
+ x-select-enable-primary t
+ next-line-add-newlines t ; When at end of file moving to the next line adds a new line automatically
+ apropos-do-all t
+ apropos-sort-by-scores t
+ scroll-error-top-bottom t ; move to farthest point when not able to move up or down enough lines
+ read-buffer-completion-ignore-case t
+ completion-auto-help 'lazy
+ isearch-resume-in-command-history t
+ kill-read-only-ok t
+ isearch-allow-scroll t
+ visible-bell nil
+ color-theme-is-global t
+ sentence-end-double-space nil
+ shift-select-mode nil
+ mouse-yank-at-point t
+ uniquify-buffer-name-style 'post-forward
+ uniquify-ignore-buffers-re "^\\*"
+ whitespace-style '(face trailing lines-tail tabs)
+ whitespace-line-column 80
+ ediff-window-setup-function 'ediff-setup-windows-plain
+ diff-switches "-u"
+ frame-title-format '("%b %+%+ %f"))
+
+(add-to-list 'safe-local-variable-values '(lexical-binding . t))
+(add-to-list 'safe-local-variable-values '(whitespace-line-column . 80))
+
+(setq browse-url-browser-function 'browse-url-default-browser)
+
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1)) ; turn off the toolbar
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1)) ; turn off the menubar
+(size-indication-mode 1) ; show the size of the buffer
+
+(global-superword-mode 1)
+
+(set-default 'indicate-empty-lines nil) ; don't indicate empty lines
+
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; seems pointless to warn. There's always undo.
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'erase-buffer 'disabled nil)
+(put 'scroll-left 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
+
+(put 'set-goal-column 'disabled nil) ; handy for moving down a column (always goes to the same position when set)
+
+;; Recent files
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(add-to-list 'recentf-exclude "/elpa")
+
+;; Mac settings, switch meta and command
+(setq-default mac-function-modifier 'hyper)
+(setq-default mac-command-modifier 'meta)
+(setq-default mac-option-modifier 'command)
+
+;; Allow replacement of selected region or deletion of selected region by typing or using DEL
+(delete-selection-mode 1)
+
+;; ido-mode is like magic pixie dust!
+(setq ido-enable-prefix nil
+      ido-enable-flex-matching t
+      ido-case-fold  nil                 ; be case-sensitive
+      ido-auto-merge-work-directories-length nil
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point 'guess
+      ido-use-virtual-buffers t
+      ido-enable-regexp nil
+      ido-enable-last-directory-history nil
+      ido-handle-duplicate-virtual-buffers 2
+      confirm-nonexistent-file-or-buffer nil
+      ido-file-extension-order '(".clj" ".cljs" ".el" ".org" ".txt") ; give priority to certain file types
+      ido-ignore-extensions t
+      ido-max-prospects 10
+      ido-use-faces nil ;; disable ido faces to see flx highlights
+      flx-ido-use-faces t ;; enable flx highlights
+      ido-vertical-define-keys 'C-n-C-p-up-down-left-right
+      )
+
+(defvar ido-dont-ignore-buffer-names '("*scratch*"))
+
+(defun ido-ignore-most-star-buffers (name)
+  (and
+   (string-match-p "^*" name)
+   (not (member name ido-dont-ignore-buffer-names))))
+
+(setq ido-ignore-buffers (list "\\` " #'ido-ignore-most-star-buffers))
+
+;; Always allow narrowing, don't ask questions
+(put 'narrow-to-defun  'disabled nil)
+(put 'narrow-to-page   'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
+;;;; ido customization
+(require 'flx-ido)
+(ido-mode t)
+(ido-ubiquitous-mode)
+(flx-ido-mode 1)
+
+(require 'ido-vertical-mode)
+(ido-vertical-mode 1)
+
+(set-default 'indent-tabs-mode nil) ; use spaces for indenting, not tabs
+
+(set-default 'imenu-auto-rescan t) ; automatically rescan for changes for imenu
+
+(defalias 'auto-tail-revert-mode 'tail-mode)
+
+(random t) ;; Seed the random-number generator
+
+;; Auto refresh buffers when file is changed externally
+(global-auto-revert-mode t)
+
+;; Also auto refresh dired (the directory editor), but be quiet about it
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+
+;; disable highlighting the current line
+(global-hl-line-mode 0)
+
+;; automatically reload changed TAGS file
+(setq tags-revert-without-query 1)
+
+;; don't let the cursor go into minibuffer prompt
+;; Tip taken from Xah Lee: http://ergoemacs.org/emacs/emacs_stop_cursor_enter_prompt.html
+(setq minibuffer-prompt-properties
+      '(read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt))
+
+;; draw underline lower
+(setq x-underline-at-descent-line t)
+
+;; scratch buffer empty
+(setq initial-scratch-message nil)
+
+;; remove annoying ellipsis when printing sexp in message buffer
+(setq eval-expression-print-length nil
+      eval-expression-print-level nil)
+
+;; Text
+(setq longlines-show-hard-newlines t)
+
+;; use only spaces and no tabs
+(setq-default indent-tabs-mode nil
+              default-tab-width 2)
+
+;; Save clipboard contents into kill-ring before replace them
+(setq save-interprogram-paste-before-kill t)
+
+(provide 'basic-settings)
