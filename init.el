@@ -11,6 +11,7 @@
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
         '((cider . "melpa-stable")
+		  (magit . "melpa-stable")
           )))
 
 ;;(add-to-list 'package-archives
@@ -23,7 +24,7 @@
   (package-refresh-contents))
 
 ;; Add in your own as you wish:
-(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido idomenu smex ; mini-buffer on steroids (fuzzy completion etc)
+(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
                                      helm-descbinds ; helm
                                      helm-c-moccur ; helm
@@ -31,12 +32,12 @@
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
                                      whole-line-or-region ; if no region selected act on the current line
                                      misc-cmds ; misc useful functions
-                                     key-chord ; bind commands to multiple keypresses
+                                     key-chord key-seq ; bind commands to multiple keypresses
                                      focus ; focus mode (dim text you are not working on)
                                      hydra ; sticky bindings
                                      volatile-highlights highlight-symbol ; highlighting
                                      aggressive-indent indent-guide ; indentation
-                                     flycheck flycheck-pos-tip helm-flycheck ; syntax checking
+                                     flycheck flycheck-pos-tip helm-flycheck flycheck-clojure ; syntax checking
                                      guide-key guide-key-tip ; keystroke help
                                      popup popwin ; popups
                                      org-plus-contrib org-bullets org-projectile ; latest org-mode
@@ -45,7 +46,7 @@
                                      company company-quickhelp helm-company ; autocomplete
                                      drag-stuff ; moving lines/regions up/down
                                      elisp-slime-nav redshank highlight-defined ; extensions for elisp
-                                     diminish rich-minority ; don't clutter the modeline with minor mode names
+                                     rich-minority ; don't clutter the modeline with minor mode names
                                      smart-mode-line ; customize modeline
                                      ag anzu ; search / grep
                                      clojure-mode clojure-cheatsheet ; clojure
@@ -53,7 +54,7 @@
                                      cider cider-eval-sexp-fu ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                                      hl-sexp paredit paredit-menu paxedit ; working with parens / delimiters
-                                     flatui-theme ; color themes
+                                     solarized-theme flatui-theme ; color themes
                                      magit diff-hl ; git integration
                                      projectile ; moving around in projects
                                      yasnippet auto-yasnippet clojure-snippets datomic-snippets ; snippets
