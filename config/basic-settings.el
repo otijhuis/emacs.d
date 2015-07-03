@@ -128,7 +128,7 @@
  whitespace-line-column 80
  ediff-window-setup-function 'ediff-setup-windows-plain
  diff-switches "-u"
- frame-title-format '("%b %+%+ %f"))
+ frame-title-format '("CLJ-EMACS       %b %+%+ %f"))
 
 (add-to-list 'safe-local-variable-values '(lexical-binding . t))
 (add-to-list 'safe-local-variable-values '(whitespace-line-column . 80))

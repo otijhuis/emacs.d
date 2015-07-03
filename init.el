@@ -10,8 +10,7 @@
 ;; Check if we're on Emacs 24.4 or newer, if so, use the pinned package feature
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
-        '((cider . "melpa-stable")
-		  (magit . "melpa-stable")
+        '((magit . "melpa-stable")
           )))
 
 ;;(add-to-list 'package-archives
@@ -49,7 +48,7 @@
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      smart-mode-line ; customize modeline
                                      ag anzu ; search / grep
-                                     clojure-mode clojure-cheatsheet ; clojure
+                                     cider clojure-mode clojure-cheatsheet ; clojure
                                      clj-refactor discover-clj-refactor align-cljlet inf-clojure ; clojure
                                      cider cider-eval-sexp-fu ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
@@ -70,6 +69,7 @@
     (package-install p)))
 
 (add-to-list 'load-path "~/.emacs.d/config/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (require 'misc)
 (require 'uniquify)

@@ -1,0 +1,11 @@
+#+STARTUP: showeverything
+* Welcome
+
+#+begin_src clojure
+
+  (defn somefn [x]
+    (+ x 100))
+
+#+end_src
+
+[[file:tutorial1/tutorial1.org][Tutorial 1]]

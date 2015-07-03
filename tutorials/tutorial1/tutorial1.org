@@ -1,0 +1,13 @@
+#+name: Start Clojure REPL from within Emacs and connect to it
+#+begin_src emacs-lisp
+(cider-jack-in)
+#+end_src
+
+
+
+#+begin_src clojure
+  (+ 10 30)
+
+  (defn somefn [x]
+    (+ 10 x))
+#+end_src

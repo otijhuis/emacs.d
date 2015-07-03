@@ -92,6 +92,29 @@
   ("M-c" paredit-copy-as-kill "Copy as kill")
   ("r" cljr-raise-sexp "Raise"))
 
+;;;;;;;;;;;;;;;;
+;; Key chords ;;
+;;;;;;;;;;;;;;;;
+
+;; Key chords to use:
+;; yy jj '; zx ., \] /. ?? ^^ '/ ;. ;, .; /' =- -=
+;; jq qg qk qy qz wq xz fq wx qx jx kq vq qj qh hx qp xk
+;; sx
+
+(key-seq-define-global ",x" 'smex)
+(key-seq-define-global "x," 'smex)
+(key-seq-define-global "';" 'smex)
+(key-seq-define-global ",l" 'ido-switch-buffer)
+(key-seq-define-global ",f" 'ido-find-file)
+;;(key-seq-define-global ",p" 'hydra-projectile/body)
+;;(key-seq-define-global ",d" 'ot/duplicate-current-line-or-region)
+(key-seq-define-global ",w" 'save-buffer)
+(key-seq-define-global "/." 'hydra-mark/body)
+(key-seq-define-global "\\]" 'hydra-paredit/body)
+
+(key-seq-define-global "z," 'avy-zap-up-to-char)
+(key-seq-define-global "z." 'avy-zap-to-char)
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
