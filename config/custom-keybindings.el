@@ -246,6 +246,7 @@
 ;; Clojure / Cider
 ;; (evil-define-key 'normal clojure-mode-map ",ch" 'ot/helm-clojure-headlines)
 ;; (evil-define-key 'normal clojure-mode-map (kbd "<C-return>") 'cider-eval-defun-at-point)
+(bind-key "<C-return>" 'cider-eval-defun-at-point clojure-mode-map)
 ;; (evil-define-key 'insert clojure-mode-map (kbd "<C-return>") 'cider-eval-defun-at-point)
 ;; (evil-define-key 'visual clojure-mode-map (kbd "<C-return>") 'cider-eval-region)
 ;; (evil-define-key 'normal clojure-mode-map "\\es" 'cider-eval-last-sexp)
