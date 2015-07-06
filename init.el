@@ -50,7 +50,7 @@
                                      ag anzu ; search / grep
                                      cider clojure-mode clojure-cheatsheet ; clojure
                                      clj-refactor discover-clj-refactor align-cljlet inf-clojure ; clojure
-                                     cider cider-eval-sexp-fu ; clojure
+                                     cider ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                                      hl-sexp paredit paredit-menu paxedit ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes

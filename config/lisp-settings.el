@@ -53,7 +53,9 @@
 
 ;;; CIDER CONFIG
 (require 'cider)
-(require 'cider-eval-sexp-fu)
+
+;; Show what was eval'd
+;;(require 'cider-eval-sexp-fu)
 
 (defun hide-eol ()
   "Do not show ^M in files containing mixed UNIX and DOS line endings."
