@@ -71,6 +71,10 @@
 (add-to-list 'load-path "~/.emacs.d/config/")
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
+;; On OSX add /usr/local/bin to exec-path for lein command (installed with brew install leiningen)
+(if (eq system-type 'darwin)
+    (add-to-list 'exec-path "/usr/local/bin"))
+
 (require 'misc)
 (require 'uniquify)
 (require 'custom-defuns)
