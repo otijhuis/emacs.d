@@ -18,20 +18,9 @@
 ;; Key chords
 (require 'key-chord)
 
-(setq key-chord-two-keys-delay 0.1)
+(setq key-chord-two-keys-delay 0.2)
 
 (key-chord-mode +1)
-
-;; Redefine key-chord function so it only works when keypresses are in order. For instance ',x' works, 'x,' doesn't
-;; Normally both work because it was meant for simultaneous key presses.
-(defun key-chord-define (keymap keys command)
-  (if (/= 2 (length keys))
-      (error "Key-chord keys must have two elements"))
-  (let ((key1 (logand 255 (aref keys 0)))
-        (key2 (logand 255 (aref keys 1))))
-    (if (eq key1 key2)
-        (define-key keymap (vector 'key-chord key1 key2) command)
-      (define-key keymap (vector 'key-chord key1 key2) command))))
 
 ;; If no region is selected then work on current line
 (require 'whole-line-or-region)
@@ -72,5 +61,8 @@
 
 ;; Highlight symbol
 (setq highlight-symbol-idle-delay 0.5)
+
+;; Wrap region
+(wrap-region-global-mode)
 
 (provide 'misc-package-settings)
