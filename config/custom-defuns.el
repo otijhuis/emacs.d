@@ -1,5 +1,12 @@
 ;; -*- lexical-binding: t -*-
 
+(defun ot/cider-eval-defun-or-region ()
+  "Eval defun at point or region when it is active"
+  (interactive)
+  (if (use-region-p)
+      (cider-eval-region)
+    (cider-eval-defun-at-point)))
+
 (defun ot/cider-eval-count-defun-at-point ()
   (interactive)
   (cider-interactive-eval

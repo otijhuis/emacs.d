@@ -106,6 +106,7 @@
 (key-seq-define-global "';" 'smex)
 (key-seq-define-global ",l" 'ido-switch-buffer)
 (key-seq-define-global ",f" 'ido-find-file)
+(key-seq-define-global ",u" 'undo-tree-visualize)
 ;;(key-seq-define-global ",p" 'hydra-projectile/body)
 ;;(key-seq-define-global ",d" 'ot/duplicate-current-line-or-region)
 (key-seq-define-global ",w" 'save-buffer)
@@ -133,21 +134,21 @@
 (bind-key "M-Z" 'avy-zap-up-to-char-dwim)
 (bind-key "C-z" 'avy-goto-char)
 
-(bind-key "C-a" 'beginning-of-line+)
-(bind-key "C-e" 'end-of-line+)
+;; Smarter move to beginning/end of line
+(bind-key "C-S-a" 'beginning-of-line+)
+(bind-key "C-a" 'ot/back-to-indentation-or-beginning)
+(bind-key "C-S-e" 'end-of-line+)
+(bind-key "C-e" 'ot/end-of-code-or-line+)
 
 (bind-key "M-j" 'ot/join-line)
 
-;;(define-key paredit-mode-map [H-backspace] 'paredit-forward-delete)
+(bind-key "C-S-d" 'ot/duplicate-current-line-or-region)
+
+;; Paredit
 (bind-key [H-backspace] 'paredit-forward-delete paredit-mode-map)
-(bind-key "C-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
+(bind-key "C-S-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
 
-(bind-key "C-d" 'ot/duplicate-current-line-or-region)
-
-;;(global-set-key [H-backspace] 'delete-char)
 (bind-key [H-backspace] 'delete-char)
-
-(bind-key "C-'" 'avy-isearch isearch-mode-map)
 
 (bind-key "M-g M-g" 'avy-goto-line)
 
@@ -159,19 +160,8 @@
 
 (bind-key "<M-return>" 'ot/open-line-below)
 
-;; (evil-global-set-key 'normal "\\d" 'ot/duplicate-current-line-or-region)
-
-;; org-mode keybindings
-;; (global-set-key (kbd "C-c a") 'org-agenda)
-
 ;; use company-mode instead of abbrev
 (bind-key "M-/" 'company-complete)
-
-;; use regexp search by default
-;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
-;; (global-set-key (kbd "C-r") 'isearch-backward-regexp)
-;; (global-set-key (kbd "C-M-s") 'isearch-forward)
-;; (global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;; use swiper instead of isearch
 (bind-key "C-s" 'swiper)
@@ -205,49 +195,32 @@
 ;; From helm-swoop to helm-multi-swoop-all
 (bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
 
-;; using C-u for up already
-(bind-key "C-M-u" 'universal-argument)
-
 (bind-key "M-x" 'smex)
 (bind-key "C-x C-i" 'idomenu)
 (bind-key "C-x C-b" 'ibuffer)
-;; (define-key evil-visual-state-map ",x" 'smex)
-;; (define-key evil-visual-state-map ",X" 'smex-major-mode-commands)
-;; (define-key evil-normal-state-map ",l" 'ido-switch-buffer)
-;; (define-key evil-normal-state-map ",ut" 'undo-tree-visualize)
-
-;; (define-key evil-normal-state-map "\\rb" 'ot/indent-whole-buffer)
 
 ;; Help should search more than just commands
 (define-key 'help-command "a" 'apropos)
-
-;; Comments
-;; (define-key evil-normal-state-map ",;" 'evilnc-comment-or-uncomment-lines)
-;; (define-key evil-visual-state-map ",;" 'comment-or-uncomment-region)
 
 ;; Lisp
 (bind-key "TAB" 'lisp-complete-symbol read-expression-map)
 (bind-key "RET" 'reindent-then-newline-and-indent lisp-mode-shared-map)
 
-;; Windows
-'minibuffer-keyboard-quit
-
 ;;; esc quits
 
 (bind-key [escape] 'minibuffer-keyboard-quit minibuffer-local-ns-map)
-(bind-key "C-x o" 'ido-select-window)
 (bind-key [escape] 'minibuffer-keyboard-quit minibuffer-local-completion-map)
 (bind-key [escape] 'minibuffer-keyboard-quit minibuffer-local-must-match-map)
 (bind-key [escape] 'minibuffer-keyboard-quit minibuffer-local-isearch-map)
+
+(bind-key "C-x o" 'ido-select-window)
 
 ;; Commands to map
 ;; reposition-window, paredit-focus-on-defun, paredit-duplicate-after-point, paredit-reindent-defun
 
 ;; Clojure / Cider
 ;; (evil-define-key 'normal clojure-mode-map ",ch" 'ot/helm-clojure-headlines)
-;; (evil-define-key 'normal clojure-mode-map (kbd "<C-return>") 'cider-eval-defun-at-point)
-(bind-key "<C-return>" 'cider-eval-defun-at-point clojure-mode-map)
-;; (evil-define-key 'insert clojure-mode-map (kbd "<C-return>") 'cider-eval-defun-at-point)
+(bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
 ;; (evil-define-key 'visual clojure-mode-map (kbd "<C-return>") 'cider-eval-region)
 ;; (evil-define-key 'normal clojure-mode-map "\\es" 'cider-eval-last-sexp)
 ;; (evil-define-key 'normal clojure-mode-map "\\en" 'cider-eval-ns-form)
