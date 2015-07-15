@@ -27,6 +27,7 @@
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
                                      helm-descbinds ; helm
                                      helm-c-moccur ; helm
+                                     keyfreq ; determine how often commands are used
                                      wrap-region ; wrap region with quotes, parens etc
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
                                      whole-line-or-region ; if no region selected act on the current line

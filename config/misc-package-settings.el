@@ -65,4 +65,9 @@
 ;; Wrap region
 (wrap-region-global-mode)
 
+;; Keyfreq, determine how often commands are used
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+
 (provide 'misc-package-settings)
