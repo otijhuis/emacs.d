@@ -25,8 +25,7 @@
 ;; Add in your own as you wish:
 (defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
-                                     helm-descbinds ; helm
-                                     helm-c-moccur ; helm
+                                     helm-descbinds helm-company helm-c-moccur ; helm
                                      keyfreq ; determine how often commands are used
                                      wrap-region ; wrap region with quotes, parens etc
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
@@ -35,7 +34,7 @@
                                      key-chord key-seq ; bind commands to multiple keypresses
                                      focus ; focus mode (dim text you are not working on)
                                      hydra ; sticky bindings
-                                     volatile-highlights highlight-symbol ; highlighting
+                                     volatile-highlights highlight-symbol hl-sexp ; highlighting
                                      aggressive-indent indent-guide ; indentation
                                      flycheck flycheck-pos-tip helm-flycheck flycheck-clojure ; syntax checking
                                      guide-key guide-key-tip ; keystroke help
@@ -43,18 +42,16 @@
                                      org-plus-contrib org-bullets org-projectile ; latest org-mode
                                      neotree ; like NERDtree from vim
                                      undo-tree ; visualize undo as a tree (extremely handy)
-                                     company company-quickhelp helm-company ; autocomplete
+                                     company company-quickhelp ; autocomplete
                                      drag-stuff ; moving lines/regions up/down
                                      elisp-slime-nav redshank highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
-                                     smart-mode-line ; customize modeline
                                      ag anzu ; search / grep
                                      cider clojure-mode clojure-cheatsheet ; clojure
-                                     clj-refactor discover-clj-refactor align-cljlet inf-clojure ; clojure
-                                     cider lispy ; clojure
+                                     cider clj-refactor discover-clj-refactor align-cljlet ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                                      swiper ; search
-                                     hl-sexp paredit paredit-menu paxedit ; working with parens / delimiters
+                                     paredit paredit-menu paxedit lispy ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
                                      magit diff-hl ; git integration
                                      projectile ; moving around in projects

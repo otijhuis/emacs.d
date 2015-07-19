@@ -221,7 +221,6 @@
 ;; Clojure / Cider
 ;; (evil-define-key 'normal clojure-mode-map ",ch" 'ot/helm-clojure-headlines)
 (bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
-;; (evil-define-key 'visual clojure-mode-map (kbd "<C-return>") 'cider-eval-region)
 ;; (evil-define-key 'normal clojure-mode-map "\\es" 'cider-eval-last-sexp)
 ;; (evil-define-key 'normal clojure-mode-map "\\en" 'cider-eval-ns-form)
 ;; (evil-define-key 'normal clojure-mode-map "\\eb" 'cider-load-buffer)
