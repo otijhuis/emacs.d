@@ -70,10 +70,10 @@
 (delete-selection-mode t)
 
 ;; Go back to the cursor location where you were the last time you opened the file
-(require 'saveplace)
-(setq-default
- save-place-file (concat user-emacs-directory "places")
- save-place t)
+;; (require 'saveplace)
+;; (setq-default
+;; save-place-file (concat user-emacs-directory "places")
+;; save-place t)
 
 ;; minibuffer history
 (require 'savehist)

@@ -25,7 +25,7 @@
 ;; Add in your own as you wish:
 (defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
-                                     helm-descbinds helm-company helm-c-moccur ; helm
+                                     helm-descbinds helm-company helm-c-moccur helm-cider-history ; helm
                                      keyfreq ; determine how often commands are used
                                      wrap-region ; wrap region with quotes, parens etc
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
@@ -35,9 +35,10 @@
                                      focus ; focus mode (dim text you are not working on)
                                      hydra ; sticky bindings
                                      volatile-highlights highlight-symbol hl-sexp ; highlighting
+                                     change-inner ; Emacs version of vim's ci and co commands
                                      aggressive-indent indent-guide ; indentation
                                      flycheck flycheck-pos-tip helm-flycheck flycheck-clojure ; syntax checking
-                                     guide-key guide-key-tip ; keystroke help
+                                     which-key ; display keybindings (guide-key replacement)
                                      popup popwin ; popups
                                      org-plus-contrib org-bullets org-projectile ; latest org-mode
                                      neotree ; like NERDtree from vim
