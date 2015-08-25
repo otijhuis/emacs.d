@@ -19,9 +19,9 @@
      (set-face-foreground 'diff-added "green4")
      (set-face-foreground 'diff-removed "red3")))
 
-(eval-after-load 'magit
-  '(progn
-     (set-face-foreground 'magit-diff-add "green4")
-     (set-face-foreground 'magit-diff-del "red3")))
+;; Make zooming affect frame instead of buffers
+(require 'zoom-frm)
+
+(setq truncate-partial-width-windows nil)
 
 (provide 'ui-settings)

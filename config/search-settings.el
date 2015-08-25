@@ -10,4 +10,7 @@
     anzu-cons-mode-line-p t)
 (global-anzu-mode +1)
 
+;; Don't highlight matches with jump-char - it's distracting
+(setq jump-char-lazy-highlight-face nil)
+
 (provide 'search-settings)

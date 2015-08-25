@@ -1,3 +1,12 @@
+(require 'clojure-mode)
+(require 'clojure-mode-extra-font-locking)
+
+(defadvice clojure-test-run-tests (before save-first activate)
+  (save-buffer))
+
+(defadvice nrepl-load-current-buffer (before save-first activate)
+  (save-buffer))
+
 ;; making paredit work with delete-selection-mode
 (put 'paredit-forward-delete 'delete-selection 'supersede)
 (put 'paredit-backward-delete 'delete-selection 'supersede)
@@ -8,6 +17,7 @@
 
 ;; open clojurescript files in clojure mode
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\.cljc$" . clojure-mode))
 ;; open boot build tool files in clojure mode
 (add-to-list 'auto-mode-alist '("\.boot$" . clojure-mode))
 
@@ -32,6 +42,13 @@
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'paxedit-mode)
 (add-hook 'clojure-mode-hook 'hl-sexp-mode)
+
+;; Enable `paredit-mode' in the minibuffer, during `eval-expression'.
+(defun conditionally-enable-paredit-mode ()
+  (if (eq this-command 'eval-expression)
+      (paredit-mode 1)))
+
+(add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
 
 ;; make colon part of word (for example :keyword)
 (add-hook 'clojure-mode-hook (lambda () (modify-syntax-entry ?: "w")))
@@ -69,6 +86,18 @@
 (setq nrepl-hide-special-buffers t)
 (setq cider-prompt-save-file-on-load nil)
 
+;; Enable error buffer popping also in the REPL:
+(setq cider-repl-popup-stacktraces t)
+
+;; auto-select the error buffer when it's displayed
+(setq cider-auto-select-error-buffer t)
+
+;; Pretty print results in repl
+(setq cider-repl-use-pretty-printing t)
+
+;; Don't prompt for symbols
+(setq cider-prompt-for-symbol nil)
+
 (setq cider-repl-print-length 100) ; Limit the number of items of each collection the printer will print to 100
 
 (eval-after-load "cider"
@@ -92,18 +121,44 @@
 
 ;; clj-refactor
 (require 'clj-refactor)
+(require 'core-async-mode)
 
-(dolist (mapping '(("reagent" . "reagent.core")
-                   ("xml" . "clojure.xml")))
-  (add-to-list 'cljr-magic-require-namespaces mapping t))
+(setq cljr-favor-prefix-notation nil)
+(setq cljr-favor-private-functions nil)
+
+;; (dolist (mapping '(("reagent" . "reagent.core")
+;;                    ("xml" . "clojure.xml")))
+;;   (add-to-list 'cljr-magic-require-namespaces mapping t))
+(setq cljr-magic-require-namespaces
+      '(("io"   . "clojure.java.io")
+        ("set"  . "clojure.set")
+        ("str"  . "clojure.string")
+        ("walk" . "clojure.walk")
+        ("zip"  . "clojure.zip")
+        ("time" . "clj-time.core")
+        ("log"  . "taoensso.timbre")
+        ("reagent" . "reagent.core")
+        ("xml" . "clojure.xml")
+        ("json" . "cheshire.core")))
 
 (add-hook 'clojure-mode-hook (lambda ()
                                (clj-refactor-mode 1)
+                               (core-async-mode 1)
                                (cljr-add-keybindings-with-prefix "C-=")))
+
+(add-to-list 'cljr-project-clean-functions 'cleanup-buffer)
 
 ;;; RAINBOW DELIMITERS
 ;; (require 'rainbow-delimiters)
 ;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; all programming modes
 ;;(global-rainbow-delimiters-mode) ; globally
 
+(require 'symbol-focus)
+
+(require 'yesql-ghosts)
+
+;; Indent and highlight more commands
+(put-clojure-indent 'match 'defun)
+
 (provide 'lisp-settings)
+

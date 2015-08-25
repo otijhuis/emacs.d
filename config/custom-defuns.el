@@ -254,6 +254,22 @@ emacs buffers are those whose name starts with *."
   (insert " ")
   (forward-char -1))
 
+(defun ot/paredit-wrap-square-from-behind ()
+  (interactive)
+  (forward-sexp -1)
+  (paredit-wrap-square))
+
+(defun ot/paredit-wrap-curly-from-behind ()
+  (interactive)
+  (forward-sexp -1)
+  (paredit-wrap-curly))
+
+(defun ot/paredit-kill-region-or-backward-word ()
+  (interactive)
+  (if (region-active-p)
+      (kill-region (region-beginning) (region-end))
+    (paredit-backward-kill-word)))
+
 (defun ot/rotate-windows ()
   "Rotate your windows"
   (interactive)
@@ -379,5 +395,21 @@ Position the cursor at its beginning, according to the current mode."
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
+
+;; Magnars Emacs config
+(defun ot/clj-duplicate-top-level-form ()
+  (interactive)
+  (save-excursion
+    (cljr--goto-toplevel)
+    (insert (cljr--extract-sexp) "\n")
+    (cljr--just-one-blank-line)))
+
+;; Magnars Emacs config
+(defun ot/clj-hippie-expand-no-case-fold ()
+  (interactive)
+  (let ((old-syntax (char-to-string (char-syntax ?/))))
+    (modify-syntax-entry ?/ " ")
+    (hippie-expand-no-case-fold)
+    (modify-syntax-entry ?/ old-syntax)))
 
 (provide 'custom-defuns)

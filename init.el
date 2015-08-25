@@ -23,14 +23,17 @@
   (package-refresh-contents))
 
 ;; Add in your own as you wish:
-(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
+(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
                                      helm-descbinds helm-company helm-c-moccur helm-cider-history ; helm
                                      keyfreq ; determine how often commands are used
+                                     dash s ; util libs
+                                     zoom-frm ; change text size etc
                                      wrap-region ; wrap region with quotes, parens etc
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
                                      whole-line-or-region ; if no region selected act on the current line
                                      misc-cmds ; misc useful functions
+                                     whitespace-cleanup-mode ; clean up whitespace on save
                                      key-chord key-seq ; bind commands to multiple keypresses
                                      focus ; focus mode (dim text you are not working on)
                                      hydra ; sticky bindings
@@ -48,13 +51,13 @@
                                      elisp-slime-nav redshank highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      ag anzu ; search / grep
-                                     cider clojure-mode clojure-cheatsheet ; clojure
-                                     cider clj-refactor discover-clj-refactor align-cljlet ; clojure
-                                     avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
+                                     cider clojure-mode clojure-mode-extra-font-locking clojure-cheatsheet ; clojure
+                                     cider clj-refactor discover-clj-refactor align-cljlet yesql-ghosts ; clojure
+                                     avy avy-zap jump-char ; move quickly around buffers (see vim EasyMotion as well)
                                      swiper ; search
                                      paredit paredit-menu paxedit lispy ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
-                                     magit diff-hl ; git integration
+                                     magit ; git integration
                                      projectile ; moving around in projects
                                      yasnippet auto-yasnippet clojure-snippets datomic-snippets ; snippets
                                      browse-kill-ring ; list / select / insert previously killed text
@@ -79,6 +82,7 @@
 (require 'uniquify)
 (require 'custom-defuns)
 (require 'basic-settings)
+(require 'ido-settings)
 (require 'expand-region)
 (require 'ui-settings)
 (require 'lisp-settings)
@@ -91,6 +95,7 @@
 (require 'helm-settings)
 (require 'org-mode-settings)
 (require 'syntax-checking-settings)
+(require 'hippie-expand-settings)
 (require 'misc-package-settings)
 (require 'custom-keybindings)
 

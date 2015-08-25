@@ -15,9 +15,15 @@
 ;; allow undo/redo of window layout
 (winner-mode 1)
 
-;; Remove useless whitespaces before saving a file
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+;; Whitespace-style
+(setq whitespace-style '(trailing lines space-before-tab
+                                  indentation space-after-tab)
+      whitespace-line-column 100)
+
+;; Remove useless whitespace before saving a file (only if the file was clean)
+(global-whitespace-cleanup-mode)
+;;(add-hook 'before-save-hook 'whitespace-cleanup)
+;;(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
 
 ;; don't show trailing whitespace, is already fixed on save
 (setq-default show-trailing-whitespace nil)
@@ -124,9 +130,9 @@
  mouse-yank-at-point t
  uniquify-buffer-name-style 'post-forward
  uniquify-ignore-buffers-re "^\\*"
- whitespace-style '(face trailing lines-tail tabs)
- whitespace-line-column 80
+ ediff-diff-options "-w"
  ediff-window-setup-function 'ediff-setup-windows-plain
+ ediff-split-window-function 'split-window-horizontally
  diff-switches "-u"
  frame-title-format '("CLJ-EMACS       %b %+%+ %f"))
 
@@ -139,6 +145,8 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1)) ; turn off the menubar
 (size-indication-mode 1) ; show the size of the buffer
 
+;; Easily navigate sillycased words
+;;(global-subword-mode 1)
 (global-superword-mode 1)
 
 (set-default 'indicate-empty-lines nil) ; don't indicate empty lines
@@ -156,59 +164,22 @@
 
 ;; Recent files
 (recentf-mode 1)
-(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 100)
+(setq recentf-max-menu-items 100)
 (add-to-list 'recentf-exclude "/elpa")
 
 ;; Mac settings, switch meta and command
 (setq-default mac-function-modifier 'hyper)
 (setq-default mac-command-modifier 'meta)
-(setq-default mac-option-modifier 'command)
+(setq-default mac-option-modifier 'super)
 
 ;; Allow replacement of selected region or deletion of selected region by typing or using DEL
 (delete-selection-mode 1)
-
-;; ido-mode is like magic pixie dust!
-(setq ido-enable-prefix nil
-      ido-enable-flex-matching t
-      ido-case-fold  nil                 ; be case-sensitive
-      ido-auto-merge-work-directories-length nil
-      ido-create-new-buffer 'always
-      ido-use-filename-at-point 'guess
-      ido-use-virtual-buffers t
-      ido-enable-regexp nil
-      ido-enable-last-directory-history nil
-      ido-handle-duplicate-virtual-buffers 2
-      confirm-nonexistent-file-or-buffer nil
-      ido-file-extension-order '(".clj" ".cljs" ".el" ".org" ".txt") ; give priority to certain file types
-      ido-ignore-extensions t
-      ido-max-prospects 10
-      ido-use-faces nil ;; disable ido faces to see flx highlights
-      flx-ido-use-faces t ;; enable flx highlights
-      ido-vertical-define-keys 'C-n-C-p-up-down-left-right
-      )
-
-(defvar ido-dont-ignore-buffer-names '("*scratch*"))
-
-(defun ido-ignore-most-star-buffers (name)
-  (and
-   (string-match-p "^*" name)
-   (not (member name ido-dont-ignore-buffer-names))))
-
-(setq ido-ignore-buffers (list "\\` " #'ido-ignore-most-star-buffers))
 
 ;; Always allow narrowing, don't ask questions
 (put 'narrow-to-defun  'disabled nil)
 (put 'narrow-to-page   'disabled nil)
 (put 'narrow-to-region 'disabled nil)
-
-;;;; ido customization
-(require 'flx-ido)
-(ido-mode t)
-(ido-ubiquitous-mode)
-(flx-ido-mode 1)
-
-(require 'ido-vertical-mode)
-(ido-vertical-mode 1)
 
 (set-default 'indent-tabs-mode nil) ; use spaces for indenting, not tabs
 
@@ -225,8 +196,8 @@
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
-;; disable highlighting the current line
-(global-hl-line-mode 0)
+;; Enable highlighting the current line
+(global-hl-line-mode 1)
 
 ;; automatically reload changed TAGS file
 (setq tags-revert-without-query 1)
@@ -255,5 +226,16 @@
 
 ;; Save clipboard contents into kill-ring before replace them
 (setq save-interprogram-paste-before-kill t)
+
+;; When popping the mark, continue popping until the cursor actually moves
+;; Also, if the last command was a copy - skip past all the expand-region cruft.
+(defadvice pop-to-mark-command (around ensure-new-position activate)
+  (let ((p (point)))
+    (when (eq last-command 'save-region-or-current-line)
+      ad-do-it
+      ad-do-it
+      ad-do-it)
+    (dotimes (i 10)
+      (when (= p (point)) ad-do-it))))
 
 (provide 'basic-settings)

@@ -28,6 +28,10 @@
 (whole-line-or-region-mode 1)
 
 ;; Undo tree
+(setq undo-tree-mode-lighter "")
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 ;; Keep region when undoing in region
 (defadvice undo-tree-undo (around keep-region activate)
   (if (use-region-p)

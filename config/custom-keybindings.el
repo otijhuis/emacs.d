@@ -167,6 +167,9 @@
 (bind-key "C-s" 'swiper)
 (bind-key "C-r" 'swiper)
 
+;; Magit
+(bind-key "<f10>" 'magit-status)
+
 ;; popup for yasnippet
 (bind-key "M-n" 'popup-next popup-menu-keymap)
 (bind-key "TAB" 'popup-next popup-menu-keymap)
