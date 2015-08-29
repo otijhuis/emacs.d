@@ -110,6 +110,9 @@
      (add-to-list 'same-window-buffer-names "*cider*") ;Make C-c C-z switch to the *nrepl* buffer in the current window
      ))
 
+;; use syntax highlighting for evaluated overlay
+(setq cider-ovelays-use-font-lock t)
+
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode) ; Enable eldoc in clojure buffers
 (add-hook 'cider-repl-mode-hook #'subword-mode) ;Enabling CamelCase support for editing commands(like forward-word, backward-word, etc) in nREPL
 (add-hook 'cider-repl-mode-hook #'paredit-mode) ;Enable paredit in nRepl buffer

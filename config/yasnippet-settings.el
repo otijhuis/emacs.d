@@ -1,10 +1,10 @@
 (require 'popup)
 (require 'yasnippet)
 
+(yas-global-mode 1)
+
 ;; Use only own snippets, do not use bundled ones
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-
-(yas-global-mode 1)
 
 ;; Include snippets
 (require 'datomic-snippets)

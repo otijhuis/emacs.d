@@ -50,10 +50,7 @@
 (add-to-list 'helm-sources-using-default-as-input 'helm-source-occur)
 (add-to-list 'helm-sources-using-default-as-input 'helm-source-moccur)
 
-;; (eval-after-load 'helm-mode
-;; '(add-to-list 'helm-completing-read-handlers-alist '(find-file)))
-
-(helm-mode 1)
+;;(helm-mode 1)
 (helm-adaptative-mode 1)
 
 (setq helm-autoresize-max-height 30)
@@ -69,6 +66,10 @@
 ;; match only for symbol
 ;; (setq helm-swoop-pre-input-function
 ;; (lambda () (format "\\_<%s\\_> " (thing-at-point 'symbol))))
+
+;; disable pre-input
+(setq helm-swoop-pre-input-function
+      (lambda () ""))
 
 ;; Optional face for line numbers
 ;; Face name is `helm-swoop-line-number-face`

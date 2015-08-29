@@ -19,7 +19,8 @@
   (setq company-backends '((company-css company-capf company-dabbrev))))
 (add-hook 'css-mode-hook 'css-company-backends)
 
-(setq company-idle-delay 0.2)
+;;(setq company-idle-delay 0.2)
+(setq company-idle-delay nil) ; never start completions automatically
 (setq company-tooltip-limit 20)
 (setq company-minimum-prefix-length 1)
 (setq company-echo-delay 0)

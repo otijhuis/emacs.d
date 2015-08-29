@@ -6,14 +6,15 @@
 
 ;; Hydra - Marking
 (defhydra hydra-mark (:color blue
-                             :hint nil
                              :idle 1.0)
   "Mark"
   ("d" er/mark-defun "Defun / Function")
   ("w" er/mark-word "Word")
   ("u" er/mark-url "Url")
-  ("e" er/mark-email "Email")
-  ("b" mark-whole-buffer "Buffer")
+  ("e" mark-sexp "S-Expression")
+  ("E" er/mark-email "Email")
+  ("b" hydra-mark-buffer/body "Buffer")
+  ("l" mark-line "Line")
   ("p" er/mark-paragraph "Paragraph")
   ("s" er/mark-symbol "Symbol")
   ("S" er/mark-symbol-with-prefix "Prefixed symbol")
@@ -27,6 +28,14 @@
   ("a" er/mark-html-attribute "HTML attribute")
   )
 
+(defhydra hydra-mark-buffer (:color blue
+                                    :hint nil
+                                    :idle 1.0)
+  "Mark buffer"
+  ("w" mark-whole-buffer "Whole buffer")
+  ("a" mark-buffer-after-point "Buffer after point")
+  ("b" mark-buffer-before-point "Buffer before point"))
+
 ;; Hydra - Yank
 (defhydra hydra-yank-pop ()
   "yank"
@@ -34,8 +43,6 @@
   ("y" (yank-pop 1) "next")
   ("Y" (yank-pop -1) "prev")
   ("l" helm-show-kill-ring "list" :color blue))   ; or browse-kill-ring
-
-(bind-key "C-y" 'hydra-yank-pop/yank)
 
 ;; Hydra - Goto line
 (defhydra hydra-goto-line (goto-map ""
@@ -101,8 +108,8 @@
 ;; jq qg qk qy qz wq xz fq wx qx jx kq vq qj qh hx qp xk
 ;; sx
 
-(key-seq-define-global ",x" 'smex)
-(key-seq-define-global "x," 'smex)
+(key-seq-define-global ",p" 'projectile-command-map)
+;;(key-seq-define-global ",x" 'smex)
 (key-seq-define-global "';" 'smex)
 (key-seq-define-global ",l" 'ido-switch-buffer)
 (key-seq-define-global ",f" 'ido-find-file)
@@ -119,6 +126,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
+
+(bind-key "C-y" 'hydra-yank-pop/yank)
+
+;; Set anchor to start rectangular-region-mode
+(global-set-key (kbd "s-SPC") 'set-rectangular-region-anchor)
 
 ;; Keybindings to use: M-o (other-window maybe???)
 
@@ -142,11 +154,11 @@
 
 (bind-key "M-j" 'ot/join-line)
 
-(bind-key "C-S-d" 'ot/duplicate-current-line-or-region)
+(bind-key "s-d" 'ot/duplicate-current-line-or-region)
 
 ;; Paredit
 (bind-key [H-backspace] 'paredit-forward-delete paredit-mode-map)
-(bind-key "C-S-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
+(bind-key "s-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
 
 (bind-key [H-backspace] 'delete-char)
 
@@ -160,15 +172,21 @@
 
 (bind-key "<M-return>" 'ot/open-line-below)
 
-;; use company-mode instead of abbrev
-(bind-key "M-/" 'company-complete)
+;; use hippie-expand instead of abbrev
+(bind-key "M-/" 'hippie-expand)
 
-;; use swiper instead of isearch
-(bind-key "C-s" 'swiper)
-(bind-key "C-r" 'swiper)
+;; use helm-swoop instead of isearch
+(bind-key "C-s" 'helm-swoop)
+(bind-key "C-r" 'helm-swoop)
 
-;; Magit
+;; Version control
 (bind-key "<f10>" 'magit-status)
+(bind-key "<f11>" 'diff-hl-mode)
+
+;; yasnippet
+(bind-key "<tab>" nil yas-minor-mode-map)
+(bind-key "TAB" nil yas-minor-mode-map)
+(bind-key "C-'" 'yas-expand yas-minor-mode-map)
 
 ;; popup for yasnippet
 (bind-key "M-n" 'popup-next popup-menu-keymap)
@@ -176,9 +194,14 @@
 (bind-key "<tab>" 'popup-next popup-menu-keymap)
 (bind-key "<backtab>" 'popup-previous popup-menu-keymap)
 (bind-key "M-p" 'popup-previous popup-menu-keymap)
-(bind-key "C-'" 'yas-expand yas-minor-mode-map)
 
-;; company-mode
+;;;;;;;;;;;;;;;;;;
+;; company-mode ;;
+;;;;;;;;;;;;;;;;;;
+
+(bind-key "TAB" #'company-indent-or-complete-common)
+(bind-key "<s-tab>" #'company-yasnippet)
+
 (with-eval-after-load 'company
   (bind-key "C-j" 'company-select-next company-active-map)
   (bind-key "C-k" 'company-select-previous company-active-map)
@@ -186,7 +209,10 @@
   (bind-key "C-M-/" 'company-filter-candidates company-active-map)
   (bind-key "C-d" 'company-show-doc-buffer company-active-map))
 
-;; Helm
+;;;;;;;;;;
+;; Helm ;;
+;;;;;;;;;;
+
 ;;(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 ;; Move up and down like isearch
@@ -202,6 +228,10 @@
 (bind-key "C-x C-i" 'idomenu)
 (bind-key "C-x C-b" 'ibuffer)
 
+;;;;;;;;;;
+;; Help ;;
+;;;;;;;;;;
+
 ;; Help should search more than just commands
 (define-key 'help-command "a" 'apropos)
 
@@ -216,12 +246,20 @@
 (bind-key [escape] 'minibuffer-keyboard-quit minibuffer-local-must-match-map)
 (bind-key [escape] 'minibuffer-keyboard-quit minibuffer-local-isearch-map)
 
+;;;;;;;;;;;;;;;;;;;;;;
+;; Windows / Frames ;;
+;;;;;;;;;;;;;;;;;;;;;;
+
 (bind-key "C-x o" 'ido-select-window)
 
 ;; Commands to map
 ;; reposition-window, paredit-focus-on-defun, paredit-duplicate-after-point, paredit-reindent-defun
 
-;; Clojure / Cider
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Clojure / Cider ;;
+;;;;;;;;;;;;;;;;;;;;;
+
 ;; (evil-define-key 'normal clojure-mode-map ",ch" 'ot/helm-clojure-headlines)
 (bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
 ;; (evil-define-key 'normal clojure-mode-map "\\es" 'cider-eval-last-sexp)
@@ -239,13 +277,5 @@
 ;; (evil-define-key 'normal clojure-mode-map "\\A" 'cider-apropos-documentation)
 ;; (evil-define-key 'normal clojure-mode-map ",je" 'cider-jump-to-compilation-error)
 ;; (evil-define-key 'normal clojure-mode-map ",jr" 'cider-jump-to-resource)
-
-;; neotree
-;;(add-hook 'neotree-mode-hook
-;;          (lambda ()
-;;            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-;;            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-;;            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-;;            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
 (provide 'custom-keybindings)

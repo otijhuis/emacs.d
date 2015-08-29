@@ -196,8 +196,8 @@
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
-;; Enable highlighting the current line
-(global-hl-line-mode 1)
+;; Disable highlighting the current line
+(global-hl-line-mode 0)
 
 ;; automatically reload changed TAGS file
 (setq tags-revert-without-query 1)

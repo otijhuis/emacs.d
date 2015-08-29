@@ -1,3 +1,24 @@
+;; Rich minority (clean up modeline)
+(require 'rich-minority)
+(setq rm-blacklist '(" hl-s"
+                     " company"
+                     " wr"
+                     " Guide"
+                     " Anzu"
+                     " ing"
+                     " WLR"
+                     " Anzu"
+                     " ElDoc"
+                     " Paxedit"
+                     " Paredit"
+                     " $"
+                     " =>"
+                     " SliNav"
+                     " WSC"
+                     " VHl"
+                     " yas"))
+(rich-minority-mode 1)
+
 ;; Multiple Cursors
 (require 'multiple-cursors)
 (setq mc/unsupported-minor-modes '(company-mode auto-complete-mode flyspell-mode jedi-mode))
@@ -43,25 +64,6 @@
         (set-marker p nil)
         (set-marker m nil))
     ad-do-it))
-
-;; Guide-key
-(require 'guide-key)
-(setq guide-key/idle-delay 1.0)
-;; (setq guide-key/recursive-key-sequence-flag t)
-;; (guide-key/key-chord-hack-on) ; to make it work with guide-key
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c p" "C-x n"))
-(setq guide-key/text-scale-amount -1)
-(guide-key-mode 1)  ; Enable guide-key-mode
-
-(defun guide-key/my-hook-function-for-org-mode ()
-  (guide-key/add-local-guide-key-sequence "C-c")
-  (guide-key/add-local-guide-key-sequence "C-c C-x")
-  (guide-key/add-local-highlight-command-regexp "org-"))
-(add-hook 'org-mode-hook 'guide-key/my-hook-function-for-org-mode)
-
-;; Guide-key tip
-(require 'guide-key-tip)
-(setq guide-key-tip/enabled t)
 
 ;; Highlight symbol
 (setq highlight-symbol-idle-delay 0.5)

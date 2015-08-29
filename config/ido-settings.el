@@ -28,6 +28,7 @@
 (setq ido-ignore-buffers (list "\\` " #'ido-ignore-most-star-buffers))
 
 (add-to-list 'ido-ignore-directories "target")
+(add-to-list 'ido-ignore-directories "node_modules")
 
 ;;;; ido customization
 (require 'flx-ido)
@@ -54,6 +55,9 @@
 
 ;; Ido at point (C-,)
 (require 'ido-at-point)
+(setq ido-at-point-use-helm nil)
+(setq ido-at-point-partial t)
+(setq ido-at-point-fuzzy t)
 (ido-at-point-mode)
 
 (require 'dash)
