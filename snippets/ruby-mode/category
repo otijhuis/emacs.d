@@ -1,0 +1,8 @@
+#contributor: Okke Tijhuis
+#name: category
+#key: category
+# --
+category do
+      id '$1'
+      entry$0
+end

@@ -2,8 +2,8 @@
 
 (when (>= emacs-major-version 24)
   (setq package-archives '(("org" . "http://orgmode.org/elpa/")
-			   ("ELPA" . "http://elpa.gnu.org/packages/")
-			   ("melpa" . "http://melpa.org/packages/")
+                           ("ELPA" . "http://elpa.gnu.org/packages/")
+                           ("melpa" . "http://melpa.org/packages/")
                            ("melpa-stable" . "http://stable.melpa.org/packages/")
                            )))
 
@@ -23,7 +23,7 @@
   (package-refresh-contents))
 
 ;; Add in your own as you wish:
-(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
+(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
                                      helm-descbinds helm-company helm-c-moccur helm-cider-history ; helm
                                      keyfreq ; determine how often commands are used
@@ -57,7 +57,7 @@
                                      swiper ; search
                                      paredit paredit-menu paxedit lispy ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
-                                     magit ; git integration
+                                     magit diff-hl ; git integration
                                      projectile ; moving around in projects
                                      yasnippet auto-yasnippet clojure-snippets datomic-snippets ; snippets
                                      browse-kill-ring ; list / select / insert previously killed text

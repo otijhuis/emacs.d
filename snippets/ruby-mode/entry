@@ -1,0 +1,9 @@
+#contributor: Okke Tijhuis
+#name: entry
+#key: entry
+# --
+entry do
+      command '$1'
+      name '$2'
+      notes '\`$3\`'
+end$0
