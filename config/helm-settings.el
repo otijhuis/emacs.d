@@ -56,7 +56,7 @@
 (setq helm-autoresize-max-height 30)
 (setq helm-autoresize-min-height 30)
 
-(helm-autoresize-mode 1)
+;;(helm-autoresize-mode 1)
 
 ;;;;;;;;;;;;;;;;
 ;; Helm swoop ;;
@@ -74,6 +74,18 @@
 ;; Optional face for line numbers
 ;; Face name is `helm-swoop-line-number-face`
 (setq helm-swoop-use-line-number-face t)
+
+;; Split direcion. 'split-window-vertically or 'split-window-horizontally
+(setq helm-swoop-split-direction 'split-window-vertically)
+
+;; If nil, you can slightly boost invoke speed in exchange for text color
+(setq helm-swoop-speed-or-color nil)
+
+;; If this value is t, split window inside the current window
+(setq helm-swoop-split-with-multiple-windows t)
+
+;; ;; Go to the opposite side of line from the end or beginning of line
+(setq helm-swoop-move-to-line-cycle t)
 
 ;; Save buffer when helm-multi-swoop-edit complete
 (setq helm-multi-swoop-edit-save t)

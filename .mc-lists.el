@@ -3,11 +3,28 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        hydra-transpose/transpose-sexps-and-exit
+        hydra-transpose/transpose-words-and-exit
+        paredit-backward-down
+        paredit-backward-up
+        paredit-forward-delete
+        paredit-forward-down
+        paredit-forward-up
         paredit-raise-sexp
         transpose-sexps
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        hydra-transpose/body
         mac-mwheel-scroll
+        multiple-cursors-hydra/mc/edit-beginnings-of-lines-and-exit
+        multiple-cursors-hydra/mc/edit-ends-of-lines-and-exit
+        multiple-cursors-hydra/mc/edit-lines-and-exit
+        multiple-cursors-hydra/mc/mark-all-dwim-and-exit
+        multiple-cursors-hydra/mc/mark-all-symbols-like-this-and-exit
+        multiple-cursors-hydra/mc/mark-all-symbols-like-this-in-defun-and-exit
+        multiple-cursors-hydra/mc/mark-all-words-like-this-and-exit
+        multiple-cursors-hydra/mc/mark-all-words-like-this-in-defun-and-exit
+        smex
         ))

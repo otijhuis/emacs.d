@@ -18,7 +18,8 @@
       ido-vertical-define-keys 'C-n-C-p-up-down-left-right
       )
 
-(defvar ido-dont-ignore-buffer-names '("*scratch*"))
+;;(defvar ido-dont-ignore-buffer-names '("*scratch*"))
+(defvar ido-dont-ignore-buffer-names '())
 
 (defun ido-ignore-most-star-buffers (name)
   (and

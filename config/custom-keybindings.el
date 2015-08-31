@@ -6,6 +6,7 @@
 
 ;; Hydra - Marking
 (defhydra hydra-mark (:color blue
+                             :columns 3
                              :idle 1.0)
   "Mark"
   ("d" er/mark-defun "Defun / Function")
@@ -28,9 +29,8 @@
   ("a" er/mark-html-attribute "HTML attribute")
   )
 
-(defhydra hydra-mark-buffer (:color blue
-                                    :hint nil
-                                    :idle 1.0)
+(defhydra hydra-mark-buffer (:exit t
+                                   :idle 1.0)
   "Mark buffer"
   ("w" mark-whole-buffer "Whole buffer")
   ("a" mark-buffer-after-point "Buffer after point")
@@ -40,9 +40,10 @@
 (defhydra hydra-yank-pop ()
   "yank"
   ("C-y" yank nil)
+  ("M-y" yank-pop nil)
   ("y" (yank-pop 1) "next")
   ("Y" (yank-pop -1) "prev")
-  ("l" helm-show-kill-ring "list" :color blue))   ; or browse-kill-ring
+  ("l" helm-show-kill-ring "list" :exit t))   ; or browse-kill-ring
 
 ;; Hydra - Goto line
 (defhydra hydra-goto-line (goto-map ""
@@ -53,34 +54,32 @@
   ("m" set-mark-command "mark" :bind nil)
   ("q" nil "quit"))
 
-;; Hydra - Projectile
-(defhydra hydra-projectile-other-window (:color teal)
-  "projectile-other-window"
-  ("f"  projectile-find-file-other-window        "file")
-  ("g"  projectile-find-file-dwim-other-window   "file dwim")
-  ("d"  projectile-find-dir-other-window         "dir")
-  ("b"  projectile-switch-to-buffer-other-window "buffer")
-  ("q"  nil                                      "cancel" :color blue))
-
 ;; Hydra - Multiple cursors
-(defhydra multiple-cursors-hydra (:hint nil)
-  "
-     ^Up^            ^Down^        ^Miscellaneous^
-----------------------------------------------
-[_p_]   Next    [_n_]   Next    [_l_] Edit lines
-[_P_]   Skip    [_N_]   Skip    [_a_] Mark all
-[_M-p_] Unmark  [_M-n_] Unmark  [_q_] Quit"
-  ("l" mc/edit-lines :exit t)
-  ("a" mc/mark-all-like-this :exit t)
-  ("n" mc/mark-next-like-this)
-  ("N" mc/skip-to-next-like-this)
-  ("M-n" mc/unmark-next-like-this)
-  ("p" mc/mark-previous-like-this)
-  ("P" mc/skip-to-previous-like-this)
-  ("M-p" mc/unmark-previous-like-this)
-  ("q" nil))
+(defhydra multiple-cursors-hydra (:columns 3
+                                           :idle 1.0)
+  "Multiple cursors"
+  ("l" mc/edit-lines "Edit lines in region" :exit t)
+  ("b" mc/edit-beginnings-of-lines "Edit beginnings of lines in region" :exit t)
+  ("e" mc/edit-ends-of-lines "Edit ends of lines in region" :exit t)
+  ("a" mc/mark-all-dwim "Mark all dwim" :exit t)
+  ("s" mc/mark-all-symbols-like-this "Mark all symbols likes this" :exit t)
+  ("w" mc/mark-all-words-like-this "Mark all words like this" :exit t)
+  ("r" mc/mark-all-in-region "Mark all in region" :exit t)
+  ("R" mc/mark-all-in-region-regexp "Mark all in region (regexp)" :exit t)
+  ("d" mc/mark-all-like-this-in-defun "Mark all like this in defun" :exit t)
+  ("S" mc/mark-all-symbols-like-this-in-defun "Mark all symbols like this in defun" :exit t)
+  ("W" mc/mark-all-words-like-this-in-defun "Mark all words like this in defun" :exit t)
+  ("i" mc/insert-numbers "Insert numbers" :exit t)
+  ("n" mc/mark-next-like-this "Mark next like this")
+  ("N" mc/skip-to-next-like-this "Skip to next like this")
+  ("M-n" mc/unmark-next-like-this "Unmark next like this")
+  ("p" mc/mark-previous-like-this "Mark previous like this")
+  ("P" mc/skip-to-previous-like-this "Skip to previous like this")
+  ("M-p" mc/unmark-previous-like-this "Unmark previous like this")
+  ("q" nil "Quit" :exit t))
 
 (defhydra hydra-paredit (:color blue
+                                :columns 3
                                 :idle 1.0)
   "Paredit"
   ("(" paredit-wrap-round "Wrap round")
@@ -89,8 +88,8 @@
   ("{" paredit-wrap-curly "Wrap curly")
   ("c" paredit-wrap-curly "Wrap curly")
   ("s" paredit-splice-sexp "Splice")
-  ("bs" paredit-splice-sexp-killing-backward "Splice kill backward")
-  ("fs" paredit-splice-sexp-killing-forward "Splice kill forward")
+  ("bs" cljr-splice-sexp-killing-backward "Splice kill backward")
+  ("fs" cljr-splice-sexp-killing-forward "Splice kill forward")
   ("S" paredit-split-sexp "Split")
   ("j" paredit-join-sexps "Join")
   ("J" paredit-join-with-next-list "Join next list")
@@ -99,35 +98,129 @@
   ("M-c" paredit-copy-as-kill "Copy as kill")
   ("r" cljr-raise-sexp "Raise"))
 
-;;;;;;;;;;;;;;;;
-;; Key chords ;;
-;;;;;;;;;;;;;;;;
+(defhydra hydra-transpose (:exit t
+                                 :columns 3
+                                 :idle 1.0)
+  "Transpose"
+  ("w" transpose-words "Words")
+  ("l" transpose-lines "Lines")
+  ("e" transpose-sexps "S-expressions")
+  ("s" transpose-sexps "S-expressions")
+  ("p" transpose-paragraphs "Paragraphs")
+  ("q" nil "cancel" :exit t))
+
+(defhydra hydra-frame (:exit t
+                             :idle 1.0)
+  "Frame"
+  ("f" toggle-frame-fullscreen "Toggle fullscreen")
+  ("m" toggle-frame-maximized "Toggle maximize")
+  ("d" delete-frame "Delete")
+  ("n" new-frame "New"))
+
+(defhydra hydra-eval (:exit t
+                            :idle 1.0)
+  "Eval"
+  ("r" eval-region "Region")
+  ("b" eval-buffer "Buffer")
+  ("e" eval-sexp "S-expression")
+  ("d" eval-defun "Defun / Function"))
+
+(defhydra hydra-clj-refactor-a (:exit t
+                                      :columns 2
+                                      :idle 1.0)
+  "Clojure Refactor (a)"
+  ("i" cljr-add-import-to-ns "Add import")
+  ("r" cljr-add-require-to-ns "Add require")
+  ("u" cljr-add-use-to-ns "Add use")
+  ("m" cljr-add-missing-libspec "Add missing libspec")
+  ("p" cljr-add-project-dependency "Add project dependency")
+  ("d" cljr-add-declaration "Add declaration for current top-level form")
+  ("s" cljr-add-stubs "Add stubs for interface at point"))
+
+(defhydra hydra-clj-refactor-c (:exit t
+                                      :columns 2
+                                      :idle 1.0)
+  "Clojure Refactor (c)"
+  ("c" cljr-cycle-coll "Cycle surrounding collection type" :color red)
+  ("i" cljr-cycle-if "Cycle between if and if-not")
+  ("p" cljr-cycle-privacy "Cycle privacy of defn or def")
+  ("n" cljr-clean-ns "Clean namespace form"))
+
+(defhydra hydra-clj-refactor-d (:exit t
+                                      :columns 1
+                                      :idle 1.0)
+  "Clojure Refactor (d)"
+  ("k" cljr-destructure-keys "Destructure keys"))
+
+(defhydra hydra-clj-refactor-e (:exit t
+                                      :columns 1
+                                      :idle 1.0)
+  "Clojure Refactor (e)"
+  ("c" cljr-extract-constant "Extract constant")
+  ("d" cljr-extract-def "Extract def")
+  ("f" cljr-extract-function "Extract function")
+  ("l" cljr-expand-let "Expand let"))
+
+(defhydra hydra-clj-refactor-f (:exit t
+                                      :columns 1
+                                      :idle 1.0)
+  "Clojure Refactor (f)"
+  ("e" cljr-create-fn-from-example "Create fn from example stub")
+  ("u" cljr-find-usages "Find usages"))
+
+;;;;;;;;;;;;;;;;;
+;; Keybindings ;;
+;;;;;;;;;;;;;;;;;
 
 ;; Key chords to use:
 ;; yy jj '; zx ., \] /. ?? ^^ '/ ;. ;, .; /' =- -=
 ;; jq qg qk qy qz wq xz fq wx qx jx kq vq qj qh hx qp xk
 ;; sx
 
+(bind-key "s-a" 'hydra-clj-refactor-a/body clojure-mode-map)
+(key-seq-define clojure-mode-map ".a" 'hydra-clj-refactor-a/body)
+(key-seq-define clojure-mode-map ".c" 'hydra-clj-refactor-c/body)
+(key-seq-define clojure-mode-map ".d" 'hydra-clj-refactor-d/body)
+(key-seq-define clojure-mode-map ".e" 'hydra-clj-refactor-e/body)
+(key-seq-define clojure-mode-map ".f" 'hydra-clj-refactor-f/body)
+
 (key-seq-define-global ",p" 'projectile-command-map)
 ;;(key-seq-define-global ",x" 'smex)
 (key-seq-define-global "';" 'smex)
+
 (key-seq-define-global ",l" 'ido-switch-buffer)
 (key-seq-define-global ",f" 'ido-find-file)
-(key-seq-define-global ",u" 'undo-tree-visualize)
-;;(key-seq-define-global ",p" 'hydra-projectile/body)
-;;(key-seq-define-global ",d" 'ot/duplicate-current-line-or-region)
-(key-seq-define-global ",w" 'save-buffer)
-(key-seq-define-global "/." 'hydra-mark/body)
-(key-seq-define-global "\\]" 'hydra-paredit/body)
 
-(key-seq-define-global "z," 'avy-zap-up-to-char)
-(key-seq-define-global "z." 'avy-zap-to-char)
+(bind-key "M-x" 'smex)
+(bind-key "M-X" 'smex-major-mode-commands)
+(bind-key "C-x C-i" 'idomenu)
+(bind-key "C-x C-b" 'ibuffer)
+
+(key-seq-define-global ",u" 'undo-tree-visualize)
+(key-seq-define-global "/." 'hydra-mark/body)
+(key-seq-define-global "zx" 'hydra-mark/body)
+(key-seq-define-global "][" 'hydra-transpose/body)
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(bind-key "C-y" 'hydra-yank-pop/yank)
+;; toggle two most recent buffers
+(fset 'quick-switch-buffer [?\C-x ?b return])
+(bind-key "<f9>" 'quick-switch-buffer)
+
+(bind-key "s-s" 'save-buffer)
+
+;; Perform general cleanup.
+(global-set-key (kbd "C-c n") 'cleanup-buffer)
+(global-set-key (kbd "C-c C-n") 'cleanup-buffer)
+(global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
+
+(require 'misc)
+(global-set-key (kbd "s-.") 'copy-from-above-command)
+
+(bind-key "C-y" #'hydra-yank-pop/yank)
+(bind-key "M-y" #'hydra-yank-pop/yank-pop)
 
 ;; Set anchor to start rectangular-region-mode
 (global-set-key (kbd "s-SPC") 'set-rectangular-region-anchor)
@@ -142,9 +235,16 @@
 
 (bind-key "M-i" 'helm-imenu)
 
+;;;;;;;;;
+;; Avy ;;
+;;;;;;;;;
 (bind-key "M-z" 'avy-zap-to-char-dwim)
 (bind-key "M-Z" 'avy-zap-up-to-char-dwim)
-(bind-key "C-z" 'avy-goto-char)
+(key-seq-define-global ";l" 'avy-goto-char)
+(key-seq-define-global "zc" 'avy-goto-word-0)
+(key-seq-define-global "z," 'avy-zap-up-to-char)
+(key-seq-define-global "z." 'avy-zap-to-char)
+(bind-key "C-'" 'avy-isearch isearch-mode-map)
 
 ;; Smarter move to beginning/end of line
 (bind-key "C-S-a" 'beginning-of-line+)
@@ -156,9 +256,18 @@
 
 (bind-key "s-d" 'ot/duplicate-current-line-or-region)
 
-;; Paredit
+;;;;;;;;;;;;;
+;; Paredit ;;
+;;;;;;;;;;;;;
+(key-seq-define paredit-mode-map "\\]" 'hydra-paredit/body)
+(bind-key "s-j" 'paredit-backward-down paredit-mode-map)
+(bind-key "s-i" 'paredit-backward-up paredit-mode-map)
+(bind-key "s-l" 'paredit-forward-up paredit-mode-map)
+(bind-key "s-k" 'paredit-forward-down paredit-mode-map)
 (bind-key [H-backspace] 'paredit-forward-delete paredit-mode-map)
 (bind-key "s-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
+(bind-key "s-D" 'ot/paredit-duplicate-closest-sexp paredit-mode-map)
+(bind-key [M-backspace] 'ot/paredit-kill-region-or-backward-word paredit-mode-map)
 
 (bind-key [H-backspace] 'delete-char)
 
@@ -170,14 +279,17 @@
                     (occur (if isearch-regexp isearch-string (regexp-quote isearch-string)))))
           isearch-mode-map)
 
+(bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map)
+(bind-key "M-I" 'helm-multi-swoop-all-from-isearch isearch-mode-map)
+(bind-key "M-m" 'helm-multi-swoop-current-mode-from-helm-swoop helm-swoop-map)
+(bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
+(bind-key "C-s" 'isearch-forward-regexp)
+(bind-key "C-r" 'isearch-backward-regexp)
+
 (bind-key "<M-return>" 'ot/open-line-below)
 
 ;; use hippie-expand instead of abbrev
 (bind-key "M-/" 'hippie-expand)
-
-;; use helm-swoop instead of isearch
-(bind-key "C-s" 'helm-swoop)
-(bind-key "C-r" 'helm-swoop)
 
 ;; Version control
 (bind-key "<f10>" 'magit-status)
@@ -186,7 +298,7 @@
 ;; yasnippet
 (bind-key "<tab>" nil yas-minor-mode-map)
 (bind-key "TAB" nil yas-minor-mode-map)
-(bind-key "C-'" 'yas-expand yas-minor-mode-map)
+(bind-key "M-o" 'yas-expand yas-minor-mode-map)
 
 ;; popup for yasnippet
 (bind-key "M-n" 'popup-next popup-menu-keymap)
@@ -221,13 +333,6 @@
 (bind-key "C-k" 'helm-previous-line helm-multi-swoop-map)
 (bind-key "C-j" 'helm-next-line helm-multi-swoop-map)
 
-;; From helm-swoop to helm-multi-swoop-all
-(bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
-
-(bind-key "M-x" 'smex)
-(bind-key "C-x C-i" 'idomenu)
-(bind-key "C-x C-b" 'ibuffer)
-
 ;;;;;;;;;;
 ;; Help ;;
 ;;;;;;;;;;
@@ -251,6 +356,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 (bind-key "C-x o" 'ido-select-window)
+(global-set-key (kbd "C-x 3") 'ot/split-window-right-and-move-there-dammit)
+(bind-key "<f12>" 'hydra-frame/body)
 
 ;; Commands to map
 ;; reposition-window, paredit-focus-on-defun, paredit-duplicate-after-point, paredit-reindent-defun

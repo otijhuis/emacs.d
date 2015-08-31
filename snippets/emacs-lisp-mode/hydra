@@ -1,0 +1,7 @@
+#contributor: Okke Tijhuis
+#name: hydra
+#key: hydra
+# --
+(defhydra hydra-$1 ($2)
+          "${3:hydra description}"
+          ("${4:keybinding}" ${5:function} "${6:description}")$0)

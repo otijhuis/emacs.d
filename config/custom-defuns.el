@@ -424,4 +424,36 @@ Position the cursor at its beginning, according to the current mode."
     (hippie-expand-no-case-fold)
     (modify-syntax-entry ?/ old-syntax)))
 
+(defun ot/kill-region-or-backward-word ()
+  (interactive)
+  (if (region-active-p)
+      (kill-region (region-beginning) (region-end))
+    (backward-kill-word 1)))
+
+(defun ot/kill-to-beginning-of-line ()
+  (interactive)
+  (kill-region (save-excursion (beginning-of-line) (point))
+               (point)))
+
+(defun ot/kill-and-retry-line ()
+  "Kill the entire current line and reposition point at indentation"
+  (interactive)
+  (back-to-indentation)
+  (kill-line))
+
+(defun ot/split-window-right-and-move-there-dammit ()
+  (interactive)
+  (split-window-right)
+  (windmove-right))
+
+(defun ot/eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+
 (provide 'custom-defuns)
