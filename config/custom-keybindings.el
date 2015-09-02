@@ -98,9 +98,8 @@
   ("M-c" paredit-copy-as-kill "Copy as kill")
   ("r" cljr-raise-sexp "Raise"))
 
-(defhydra hydra-transpose (:exit t
-                                 :columns 3
-                                 :idle 1.0)
+(defhydra hydra-transpose (:columns 3
+                                    :idle 1.0)
   "Transpose"
   ("w" transpose-words "Words")
   ("l" transpose-lines "Lines")
@@ -144,7 +143,8 @@
   ("c" cljr-cycle-coll "Cycle surrounding collection type" :color red)
   ("i" cljr-cycle-if "Cycle between if and if-not")
   ("p" cljr-cycle-privacy "Cycle privacy of defn or def")
-  ("n" cljr-clean-ns "Clean namespace form"))
+  ("n" cljr-clean-ns "Clean namespace form")
+  ("t" cljr-cycle-thread "Cycle threading between -> and ->>. Also applies to versions like cond->"))
 
 (defhydra hydra-clj-refactor-d (:exit t
                                       :columns 1
@@ -153,7 +153,7 @@
   ("k" cljr-destructure-keys "Destructure keys"))
 
 (defhydra hydra-clj-refactor-e (:exit t
-                                      :columns 1
+                                      :columns 2
                                       :idle 1.0)
   "Clojure Refactor (e)"
   ("c" cljr-extract-constant "Extract constant")
@@ -167,6 +167,71 @@
   "Clojure Refactor (f)"
   ("e" cljr-create-fn-from-example "Create fn from example stub")
   ("u" cljr-find-usages "Find usages"))
+
+(defhydra hydra-clj-refactor-h (:exit t
+                                      :columns 1
+                                      :idle 1.0)
+  "Clojure Refactor (h)"
+  ("d" cljr-hotload-dependency "Hotload dependency"))
+
+(defhydra hydra-clj-refactor-i (:exit t
+                                      :columns 1
+                                      :idle 1.0)
+  "Clojure Refactor (i)"
+  ("l" cljr-introduce-let "Introduce let")
+  ("s" cljr-inline-symbol "Inline symbol"))
+
+(defhydra hydra-clj-refactor-m (:exit t
+                                      :columns 1
+                                      :idle 1.0)
+  "Clojure Refactor (m)"
+  ("f" cljr-move-form "Move form(s) to other ns, :refer functions")
+  ("l" cljr-move-to-let "Move to let"))
+
+(defhydra hydra-clj-refactor-p (:exit t
+                                      :columns 1
+                                      :idle 1.0)
+  "Clojure Refactor (p)"
+  ("c" cljr-project-clean-functions "Run project clean functions on project")
+  ("f" cljr-promote-function "Promote function literal to fn, or fn to defn"))
+
+(defhydra hydra-clj-refactor-r (:exit t
+                                      :columns 2
+                                      :idle 1.0)
+  "Clojure Refactor (r)"
+  ("d" cljr-remove-debug-fns "Remove debug function invocations")
+  ("D" cljr-reify-to-defrecord "Reify to defrecord")
+  ("f" cljr-rename-file-or-dir "Rename file or dir updating any affected files")
+  ("l" cljr-remove-let "Remove let, inline all variables and remove the let form")
+  ("r" cljr-remove-unused-requires "Remove unused requires")
+  ("s" cljr-rename-symbol "Rename symbol")
+  ("u" cljr-replace-use "Replace use statements with equivalent require statements"))
+
+(defhydra hydra-clj-refactor-s (:exit t
+                                      :columns 2
+                                      :idle 1.0)
+  "Clojure Refactor (s)"
+  ("c" cljr-show-changelog "Show the changelog, to learn about recent changes")
+  ("n" cljr-sort-ns "Sort the ns form. :use, :require and :import clauses are sorted")
+  ("p" cljr-sort-project-dependencies "Sort project dependencies found in project.clj")
+  ("r" cljr-stop-referring "Stop referring (removes :refer [...] from current require, fix references)"))
+
+(defhydra hydra-clj-refactor-t (:exit t
+                                      :columns 2
+                                      :idle 1.0)
+  "Clojure Refactor (t)"
+  ("d" cljr-toggle-debug-mode "Toggle debug mode")
+  ("f" cljr-thread-first-all "Wrap in thread-first (->) and fully thread")
+  ("h" cljr-thread "Thread another expression")
+  ("l" cljr-thread-last-all "Wrap in thread-last (->>) and fully thread"))
+
+(defhydra hydra-clj-refactor-u (:exit t
+                                      :columns 2
+                                      :idle 1.0)
+  "Clojure Refactor (u)"
+  ("a" cljr-unwind-all "Fully unwind a threaded expression")
+  ("p" cljr-update-project-dependencies "Update project dependencies (lein only)")
+  ("w" cljr-unwind "Unwind a threaded expression"))
 
 ;;;;;;;;;;;;;;;;;
 ;; Keybindings ;;
@@ -183,6 +248,14 @@
 (key-seq-define clojure-mode-map ".d" 'hydra-clj-refactor-d/body)
 (key-seq-define clojure-mode-map ".e" 'hydra-clj-refactor-e/body)
 (key-seq-define clojure-mode-map ".f" 'hydra-clj-refactor-f/body)
+(key-seq-define clojure-mode-map ".h" 'hydra-clj-refactor-h/body)
+(key-seq-define clojure-mode-map ".i" 'hydra-clj-refactor-i/body)
+(key-seq-define clojure-mode-map ".m" 'hydra-clj-refactor-m/body)
+(key-seq-define clojure-mode-map ".p" 'hydra-clj-refactor-p/body)
+(key-seq-define clojure-mode-map ".r" 'hydra-clj-refactor-r/body)
+(key-seq-define clojure-mode-map ".s" 'hydra-clj-refactor-s/body)
+(key-seq-define clojure-mode-map ".t" 'hydra-clj-refactor-t/body)
+(key-seq-define clojure-mode-map ".u" 'hydra-clj-refactor-u/body)
 
 (key-seq-define-global ",p" 'projectile-command-map)
 ;;(key-seq-define-global ",x" 'smex)
@@ -201,6 +274,8 @@
 (key-seq-define-global "zx" 'hydra-mark/body)
 (key-seq-define-global "][" 'hydra-transpose/body)
 
+;;(symbol-function 'hydra-transpose/transpose-sexps-and-exit)
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -217,7 +292,7 @@
 (global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
 
 (require 'misc)
-(global-set-key (kbd "s-.") 'copy-from-above-command)
+(global-set-key (kbd "s-/") 'copy-from-above-command)
 
 (bind-key "C-y" #'hydra-yank-pop/yank)
 (bind-key "M-y" #'hydra-yank-pop/yank-pop)
@@ -268,6 +343,10 @@
 (bind-key "s-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
 (bind-key "s-D" 'ot/paredit-duplicate-closest-sexp paredit-mode-map)
 (bind-key [M-backspace] 'ot/paredit-kill-region-or-backward-word paredit-mode-map)
+(bind-key "s-." 'paredit-forward-slurp-sexp paredit-mode-map)
+(bind-key "s-," 'paredit-forward-barf-sexp paredit-mode-map)
+(bind-key "M-s-," 'paredit-backward-slurp-sexp paredit-mode-map)
+(bind-key "M-s-." 'paredit-backward-barf-sexp paredit-mode-map)
 
 (bind-key [H-backspace] 'delete-char)
 
@@ -341,7 +420,7 @@
 (define-key 'help-command "a" 'apropos)
 
 ;; Lisp
-(bind-key "TAB" 'lisp-complete-symbol read-expression-map)
+(bind-key "TAB" 'completion-at-point read-expression-map)
 (bind-key "RET" 'reindent-then-newline-and-indent lisp-mode-shared-map)
 
 ;;; esc quits

@@ -3,10 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        hydra-mark/er/mark-symbol-and-exit
         hydra-transpose/transpose-sexps-and-exit
         hydra-transpose/transpose-words-and-exit
         paredit-backward-down
         paredit-backward-up
+        paredit-close-square
         paredit-forward-delete
         paredit-forward-down
         paredit-forward-up
@@ -17,7 +19,7 @@
 (setq mc/cmds-to-run-once
       '(
         hydra-transpose/body
-        mac-mwheel-scroll
+        hydra-mark/body
         multiple-cursors-hydra/mc/edit-beginnings-of-lines-and-exit
         multiple-cursors-hydra/mc/edit-ends-of-lines-and-exit
         multiple-cursors-hydra/mc/edit-lines-and-exit

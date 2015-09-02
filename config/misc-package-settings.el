@@ -76,4 +76,9 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
+;; Drag stuff
+(setq drag-stuff-modifier 'hyper)
+(require 'drag-stuff)
+(drag-stuff-global-mode t)
+
 (provide 'misc-package-settings)
