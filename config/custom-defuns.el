@@ -206,13 +206,6 @@ emacs buffers are those whose name starts with *."
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(defun ot/pretty-lambdas ()
-  (font-lock-add-keywords
-   nil `(("(?\\(lambda\\>\\)"
-          (0 (progn (compose-region (match-beginning 1) (match-end 1)
-                                    ,(make-char 'greek-iso8859-7 107))
-                    nil))))))
-
 (defun ot/esk-add-watchwords ()
   (font-lock-add-keywords
    nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
@@ -226,12 +219,6 @@ emacs buffers are those whose name starts with *."
               (if (file-exists-p (concat buffer-file-name "c"))
                   (delete-file (concat buffer-file-name "c"))))))
 
-(defun ot/pretty-fn ()
-  (font-lock-add-keywords nil `(("(\\(\\<fn\\>\\)"
-                                 (0 (progn (compose-region (match-beginning 1)
-                                                           (match-end 1)
-                                                           "\u0192"
-                                                           'decompose-region)))))))
 (defun ot/esk-prog-mode-hook ()
   (run-hooks 'prog-mode-hook))
 

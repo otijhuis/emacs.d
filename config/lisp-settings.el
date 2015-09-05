@@ -1,5 +1,5 @@
 (require 'clojure-mode)
-(require 'clojure-mode-extra-font-locking)
+;;(require 'clojure-mode-extra-font-locking)
 
 (defadvice clojure-test-run-tests (before save-first activate)
   (save-buffer))
@@ -51,13 +51,23 @@
 (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
 
 ;; make colon part of word (for example :keyword)
-(add-hook 'clojure-mode-hook (lambda () (modify-syntax-entry ?: "w")))
-(add-hook 'clojure-mode-hook (lambda () (modify-syntax-entry ?_ "w")))
-(add-hook 'prog-mode-hook (lambda () (modify-syntax-entry ?- "w")))
+;;(add-hook 'clojure-mode-hook (lambda () (modify-syntax-entry ?: "w")))
+;;(add-hook 'clojure-mode-hook (lambda () (modify-syntax-entry ?_ "w")))
+;;(add-hook 'prog-mode-hook (lambda () (modify-syntax-entry ?- "w")))
 
-;; prettify fn in clojure/clojurescript
-(add-hook 'clojure-mode-hook 'ot/pretty-fn)
-(add-hook 'clojurescript-mode-hook 'ot/pretty-fn)
+;; prettify symbols
+(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
+
+(defun clj-pretty-symbols ()
+  "make some word or string show as pretty Unicode symbols"
+  (setq prettify-symbols-alist
+        '(
+          ("fn" . 402)
+          ("=>" . 8658)
+          )))
+
+(add-hook 'clojure-mode-hook 'clj-pretty-symbols)
+(add-hook 'clojurescript-mode-hook 'clj-pretty-symbols)
 
 ;;---------------------------------------------------------
 
@@ -111,7 +121,7 @@
      ))
 
 ;; use syntax highlighting for evaluated overlay
-(setq cider-ovelays-use-font-lock t)
+(setq cider-overlays-use-font-lock t)
 
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode) ; Enable eldoc in clojure buffers
 (add-hook 'cider-repl-mode-hook #'subword-mode) ;Enabling CamelCase support for editing commands(like forward-word, backward-word, etc) in nREPL

@@ -29,8 +29,10 @@
 (setq-default show-trailing-whitespace nil)
 
 ;; General programming hooks
-(add-hook 'prog-mode-hook 'ot/pretty-lambdas)
 (add-hook 'prog-mode-hook 'ot/esk-add-watchwords)
+
+;; Prettify symbols
+(global-prettify-symbols-mode 1)
 
 ;; Turn off auto-fill
 (auto-fill-mode -1)
@@ -134,7 +136,7 @@
  ediff-window-setup-function 'ediff-setup-windows-plain
  ediff-split-window-function 'split-window-horizontally
  diff-switches "-u"
- frame-title-format '("CLJ-EMACS       %b %+%+ %f"))
+ frame-title-format '("Emacs       %b %+%+ %f"))
 
 (add-to-list 'safe-local-variable-values '(lexical-binding . t))
 (add-to-list 'safe-local-variable-values '(whitespace-line-column . 80))
@@ -146,8 +148,8 @@
 (size-indication-mode 1) ; show the size of the buffer
 
 ;; Easily navigate sillycased words
-;;(global-subword-mode 1)
-(global-superword-mode 1)
+(global-subword-mode 1)
+;;(global-superword-mode 1)
 
 (set-default 'indicate-empty-lines nil) ; don't indicate empty lines
 

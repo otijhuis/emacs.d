@@ -16,7 +16,8 @@
                      " SliNav"
                      " WSC"
                      " VHl"
-                     " yas"))
+                     " yas"
+                     " drag"))
 (rich-minority-mode 1)
 
 ;; Multiple Cursors
@@ -80,5 +81,9 @@
 (setq drag-stuff-modifier 'hyper)
 (require 'drag-stuff)
 (drag-stuff-global-mode t)
+
+;; Thing at point
+(require 'thingatpt)
+(require 'thingatpt+)
 
 (provide 'misc-package-settings)
