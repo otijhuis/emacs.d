@@ -62,7 +62,11 @@
 (bind-key "s-f" 'forward-whitespace-&-newlines)
 (bind-key "s-b" (lambda ()
                   (interactive)
-                  (forward-whitespace-&-newlines)))
+                  (forward-whitespace-&-newlines -1)))
+
+(bind-key "M-l" #'fix-word-downcase)
+(bind-key "M-u" #'fix-word-upcase)
+(bind-key "M-c" #'fix-word-capitalize)
 
 ;; toggle two most recent buffers
 (fset 'quick-switch-buffer [?\C-x ?b return])
@@ -101,13 +105,15 @@
 ;;;;;;;;;
 ;; Avy ;;
 ;;;;;;;;;
-(bind-key "M-z" 'avy-zap-to-char-dwim)
-(bind-key "M-Z" 'avy-zap-up-to-char-dwim)
+(bind-key "H-z" 'avy-zap-to-char-dwim)
+(bind-key "H-Z" 'avy-zap-up-to-char-dwim)
 (key-seq-define-global ";l" 'avy-goto-char)
 (key-seq-define-global "zc" 'avy-goto-word-0)
 (key-seq-define-global "/," 'avy-goto-word-or-subword-1)
 (key-seq-define-global "z," 'avy-zap-up-to-char)
 (key-seq-define-global "z." 'avy-zap-to-char)
+(key-seq-define-global ",z" 'ot/avy-zap-up-to-char-save)
+(key-seq-define-global ".z" 'ot/avy-zap-to-char-save)
 (bind-key "C-'" 'avy-isearch isearch-mode-map)
 
 ;; Smarter move to beginning/end of line

@@ -108,7 +108,7 @@
   ("tb" paxedit-transpose-backward "Transpose backward")
   ("tf" paxedit-transpose-forward "Transpose forward")
   ("k" paxedit-kill "Kill explicit expression, implicit expression, or comment")
-  ("C" paxedit-wrap-comment "Wrap with comment"))
+  (";" paxedit-wrap-comment "Wrap with comment"))
 
 (defhydra hydra-transpose (:columns 3
                                     :idle 1.0)

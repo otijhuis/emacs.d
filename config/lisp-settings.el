@@ -56,8 +56,6 @@
 ;;(add-hook 'prog-mode-hook (lambda () (modify-syntax-entry ?- "w")))
 
 ;; prettify symbols
-(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
-
 (defun clj-pretty-symbols ()
   "make some word or string show as pretty Unicode symbols"
   (setq prettify-symbols-alist
@@ -104,6 +102,9 @@
 
 ;; Pretty print results in repl
 (setq cider-repl-use-pretty-printing t)
+
+;; Don't prompt for project when connecting
+(setq cider-prompt-for-project-on-connect nil)
 
 ;; Don't prompt for symbols
 (setq cider-prompt-for-symbol nil)
@@ -156,10 +157,13 @@
 
 (add-hook 'clojure-mode-hook (lambda ()
                                (clj-refactor-mode 1)
-                               (core-async-mode 1)
+                               ;;(core-async-mode 1)
                                (cljr-add-keybindings-with-prefix "C-=")))
 
 (add-to-list 'cljr-project-clean-functions 'cleanup-buffer)
+(setq cljr-project-clean-sorts-project-dependencies t)
+(setq cljr-project-clean-prompt t)
+(setq cljr-auto-sort-ns t)
 
 ;;; RAINBOW DELIMITERS
 ;; (require 'rainbow-delimiters)

@@ -443,4 +443,20 @@ Position the cursor at its beginning, according to the current mode."
     (error (message "Invalid expression")
            (insert (current-kill 0)))))
 
+(require 'avy-zap)
+
+(defun ot/avy-zap-to-char-save ()
+  "Zap to a character, but save instead of kill."
+  (interactive)
+  (save-excursion
+    (avy-zap-to-char)
+    (yank)))
+
+(defun ot/avy-zap-up-to-char-save ()
+  "Zap up to a character, but save instead of kill."
+  (interactive)
+  (save-excursion
+    (avy-zap-up-to-char)
+    (yank)))
+
 (provide 'custom-defuns)

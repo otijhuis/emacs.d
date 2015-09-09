@@ -28,11 +28,13 @@
                                      helm-descbinds helm-company helm-c-moccur helm-cider-history ; helm
                                      keyfreq ; determine how often commands are used
                                      dash s thingatpt+ ; util libs
+                                     comment-dwim-2 ; commenting
                                      zoom-frm ; change text size etc
                                      wrap-region ; wrap region with quotes, parens etc
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
                                      whole-line-or-region ; if no region selected act on the current line
                                      misc-cmds ; misc useful functions
+                                     fix-word ; improved up-/downcase and capitalize functions
                                      whitespace-cleanup-mode ; clean up whitespace on save
                                      key-chord key-seq ; bind commands to multiple keypresses
                                      focus ; focus mode (dim text you are not working on)
@@ -51,7 +53,7 @@
                                      elisp-slime-nav redshank highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      ag anzu ; search / grep
-                                     cider clojure-mode clojure-mode-extra-font-locking clojure-cheatsheet ; clojure
+                                     cider clojure-mode inf-clojure clojure-mode-extra-font-locking clojure-cheatsheet ; clojure
                                      clj-refactor discover-clj-refactor align-cljlet yesql-ghosts ; clojure
                                      avy avy-zap jump-char ; move quickly around buffers (see vim EasyMotion as well)
                                      paredit paredit-menu paxedit lispy ; working with parens / delimiters
@@ -64,6 +66,9 @@
                                      expand-region ; easily select regions around point
                                      multiple-cursors iedit ; multiple cursors a la Sublime Text
                                      visual-regexp visual-regexp-steroids ; visualize your typed regexp
+
+                                     ;; Web development
+                                     js2-mode company-web tagedit emmet-mode helm-emmet web-mode
                                      )
   "A list of packages to ensure are installed at launch.")
 
