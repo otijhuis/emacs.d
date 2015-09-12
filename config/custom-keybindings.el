@@ -140,10 +140,10 @@
 (bind-key "s-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
 (bind-key "s-D" 'ot/paredit-duplicate-closest-sexp paredit-mode-map)
 (bind-key [M-backspace] 'ot/paredit-kill-region-or-backward-word paredit-mode-map)
-(bind-key "s-." 'paredit-forward-slurp-sexp paredit-mode-map)
-(bind-key "s-," 'paredit-forward-barf-sexp paredit-mode-map)
-(bind-key "M-s-," 'paredit-backward-slurp-sexp paredit-mode-map)
-(bind-key "M-s-." 'paredit-backward-barf-sexp paredit-mode-map)
+(bind-key "M-]" 'paredit-forward-slurp-sexp paredit-mode-map)
+(bind-key "M-[" 'paredit-forward-barf-sexp paredit-mode-map)
+(bind-key "M-s-[" 'paredit-backward-slurp-sexp paredit-mode-map)
+(bind-key "M-s-]" 'paredit-backward-barf-sexp paredit-mode-map)
 
 (bind-key [H-backspace] 'delete-char)
 

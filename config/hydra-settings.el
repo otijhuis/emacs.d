@@ -3,9 +3,9 @@
 ;;;;;;;;;;;;;
 
 ;; Hydra - Marking
-(defhydra hydra-mark (:color blue
-                             :columns 3
-                             :idle 1.0)
+(defhydra hydra-mark (:exit t
+                            :columns 3
+                            :idle 1.0)
   "Mark"
   ("d" er/mark-defun "Defun / Function")
   ("w" er/mark-word "Word")
@@ -25,6 +25,8 @@
   ("T" er/mark-outer-tag "Outer tag")
   ("c" er/mark-comment "Comment")
   ("a" er/mark-html-attribute "HTML attribute")
+  ("." er/expand-region "Expand region" :exit nil)
+  ("," er/contract-region "Contract region" :exit nil)
   )
 
 (defhydra hydra-mark-buffer (:exit t

@@ -11,6 +11,8 @@
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
         '((magit . "melpa-stable")
+          ;;(cider . "melpa-stable")
+          ;;(clj-refactor . "melpa-stable")
           )))
 
 ;;(add-to-list 'package-archives
@@ -25,10 +27,11 @@
 ;; Add in your own as you wish:
 (defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
-                                     helm-descbinds helm-company helm-c-moccur helm-cider-history ; helm
+                                     helm-descbinds helm-company helm-c-moccur ; helm
+                                     helm-cider-history ; helm
                                      keyfreq ; determine how often commands are used
                                      dash s thingatpt+ ; util libs
-                                     comment-dwim-2 ; commenting
+                                     comment-dwim-2    ; commenting
                                      zoom-frm ; change text size etc
                                      wrap-region ; wrap region with quotes, parens etc
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
@@ -52,11 +55,13 @@
                                      drag-stuff ; moving lines/regions up/down
                                      elisp-slime-nav redshank highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
-                                     ag anzu ; search / grep
-                                     cider clojure-mode inf-clojure clojure-mode-extra-font-locking clojure-cheatsheet ; clojure
-                                     clj-refactor discover-clj-refactor align-cljlet yesql-ghosts ; clojure
+                                     ag anzu       ; search / grep
+                                     cider ; clojure
+                                     clojure-mode inf-clojure clojure-mode-extra-font-locking clojure-cheatsheet ; clojure
+                                     clj-refactor discover-clj-refactor ; clojure
+                                     align-cljlet yesql-ghosts ; clojure
                                      avy avy-zap jump-char ; move quickly around buffers (see vim EasyMotion as well)
-                                     paredit paredit-menu paxedit lispy ; working with parens / delimiters
+                                     paredit paredit-menu paxedit ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
                                      magit diff-hl ; git integration
                                      what-the-commit ; funny commit messages
