@@ -56,7 +56,7 @@
                                      elisp-slime-nav redshank highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      ag anzu       ; search / grep
-                                     cider ; clojure
+                                     cider cider-eval-sexp-fu ; clojure
                                      clojure-mode inf-clojure clojure-mode-extra-font-locking clojure-cheatsheet ; clojure
                                      clj-refactor discover-clj-refactor ; clojure
                                      align-cljlet yesql-ghosts ; clojure

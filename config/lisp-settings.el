@@ -16,7 +16,7 @@
 (put 'paredit-newline 'delete-selection t)
 
 ;; open clojurescript files in clojure mode
-(add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\.cljs$" . clojurescript-mode))
 (add-to-list 'auto-mode-alist '("\.cljc$" . clojure-mode))
 ;; open boot build tool files in clojure mode
 (add-to-list 'auto-mode-alist '("\.boot$" . clojure-mode))
@@ -92,7 +92,7 @@
 (add-hook 'cider-popup-buffer-mode-hook 'hide-eol)
 
 (setq nrepl-hide-special-buffers t)
-(setq cider-prompt-save-file-on-load nil)
+(setq cider-prompt-save-file-on-load 'always-save)
 
 ;; Enable error buffer popping also in the REPL:
 (setq cider-repl-popup-stacktraces t)
