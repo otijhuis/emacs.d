@@ -29,6 +29,7 @@
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
                                      helm-descbinds helm-company helm-c-moccur ; helm
                                      helm-cider-history ; helm
+                                     imenu-anywhere
                                      keyfreq ; determine how often commands are used
                                      dash s thingatpt+ ; util libs
                                      comment-dwim-2    ; commenting
@@ -63,7 +64,7 @@
                                      avy avy-zap jump-char ; move quickly around buffers (see vim EasyMotion as well)
                                      paredit paredit-menu paxedit ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
-                                     magit diff-hl ; git integration
+                                     magit diff-hl gist ; git integration
                                      what-the-commit ; funny commit messages
                                      projectile ; moving around in projects
                                      yasnippet auto-yasnippet clojure-snippets datomic-snippets ; snippets
