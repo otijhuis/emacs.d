@@ -5,7 +5,7 @@
   (modify-frame-parameters nil '((wait-for-wm . nil))))
 
 (if (string= (symbol-name system-type) "darwin")
-    (setq default-frame-alist '((font . "Menlo-14")))
+    (setq default-frame-alist '((font . "Menlo-12")))
   (modify-frame-parameters nil '((wait-for-wm . nil))))
 
 (load-theme 'flatui t)
@@ -18,9 +18,6 @@
   '(progn
      (set-face-foreground 'diff-added "green4")
      (set-face-foreground 'diff-removed "red3")))
-
-;; Make zooming affect frame instead of buffers
-(require 'zoom-frm)
 
 (setq truncate-partial-width-windows nil)
 

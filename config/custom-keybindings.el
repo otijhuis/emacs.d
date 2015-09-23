@@ -25,8 +25,9 @@
 (key-seq-define clojure-mode-map "]u" 'hydra-clj-refactor-u/body)
 
 (key-seq-define-global ",p" 'projectile-command-map)
-;;(key-seq-define-global ",x" 'smex)
-(key-seq-define-global "';" 'smex)
+(key-seq-define-global ",a" 'hydra-ag/body)
+;;(key-seq-define-global "';" 'smex)
+(key-chord-define-global "';" 'smex)
 
 (key-seq-define-global ",l" 'ido-switch-buffer)
 (key-seq-define-global ",f" 'ido-find-file)
@@ -170,6 +171,9 @@
 ;; Version control
 (bind-key "<f10>" 'magit-status)
 (bind-key "<f11>" 'diff-hl-mode)
+
+;; iMenu
+(bind-key "<f7>" #'imenu-list-minor-mode)
 
 ;; yasnippet
 (bind-key "<tab>" nil yas-minor-mode-map)

@@ -72,11 +72,6 @@
 ;; Wrap region
 (wrap-region-global-mode)
 
-;; Keyfreq, determine how often commands are used
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
-
 ;; Drag stuff
 (setq drag-stuff-modifier 'hyper)
 (require 'drag-stuff)
@@ -85,5 +80,11 @@
 ;; Thing at point
 (require 'thingatpt)
 (require 'thingatpt+)
+
+;; iMenu list
+(require 'imenu-list)
+(setq imenu-list-focus-after-activation t)
+(setq imenu-list-auto-resize t)
+(setq imenu-list-position 'left)
 
 (provide 'misc-package-settings)

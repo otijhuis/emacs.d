@@ -25,15 +25,15 @@
   (package-refresh-contents))
 
 ;; Add in your own as you wish:
-(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
+(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu ; mini-buffer on steroids
+                                     smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
                                      helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
-                                     helm-descbinds helm-company helm-c-moccur ; helm
+                                     helm-descbinds helm-c-moccur ; helm
                                      helm-cider-history ; helm
-                                     imenu-anywhere
-                                     keyfreq ; determine how often commands are used
-                                     dash s thingatpt+ ; util libs
-                                     comment-dwim-2    ; commenting
-                                     zoom-frm ; change text size etc
+                                     imenu-list ; imenu in a separate buffer
+                                     shrink-whitespace
+                                     dash s thingatpt+  ; util libs
+                                     comment-dwim-2     ; commenting
                                      wrap-region ; wrap region with quotes, parens etc
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
                                      whole-line-or-region ; if no region selected act on the current line
@@ -59,10 +59,10 @@
                                      ag anzu       ; search / grep
                                      cider cider-eval-sexp-fu ; clojure
                                      clojure-mode inf-clojure clojure-mode-extra-font-locking clojure-cheatsheet ; clojure
-                                     clj-refactor discover-clj-refactor ; clojure
+                                     clj-refactor ; clojure
                                      align-cljlet yesql-ghosts ; clojure
-                                     avy avy-zap jump-char ; move quickly around buffers (see vim EasyMotion as well)
-                                     paredit paredit-menu paxedit ; working with parens / delimiters
+                                     avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
+                                     paredit paredit-menu paxedit sexp-move ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
                                      magit diff-hl gist ; git integration
                                      what-the-commit ; funny commit messages
@@ -74,8 +74,7 @@
                                      visual-regexp visual-regexp-steroids ; visualize your typed regexp
 
                                      ;; Web development
-                                     js2-mode company-web tagedit emmet-mode helm-emmet web-mode
-                                     )
+                                     js2-mode company-web tagedit emmet-mode helm-emmet web-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)

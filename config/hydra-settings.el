@@ -265,4 +265,20 @@
   ("p" cljr-update-project-dependencies "Update project dependencies (lein only)")
   ("w" cljr-unwind "Unwind a threaded expression"))
 
+(defhydra hydra-ag (:exit t
+                          :columns 2
+                          :idle 1.0)
+  "Ag Search"
+  ("c" helm-ag "Current directory")
+  ("d" (lambda ()
+         (interactive)
+         (let ((current-prefix-arg '(4)))
+           (call-interactively 'helm-ag))) "Select directory")
+  ("D" helm-do-ag "Select directory (interactive)")
+  ("f" helm-ag-this-file "Current file")
+  ("F" helm-do-ag-this-file "Current file (interactive)")
+  ("p" helm-ag-project-root "Project")
+  ("b" helm-ag-buffers "Buffers")
+  ("B" helm-do-ag-buffers "Buffers (interactive)"))
+
 (provide 'hydra-settings)

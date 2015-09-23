@@ -90,4 +90,10 @@
 ;; Save buffer when helm-multi-swoop-edit complete
 (setq helm-multi-swoop-edit-save t)
 
+;;;;;;;;;;;;;;;;
+;; Projectile ;;
+;;;;;;;;;;;;;;;;
+(require 'helm-projectile)
+(helm-projectile-on)
+
 (provide 'helm-settings)
