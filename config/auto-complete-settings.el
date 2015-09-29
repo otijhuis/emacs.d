@@ -1,5 +1,8 @@
 (require 'color)
 
+(require 'company)
+(require 'company-etags)
+
 ;; Auto-complete
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -11,7 +14,8 @@
 
 ;;(setq company-backends '(company-dabbrev (company-keywords company-dabbrev-code) company-files))
 (defun clojure-company-backends ()
-  (setq company-backends '((company-capf company-dabbrev))))
+  (make-local-variable 'company-backends)
+  (setq company-backends '((company-etags company-capf company-dabbrev))))
 (add-hook 'clojure-mode-hook 'clojure-company-backends)
 ;;(setq company-begin-commands '(self-insert-command org-self-insert-command c-electric-lt-gt c-electric-colon))
 

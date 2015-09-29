@@ -27,13 +27,12 @@
 ;; Add in your own as you wish:
 (defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu ; mini-buffer on steroids
                                      smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
-                                     helm helm-projectile helm-ag helm-swoop cljr-helm ; helm
+                                     helm helm-projectile helm-ag helm-swoop ; helm
                                      helm-descbinds helm-c-moccur ; helm
-                                     helm-cider-history ; helm
                                      imenu-list ; imenu in a separate buffer
                                      shrink-whitespace
-                                     dash s thingatpt+  ; util libs
-                                     comment-dwim-2     ; commenting
+                                     dash s thingatpt+ ; util libs
+                                     comment-dwim-2    ; commenting
                                      wrap-region ; wrap region with quotes, parens etc
                                      bind-key free-keys region-bindings-mode ; keybinding utilities
                                      whole-line-or-region ; if no region selected act on the current line
@@ -46,7 +45,7 @@
                                      volatile-highlights highlight-symbol hl-sexp ; highlighting
                                      change-inner ; Emacs version of vim's ci and co commands
                                      aggressive-indent indent-guide ; indentation
-                                     flycheck flycheck-pos-tip helm-flycheck flycheck-clojure ; syntax checking
+                                     flycheck flycheck-pos-tip helm-flycheck ; syntax checking
                                      which-key ; display keybindings (guide-key replacement)
                                      popup popwin ; popups
                                      org-plus-contrib org-bullets org-projectile ; latest org-mode
@@ -54,13 +53,11 @@
                                      neotree ; nerdtree style directory tree
                                      company company-quickhelp ; autocomplete
                                      drag-stuff ; moving lines/regions up/down
-                                     elisp-slime-nav redshank highlight-defined ; extensions for elisp
+                                     elisp-slime-nav highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      ag anzu       ; search / grep
-                                     cider cider-eval-sexp-fu ; clojure
-                                     clojure-mode inf-clojure clojure-mode-extra-font-locking clojure-cheatsheet ; clojure
-                                     clj-refactor ; clojure
-                                     align-cljlet yesql-ghosts ; clojure
+                                     clojure-mode inf-clojure clojure-mode-extra-font-locking ; clojure
+                                     align-cljlet ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                                      paredit paredit-menu paxedit sexp-move ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes

@@ -242,13 +242,20 @@
 ;; Commands to map
 ;; reposition-window, paredit-focus-on-defun, paredit-duplicate-after-point, paredit-reindent-defun
 
+;;;;;;;;;;
+;; Lisp ;;
+;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;
-;; Clojure / Cider ;;
-;;;;;;;;;;;;;;;;;;;;;
+(bind-key "<C-return>" 'eval-last-sexp lisp-mode-shared-map)
+
+;;;;;;;;;;;;;
+;; Clojure ;;
+;;;;;;;;;;;;;
 
 ;; (evil-define-key 'normal clojure-mode-map ",ch" 'ot/helm-clojure-headlines)
-(bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
+;;(bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
+(bind-key "<C-return>" 'inf-clojure-eval-defun clojure-mode-map)
+
 ;; (evil-define-key 'normal clojure-mode-map "\\es" 'cider-eval-last-sexp)
 ;; (evil-define-key 'normal clojure-mode-map "\\en" 'cider-eval-ns-form)
 ;; (evil-define-key 'normal clojure-mode-map "\\eb" 'cider-load-buffer)
@@ -264,5 +271,12 @@
 ;; (evil-define-key 'normal clojure-mode-map "\\A" 'cider-apropos-documentation)
 ;; (evil-define-key 'normal clojure-mode-map ",je" 'cider-jump-to-compilation-error)
 ;; (evil-define-key 'normal clojure-mode-map ",jr" 'cider-jump-to-resource)
+
+(bind-key "M-." 'ot/find-tag-without-ns clojure-mode-map)
+
+;;(define-key clojure-mode-map "\C-c\C-k" 'ot/reload-current-clj-ns)
+;;(define-key clojure-mode-map "\C-cl" 'ot/erase-inf-buffer)
+;;(define-key clojure-mode-map "\C-c\C-t" 'clojure-toggle-keyword-string)
+;;(define-key inf-clojure-mode-map "\C-cl" 'ot/erase-inf-buffer)
 
 (provide 'custom-keybindings)

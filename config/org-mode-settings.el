@@ -69,9 +69,9 @@
 
 ;; ob-clojure is loaded from lisp folder
 ;; current stable version doesn't support cider, the development version does
-(require 'cider)
-(setq org-babel-clojure-backend 'cider)
-(require 'ob-clojure)
+;;(require 'cider)
+;;(setq org-babel-clojure-backend 'cider)
+;;(require 'ob-clojure)
 
 (defvar org-babel-default-header-args:clojure
   '((:results . "silent") (:tangle . "yes")))

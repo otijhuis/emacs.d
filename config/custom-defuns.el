@@ -459,4 +459,24 @@ Position the cursor at its beginning, according to the current mode."
     (avy-zap-up-to-char)
     (yank)))
 
+;; Clojure
+
+(defun ot/reload-current-clj-ns (next-p)
+  (interactive "P")
+  (let ((ns (clojure-find-ns)))
+    (message (format "Loading %s ..." ns))
+    (inf-clojure-eval-string (format "(require '%s :reload)" ns))
+    (when (not next-p) (inf-clojure-eval-string (format "(in-ns '%s)" ns)))))
+
+(defun ot/find-tag-without-ns (next-p)
+  (interactive "P")
+  (find-tag (first (last (split-string (symbol-name (symbol-at-point)) "/")))
+            next-p))
+
+(defun ot/erase-inf-buffer ()
+  (interactive)
+  (with-current-buffer (get-buffer "*inf-clojure*")
+    (erase-buffer))
+  (inf-clojure-eval-string ""))
+
 (provide 'custom-defuns)
