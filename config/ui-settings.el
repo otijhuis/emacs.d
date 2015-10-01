@@ -8,7 +8,18 @@
     (setq default-frame-alist '((font . "Menlo-12")))
   (modify-frame-parameters nil '((wait-for-wm . nil))))
 
-(load-theme 'flatui t)
+;; Disable bold
+(mapc
+ (lambda (face)
+   (set-face-attribute face nil :weight 'normal))
+ (face-list))
+
+;; Make frame transparent
+(set-frame-parameter (selected-frame) 'alpha '(85 85))
+(add-to-list 'default-frame-alist '(alpha 85 85))
+
+;;(load-theme 'flatui t)
+(load-theme 'molokai t)
 
 ;; Flat modeline
 (set-face-attribute 'mode-line nil :box nil)
@@ -20,5 +31,7 @@
      (set-face-foreground 'diff-removed "red3")))
 
 (setq truncate-partial-width-windows nil)
+
+(scroll-bar-mode -1)
 
 (provide 'ui-settings)
