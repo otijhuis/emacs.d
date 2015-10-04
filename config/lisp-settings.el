@@ -39,6 +39,19 @@
 
 (add-hook 'clojure-mode-hook #'inf-clojure-minor-mode)
 
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (add-hook 'activate-mark-hook (lambda ()
+                                            (hl-sexp-mode -1)
+                                            (highlight-symbol-mode -1)) nil 'make-it-local)))
+
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (add-hook 'deactivate-mark-hook (lambda ()
+                                              (hl-sexp-mode 1)
+                                              (highlight-symbol-mode 1)) nil 'make-it-local)))
+
+
 ;; Enable `paredit-mode' in the minibuffer, during `eval-expression'.
 (defun conditionally-enable-paredit-mode ()
   (if (eq this-command 'eval-expression)

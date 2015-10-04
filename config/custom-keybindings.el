@@ -51,8 +51,9 @@
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(bind-key "M-k" 'kill-word)
+(bind-key "M-\\" 'shrink-whitespace)
 
+(bind-key "M-k" 'kill-word)
 (bind-key "s-w" 'hydra-copy/body)
 
 (bind-key "M-f" 'forward-to-word)
@@ -123,6 +124,8 @@
 (bind-key "C-S-e" 'end-of-line+)
 (bind-key "C-e" 'ot/end-of-code-or-line+)
 
+(bind-key "C-M-;" 'indent-new-comment-line)
+(bind-key "C-M-j" 'join-line)
 (bind-key "M-j" 'ot/join-line)
 
 (bind-key "s-d" 'ot/duplicate-current-line-or-region)
@@ -139,12 +142,15 @@
 (bind-key "M-k" 'paxedit-symbol-kill paredit-mode-map)
 (bind-key [H-backspace] 'paredit-forward-delete paredit-mode-map)
 (bind-key "s-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
-(bind-key "s-D" 'ot/paredit-duplicate-closest-sexp paredit-mode-map)
+(bind-key "M-D" 'ot/paredit-duplicate-closest-sexp paredit-mode-map)
 (bind-key [M-backspace] 'ot/paredit-kill-region-or-backward-word paredit-mode-map)
 (bind-key "M-]" 'paredit-forward-slurp-sexp paredit-mode-map)
 (bind-key "M-[" 'paredit-forward-barf-sexp paredit-mode-map)
 (bind-key "M-s-[" 'paredit-backward-slurp-sexp paredit-mode-map)
 (bind-key "M-s-]" 'paredit-backward-barf-sexp paredit-mode-map)
+(bind-key "M-9" 'paredit-wrap-round paredit-mode-map)
+(bind-key "M-0" 'ot/paredit-wrap-round-from-behind paredit-mode-map)
+
 
 (bind-key [H-backspace] 'delete-char)
 
