@@ -173,6 +173,7 @@
 
 ;; use hippie-expand instead of abbrev
 (bind-key "M-/" 'hippie-expand)
+(bind-key "C-M-/" 'hippie-expand-lines)
 
 ;; Version control
 (bind-key "<f10>" 'magit-status)
