@@ -1,3 +1,47 @@
+;; let hippie-expand support ctags
+;; shamelessly copied from http://emacswiki.org/emacs/HippieExpand
+(defun tags-complete-tag (string predicate what)
+  (save-excursion
+    ;; If we need to ask for the tag table, allow that.
+    (if (eq what t)
+        (all-completions string (tags-completion-table) predicate)
+      (try-completion string (tags-completion-table) predicate))))
+
+;; This is a simple function to return the point at the beginning of the symbol to be completed
+(defun he-tag-beg ()
+  (let ((p
+         (save-excursion
+           (backward-word 1)
+           (point))))
+    p))
+
+;; The actual expansion function
+(defun try-expand-tag (old)
+  ;; old is true if we have already attempted an expansion
+  (unless old
+    ;; he-init-string is used to capture the string we are trying to complete
+    (he-init-string (he-tag-beg) (point))
+    ;; he-expand list is the list of possible expansions
+    (setq he-expand-list (sort
+                          (all-completions he-search-string 'tags-complete-tag) 'string-lessp)))
+  ;; now we go through the list, looking for an expansion that isn't in the table of previously
+  ;; tried expansions
+  (while (and he-expand-list
+              (he-string-member (car he-expand-list) he-tried-table))
+    (setq he-expand-list (cdr he-expand-list)))
+  ;; if we didn't have any expansions left, reset the expansion list
+  (if (null he-expand-list)
+      (progn
+        (when old (he-reset-string))
+        ())
+    ;; otherwise offer the expansion at the head of the list
+    (he-substitute-string (car he-expand-list))
+    ;; and put that expansion into the tried expansions list
+    (setq he-expand-list (cdr he-expand-list))
+    t))
+
+;;-----------
+
 (defvar he-search-loc-backward (make-marker))
 (defvar he-search-loc-forward (make-marker))
 
@@ -145,7 +189,8 @@ string).  It returns t if a new completion is found, nil otherwise."
         t))))
 
 ;; Hippie expand: sometimes too hip
-(setq hippie-expand-try-functions-list '(yas-hippie-try-expand
+(setq hippie-expand-try-functions-list '(
+                                         ;; yas-hippie-try-expand
                                          try-expand-dabbrev-closest-first
                                          try-complete-file-name
                                          try-expand-dabbrev-all-buffers

@@ -12,6 +12,7 @@
         paredit-close-square
         paredit-forward-delete
         paredit-forward-down
+        paredit-forward-kill-word
         paredit-forward-up
         paredit-raise-sexp
         transpose-sexps

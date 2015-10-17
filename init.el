@@ -31,6 +31,7 @@
                                      helm-descbinds helm-c-moccur ; helm
                                      imenu-list ; imenu in a separate buffer
                                      shrink-whitespace
+                                     beacon ; find your cursor
                                      dash s thingatpt+ ; util libs
                                      comment-dwim-2    ; commenting
                                      wrap-region ; wrap region with quotes, parens etc
@@ -56,7 +57,8 @@
                                      elisp-slime-nav highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      ag anzu       ; search / grep
-                                     clojure-mode inf-clojure clojure-mode-extra-font-locking ; clojure
+                                     clojure-mode ; inf-clojure
+                                     clojure-mode-extra-font-locking ; clojure
                                      align-cljlet ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                                      paredit paredit-menu paxedit sexp-move ; working with parens / delimiters
@@ -81,6 +83,9 @@
 
 (add-to-list 'load-path "~/.emacs.d/config/")
 (add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(add-to-list 'load-path "~/Projects/github/inf-clojure")
+(require 'inf-clojure)
 
 ;; On OSX add /usr/local/bin to exec-path for lein command (installed with brew install leiningen)
 (if (eq system-type 'darwin)
@@ -107,6 +112,8 @@
 (require 'misc-package-settings)
 (require 'hydra-settings)
 (require 'custom-keybindings)
+
+(require 'inf-clojure-addons)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -147,6 +154,12 @@
  '(anzu-mode-line ((t (:foreground "dark orange" :weight bold))))
  '(avy-lead-face ((t (:foreground "red"))))
  '(avy-lead-face-0 ((t (:foreground "red1" :weight bold))))
+ '(company-scrollbar-bg ((t (:background "#3f4346"))))
+ '(company-scrollbar-fg ((t (:background "#333638"))))
+ '(company-tooltip ((t (:inherit default :background "#333638"))))
+ '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
+ '(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+ '(cursor ((t (:background "dark orange"))))
  '(flx-highlight-face ((t (:inherit font-lock-variable-name-face :foreground "#69D2E7"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "gainsboro" :slant italic))))
  '(font-lock-comment-face ((t (:foreground "gray" :slant italic))))

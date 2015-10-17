@@ -34,6 +34,7 @@
 
 (indent-guide-global-mode)
 
+(setq indent-guide-threshold 0)
 (setq indent-guide-recursive t)
 (setq indent-guide-delay 0.1)
 
@@ -86,5 +87,13 @@
 (setq imenu-list-focus-after-activation t)
 (setq imenu-list-auto-resize t)
 (setq imenu-list-position 'left)
+
+;; Beacon
+(beacon-mode 1)
+(setq beacon-color "darkorange")
+(setq beacon-size 40)
+(setq beacon-blink-when-point-moves nil)
+(setq beacon-blink-duration 0.2)
+(setq beacon-blink-delay 0.2)
 
 (provide 'misc-package-settings)
