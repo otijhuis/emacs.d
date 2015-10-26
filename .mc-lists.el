@@ -7,6 +7,7 @@
         hydra-mark/er/mark-symbol-and-exit
         hydra-transpose/transpose-sexps-and-exit
         hydra-transpose/transpose-words-and-exit
+        ot/paredit-kill-region-or-backward-word
         paredit-backward-down
         paredit-backward-up
         paredit-close-square

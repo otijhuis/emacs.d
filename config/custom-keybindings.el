@@ -9,20 +9,20 @@
 ;; jq qg qk qy qz wq xz fq wx qx jx kq vq qj qh hx qp xk
 ;; sx
 
-(bind-key "s-a" 'hydra-clj-refactor-a/body clojure-mode-map)
-(key-seq-define clojure-mode-map "]a" 'hydra-clj-refactor-a/body)
-(key-seq-define clojure-mode-map "]c" 'hydra-clj-refactor-c/body)
-(key-seq-define clojure-mode-map "]d" 'hydra-clj-refactor-d/body)
-(key-seq-define clojure-mode-map "]e" 'hydra-clj-refactor-e/body)
-(key-seq-define clojure-mode-map "]f" 'hydra-clj-refactor-f/body)
-(key-seq-define clojure-mode-map "]h" 'hydra-clj-refactor-h/body)
-(key-seq-define clojure-mode-map "]i" 'hydra-clj-refactor-i/body)
-(key-seq-define clojure-mode-map "]m" 'hydra-clj-refactor-m/body)
-(key-seq-define clojure-mode-map "]p" 'hydra-clj-refactor-p/body)
-(key-seq-define clojure-mode-map "]r" 'hydra-clj-refactor-r/body)
-(key-seq-define clojure-mode-map "]s" 'hydra-clj-refactor-s/body)
-(key-seq-define clojure-mode-map "]t" 'hydra-clj-refactor-t/body)
-(key-seq-define clojure-mode-map "]u" 'hydra-clj-refactor-u/body)
+;; (bind-key "s-a" 'hydra-clj-refactor-a/body clojure-mode-map)
+;; (key-seq-define clojure-mode-map "]a" 'hydra-clj-refactor-a/body)
+;; (key-seq-define clojure-mode-map "]c" 'hydra-clj-refactor-c/body)
+;; (key-seq-define clojure-mode-map "]d" 'hydra-clj-refactor-d/body)
+;; (key-seq-define clojure-mode-map "]e" 'hydra-clj-refactor-e/body)
+;; (key-seq-define clojure-mode-map "]f" 'hydra-clj-refactor-f/body)
+;; (key-seq-define clojure-mode-map "]h" 'hydra-clj-refactor-h/body)
+;; (key-seq-define clojure-mode-map "]i" 'hydra-clj-refactor-i/body)
+;; (key-seq-define clojure-mode-map "]m" 'hydra-clj-refactor-m/body)
+;; (key-seq-define clojure-mode-map "]p" 'hydra-clj-refactor-p/body)
+;; (key-seq-define clojure-mode-map "]r" 'hydra-clj-refactor-r/body)
+;; (key-seq-define clojure-mode-map "]s" 'hydra-clj-refactor-s/body)
+;; (key-seq-define clojure-mode-map "]t" 'hydra-clj-refactor-t/body)
+;; (key-seq-define clojure-mode-map "]u" 'hydra-clj-refactor-u/body)
 
 (key-seq-define-global ",p" 'projectile-command-map)
 (key-seq-define-global ",a" 'hydra-ag/body)
@@ -44,7 +44,7 @@
 (key-seq-define-global "/." 'hydra-mark/body)
 (key-seq-define-global "zx" 'hydra-mark/body)
 (key-seq-define-global "][" 'hydra-transpose/body)
-
+(key-seq-define-global "/," 'multiple-cursors-hydra/body)
 ;;(symbol-function 'hydra-transpose/transpose-sexps-and-exit)
 
 ;;;;;;;;;;;;;;;;;;;;;;;
