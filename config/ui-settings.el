@@ -5,7 +5,7 @@
   (modify-frame-parameters nil '((wait-for-wm . nil))))
 
 (if (string= (symbol-name system-type) "darwin")
-    (setq default-frame-alist '((font . "Menlo-12")))
+    (setq default-frame-alist '((font . "Inconsolata-14")))
   (modify-frame-parameters nil '((wait-for-wm . nil))))
 
 ;; Disable bold
@@ -15,8 +15,8 @@
  (face-list))
 
 ;; Make frame transparent
-(set-frame-parameter (selected-frame) 'alpha '(85 85))
-(add-to-list 'default-frame-alist '(alpha 85 85))
+(set-frame-parameter (selected-frame) 'alpha '(90 70))
+(add-to-list 'default-frame-alist '(alpha 90 70))
 
 ;;(load-theme 'flatui t)
 (load-theme 'molokai t)

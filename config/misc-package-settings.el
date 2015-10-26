@@ -90,10 +90,33 @@
 
 ;; Beacon
 (beacon-mode 1)
-(setq beacon-color "darkorange")
-(setq beacon-size 40)
-(setq beacon-blink-when-point-moves nil)
+(setq beacon-color "green")
+(setq beacon-size 50)
+(setq beacon-blink-when-point-moves 3)
 (setq beacon-blink-duration 0.2)
 (setq beacon-blink-delay 0.2)
+(setq beacon-blink-when-focused t)
+(setq beacon-lighter " 💡")
+
+(add-hook 'beacon-dont-blink-predicates
+          (lambda ()
+            (if (string-prefix-p "avy-" (symbol-name (or this-command last-command)))
+                t
+              nil)))
+
+;; State
+(require 'state)
+(state-global-mode 1)
+
+(state-define-state
+    scratch
+  :key "s"
+  :switch "*scratch*")
+
+(state-define-state
+ message
+ :key "m"
+ :switch "*Messages*")
 
 (provide 'misc-package-settings)
+

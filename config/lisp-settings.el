@@ -1,5 +1,5 @@
 (require 'clojure-mode)
-;;(require 'clojure-mode-extra-font-locking)
+(require 'clojure-mode-extra-font-locking)
 
 ;; making paredit work with delete-selection-mode
 (put 'paredit-forward-delete 'delete-selection 'supersede)

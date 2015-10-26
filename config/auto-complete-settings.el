@@ -64,5 +64,8 @@
             (add-hook 'company-completion-finished-hook (lambda (&optional arg)
                                                           (indent-guide-mode 1)) nil 'make-it-local)))
 
+;; company-flx
+(with-eval-after-load 'company
+  (company-flx-mode +1))
 
 (provide 'auto-complete-settings)
