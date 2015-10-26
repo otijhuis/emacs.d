@@ -90,7 +90,7 @@
 
 ;; Beacon
 (beacon-mode 1)
-(setq beacon-color "green")
+(setq beacon-color "orange")
 (setq beacon-size 50)
 (setq beacon-blink-when-point-moves 3)
 (setq beacon-blink-duration 0.2)
