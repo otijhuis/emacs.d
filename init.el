@@ -170,7 +170,7 @@
  '(helm-swoop-target-word-face ((t (:foreground "dodger blue"))))
  '(helm-visible-mark ((t (:background "dark orange" :foreground "white"))))
  '(highlight-symbol-face ((t (:background "white" :underline "#F92672"))))
- '(hl-sexp-face ((t (:background "gray96" :weight bold))))
+ '(hl-sexp-face ((t (:background nil :weight bold))))
  '(ido-first-match ((t (:foreground "#ccff66"))))
  '(ido-incomplete-regexp ((t (:foreground "#ffffff"))))
  '(ido-indicator ((t (:foreground "#ffffff"))))
