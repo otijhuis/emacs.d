@@ -150,7 +150,7 @@
 (bind-key "M-s-]" 'paredit-backward-barf-sexp paredit-mode-map)
 (bind-key "M-9" 'paredit-wrap-round paredit-mode-map)
 (bind-key "M-0" 'ot/paredit-wrap-round-from-behind paredit-mode-map)
-
+(bind-key ")" 'ot/step-out-forward paredit-mode-map)
 
 (bind-key [H-backspace] 'delete-char)
 

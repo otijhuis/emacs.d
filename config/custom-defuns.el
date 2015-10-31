@@ -479,4 +479,14 @@ Position the cursor at its beginning, according to the current mode."
     (erase-buffer))
   (inf-clojure-eval-string ""))
 
+(defun ot/step-out-forward ()
+  "Step forward out of current list or string."
+  (interactive)
+  (if (nth 3 (syntax-ppss (point)))
+      (progn
+        (forward-char)
+        (while (and (not (eobp)) (nth 3 (syntax-ppss (point))))
+          (forward-char)))
+    (up-list)))
+
 (provide 'custom-defuns)
