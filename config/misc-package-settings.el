@@ -97,6 +97,7 @@
 (setq beacon-blink-duration 0.2)
 (setq beacon-blink-delay 0.2)
 (setq beacon-blink-when-focused t)
+(setq beacon-dont-blink-commands '())
 (setq beacon-lighter " 💡")
 
 (add-hook 'beacon-dont-blink-predicates
