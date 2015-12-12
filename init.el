@@ -28,6 +28,7 @@
 (defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu ; mini-buffer on steroids
                                      smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
                                      helm helm-projectile helm-ag helm-swoop ; helm
+                                     helm-gtags ggtags ; tags
                                      helm-descbinds helm-c-moccur ; helm
                                      imenu-list ; imenu in a separate buffer
                                      shrink-whitespace
@@ -47,7 +48,7 @@
                                      volatile-highlights highlight-symbol hl-sexp ; highlighting
                                      change-inner ; Emacs version of vim's ci and co commands
                                      aggressive-indent indent-guide ; indentation
-                                     flycheck flycheck-pos-tip helm-flycheck ; syntax checking
+                                     flycheck flycheck-pos-tip helm-flycheck flycheck-clojure ; syntax checking
                                      which-key ; display keybindings (guide-key replacement)
                                      popup popwin ; popups
                                      org-plus-contrib org-bullets org-projectile ; latest org-mode
@@ -62,7 +63,7 @@
                                      clojure-mode-extra-font-locking ; clojure
                                      align-cljlet ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
-                                     paredit paredit-menu paxedit sexp-move ; working with parens / delimiters
+                                     paredit paredit-menu paxedit sexp-move smartparens ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
                                      monokai-theme molokai-theme ; color themes
                                      magit diff-hl gist ; git integration
