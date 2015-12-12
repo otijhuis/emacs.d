@@ -39,6 +39,9 @@
 
 (add-hook 'clojure-mode-hook #'inf-clojure-minor-mode)
 
+(add-hook 'clojure-mode-hook #'eldoc-mode)
+(add-hook 'inf-clojure-mode-hook #'eldoc-mode)
+
 (add-hook 'clojure-mode-hook
           (lambda ()
             (add-hook 'activate-mark-hook (lambda ()
@@ -101,6 +104,12 @@
 
 ;; align-cljlet
 (require 'align-cljlet)
+
+;; Figwheel
+
+(defun figwheel-repl ()
+  (interactive)
+  (run-clojure "lein figwheel"))
 
 (provide 'lisp-settings)
 

@@ -51,7 +51,7 @@
 (add-to-list 'helm-sources-using-default-as-input 'helm-source-moccur)
 
 ;;(helm-mode 1)
-(helm-adaptative-mode 1)
+(helm-adaptive-mode 1)
 
 (setq helm-autoresize-max-height 30)
 (setq helm-autoresize-min-height 30)
@@ -95,5 +95,16 @@
 ;;;;;;;;;;;;;;;;
 (require 'helm-projectile)
 (helm-projectile-on)
+
+;;;;;;;;;;;;;;;;
+;; Helm Gtags ;;
+;;;;;;;;;;;;;;;;
+(custom-set-variables
+ '(helm-gtags-path-style 'root)
+ '(helm-gtags-display-style 'detail)
+ '(helm-gtags-auto-update t)
+ '(helm-gtags-fuzzy-match t))
+
+(require 'helm-gtags)
 
 (provide 'helm-settings)
