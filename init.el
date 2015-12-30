@@ -129,9 +129,6 @@
  '(helm-gtags-display-style (quote detail))
  '(helm-gtags-fuzzy-match t)
  '(helm-gtags-path-style (quote root))
- '(package-selected-packages
-   (quote
-    (wrap-region whole-line-or-region whitespace-cleanup-mode which-key what-the-commit web-mode volatile-highlights visual-regexp-steroids undo-tree thingatpt+ tagedit state solarized-theme smex smartparens shrink-whitespace sexp-move rich-minority region-bindings-mode popwin popup paxedit paredit-menu org-projectile org-plus-contrib org-bullets neotree monokai-theme molokai-theme misc-cmds magit key-seq js2-mode indent-guide imenu-list iedit idomenu ido-vertical-mode ido-ubiquitous ido-select-window ido-at-point hl-sexp highlight-symbol highlight-defined helm-swoop helm-projectile helm-gtags helm-flycheck helm-emmet helm-descbinds helm-c-moccur helm-ag gist ggtags free-keys focus flycheck-pos-tip flycheck-clojure flx-ido flatui-theme fix-word eval-sexp-fu elisp-slime-nav drag-stuff diff-hl datomic-snippets company-web company-quickhelp company-flx comment-dwim-2 clojure-snippets clojure-mode-extra-font-locking clj-refactor change-inner browse-kill-ring bind-key beacon avy-zap auto-yasnippet anzu align-cljlet aggressive-indent ag)))
  '(sml/active-background-color "#34495e")
  '(sml/active-foreground-color "#ecf0f1")
  '(sml/inactive-background-color "#dfe4ea")
