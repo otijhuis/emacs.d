@@ -104,8 +104,8 @@
   ("]" paredit-wrap-square "Wrap square")
   ("{" paredit-wrap-curly "Wrap curly")
   ("s" paredit-splice-sexp "Splice")
-  ("bs" paredit-splice-sexp-killing-backward "Splice kill backward")
-  ("fs" paredit-splice-sexp-killing-forward "Splice kill forward")
+  ("bs" cljr-splice-sexp-killing-backward "Splice kill backward")
+  ("fs" cljr-splice-sexp-killing-forward "Splice kill forward")
   ("S" paredit-split-sexp "Split")
   ("j" paredit-join-sexps "Join")
   ("J" paredit-join-with-next-list "Join next list")
@@ -113,6 +113,7 @@
   ("C" paredit-convolute-sexp "Convolute")
   ("M-c" paredit-copy-as-kill "Copy as kill")
   ("r" paxedit-sexp-raise "Raise s-expression (paxedit)")
+  ("R" cljr-raise-sexp "Raise s-expression (cljr)")
   ("c" paxedit-copy "Copy explicit expression, implicit expression, or comment")
   ("d" paxedit-delete "Delete expression")
   ("tb" paxedit-transpose-backward "Transpose backward")
@@ -162,6 +163,20 @@
   ("l" cider-eval-last-sexp "Last s-expression")
   ("L" cider-eval-last-sexp-and-replace "Last s-expression and replace with result")
   ("e" cider-eval-last-sexp-and-replace "Last s-expression and replace with result"))
+
+(defhydra hydra-clj-cider (:exit t
+                                 :columns 2
+                                 :idle 1.0)
+  "Cider"
+  ("c" cider-connect "Connect")
+  ("j" cider-jack-in "Jack in")
+  ("i" cider-inspect "Inspect")
+  ("t" cider-toggle-trace "Toggle trace")
+  ("d" cider-doc "Doc")
+  ("a" cider-apropos "Apropos")
+  ("A" cider-apropos-documentation "Apropos documentation")
+  ("E" cider-jump-to-compilation-error "Jump to compilation error")
+  ("R" cider-jump-to-resource "Jump to resource"))
 
 (defhydra hydra-clj-refactor-a (:exit t
                                       :columns 2

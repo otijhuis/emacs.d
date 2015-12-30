@@ -4,7 +4,9 @@
 (setq mc/cmds-to-run-for-all
       '(
         company-indent-or-complete-common
+        forward-to-word
         hydra-mark/er/mark-symbol-and-exit
+        hydra-transpose/transpose-sexps
         hydra-transpose/transpose-sexps-and-exit
         hydra-transpose/transpose-words-and-exit
         ot/paredit-kill-region-or-backward-word

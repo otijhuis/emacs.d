@@ -9,21 +9,6 @@
 ;; jq qg qk qy qz wq xz fq wx qx jx kq vq qj qh hx qp xk
 ;; sx
 
-;; (bind-key "s-a" 'hydra-clj-refactor-a/body clojure-mode-map)
-;; (key-seq-define clojure-mode-map "]a" 'hydra-clj-refactor-a/body)
-;; (key-seq-define clojure-mode-map "]c" 'hydra-clj-refactor-c/body)
-;; (key-seq-define clojure-mode-map "]d" 'hydra-clj-refactor-d/body)
-;; (key-seq-define clojure-mode-map "]e" 'hydra-clj-refactor-e/body)
-;; (key-seq-define clojure-mode-map "]f" 'hydra-clj-refactor-f/body)
-;; (key-seq-define clojure-mode-map "]h" 'hydra-clj-refactor-h/body)
-;; (key-seq-define clojure-mode-map "]i" 'hydra-clj-refactor-i/body)
-;; (key-seq-define clojure-mode-map "]m" 'hydra-clj-refactor-m/body)
-;; (key-seq-define clojure-mode-map "]p" 'hydra-clj-refactor-p/body)
-;; (key-seq-define clojure-mode-map "]r" 'hydra-clj-refactor-r/body)
-;; (key-seq-define clojure-mode-map "]s" 'hydra-clj-refactor-s/body)
-;; (key-seq-define clojure-mode-map "]t" 'hydra-clj-refactor-t/body)
-;; (key-seq-define clojure-mode-map "]u" 'hydra-clj-refactor-u/body)
-
 (key-seq-define-global ",p" 'projectile-command-map)
 (key-seq-define-global ",a" 'hydra-ag/body)
 ;;(key-seq-define-global "';" 'smex)
@@ -33,7 +18,6 @@
 (key-seq-define-global ",f" 'ido-find-file)
 
 (key-seq-define emacs-lisp-mode-map ",e" 'hydra-lisp-eval/body)
-(key-seq-define clojure-mode-map ",e" 'hydra-clj-eval/body)
 
 (bind-key "M-x" 'smex)
 (bind-key "M-X" 'smex-major-mode-commands)
@@ -259,31 +243,36 @@
 ;; Clojure ;;
 ;;;;;;;;;;;;;
 
-;; (evil-define-key 'normal clojure-mode-map ",ch" 'ot/helm-clojure-headlines)
-;;(bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
-(bind-key "<C-return>" 'inf-clojure-eval-defun clojure-mode-map)
+;; (bind-key ",ch" 'ot/helm-clojure-headlines clojure-mode-map)
+(bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
+;;(bind-key "<C-return>" 'inf-clojure-eval-defun clojure-mode-map)
 
-;; (evil-define-key 'normal clojure-mode-map "\\es" 'cider-eval-last-sexp)
-;; (evil-define-key 'normal clojure-mode-map "\\en" 'cider-eval-ns-form)
-;; (evil-define-key 'normal clojure-mode-map "\\eb" 'cider-load-buffer)
-;; (evil-define-key 'normal clojure-mode-map ",cb" 'cider-repl-clear-buffer)
-;; (evil-define-key 'normal clojure-mode-map ",cc" 'cider-connect)
-;; (evil-define-key 'normal clojure-mode-map ",cj" 'cider-jack-in)
-;; (evil-define-key 'normal clojure-mode-map (kbd "M-.") 'cider-jump-to-var)
-;; (evil-define-key 'normal clojure-mode-map (kbd "M-,") 'cider-jump-back)
-;; (evil-define-key 'normal clojure-mode-map "\\i" 'cider-inspect)
-;; (evil-define-key 'normal clojure-mode-map "\\t" 'cider-toggle-trace)
-;; (evil-define-key 'normal clojure-mode-map "\\D" 'cider-doc)
-;; (evil-define-key 'normal clojure-mode-map "\\a" 'cider-apropos)
-;; (evil-define-key 'normal clojure-mode-map "\\A" 'cider-apropos-documentation)
-;; (evil-define-key 'normal clojure-mode-map ",je" 'cider-jump-to-compilation-error)
-;; (evil-define-key 'normal clojure-mode-map ",jr" 'cider-jump-to-resource)
+(bind-key (kbd "M-.") 'cider-jump-to-var clojure-mode-map)
+(bind-key (kbd "M-,") 'cider-jump-back clojure-mode-map)
 
-(bind-key "M-." 'ot/find-tag-without-ns clojure-mode-map)
+;;(bind-key "M-." 'ot/find-tag-without-ns clojure-mode-map)
+
+(key-seq-define clojure-mode-map ",e" 'hydra-clj-eval/body)
+(key-seq-define clojure-mode-map ",c" 'hydra-clj-cider/body)
 
 ;;(define-key clojure-mode-map "\C-c\C-k" 'ot/reload-current-clj-ns)
 ;;(define-key clojure-mode-map "\C-cl" 'ot/erase-inf-buffer)
 ;;(define-key clojure-mode-map "\C-c\C-t" 'clojure-toggle-keyword-string)
 ;;(define-key inf-clojure-mode-map "\C-cl" 'ot/erase-inf-buffer)
+
+;; (bind-key "s-a" 'hydra-clj-refactor-a/body clojure-mode-map)
+;; (key-seq-define clojure-mode-map "]a" 'hydra-clj-refactor-a/body)
+;; (key-seq-define clojure-mode-map "]c" 'hydra-clj-refactor-c/body)
+;; (key-seq-define clojure-mode-map "]d" 'hydra-clj-refactor-d/body)
+;; (key-seq-define clojure-mode-map "]e" 'hydra-clj-refactor-e/body)
+;; (key-seq-define clojure-mode-map "]f" 'hydra-clj-refactor-f/body)
+;; (key-seq-define clojure-mode-map "]h" 'hydra-clj-refactor-h/body)
+;; (key-seq-define clojure-mode-map "]i" 'hydra-clj-refactor-i/body)
+;; (key-seq-define clojure-mode-map "]m" 'hydra-clj-refactor-m/body)
+;; (key-seq-define clojure-mode-map "]p" 'hydra-clj-refactor-p/body)
+;; (key-seq-define clojure-mode-map "]r" 'hydra-clj-refactor-r/body)
+;; (key-seq-define clojure-mode-map "]s" 'hydra-clj-refactor-s/body)
+;; (key-seq-define clojure-mode-map "]t" 'hydra-clj-refactor-t/body)
+;; (key-seq-define clojure-mode-map "]u" 'hydra-clj-refactor-u/body)
 
 (provide 'custom-keybindings)

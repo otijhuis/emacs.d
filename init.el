@@ -59,9 +59,8 @@
                                      elisp-slime-nav highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      ag anzu       ; search / grep
-                                     clojure-mode ; inf-clojure
+                                     clojure-mode cider clj-refactor ; clojure
                                      clojure-mode-extra-font-locking ; clojure
-                                     align-cljlet ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                                      paredit paredit-menu paxedit sexp-move smartparens ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
@@ -71,12 +70,12 @@
                                      projectile ; moving around in projects
                                      yasnippet auto-yasnippet clojure-snippets datomic-snippets ; snippets
                                      browse-kill-ring ; list / select / insert previously killed text
-                                     expand-region ; easily select regions around point
+                                     expand-region smart-forward ; easily select regions around point
                                      multiple-cursors iedit ; multiple cursors a la Sublime Text
                                      visual-regexp visual-regexp-steroids ; visualize your typed regexp
 
                                      ;; Web development
-                                     js2-mode company-web tagedit emmet-mode helm-emmet web-mode)
+                                     css-eldoc js2-mode company-web tagedit emmet-mode helm-emmet web-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -86,8 +85,8 @@
 (add-to-list 'load-path "~/.emacs.d/config/")
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
-(add-to-list 'load-path "~/Projects/github/inf-clojure")
-(require 'inf-clojure)
+;;(add-to-list 'load-path "~/Projects/github/inf-clojure")
+;;(require 'inf-clojure)
 
 ;; On OSX add /usr/local/bin to exec-path for lein command (installed with brew install leiningen)
 (if (eq system-type 'darwin)
@@ -115,7 +114,7 @@
 (require 'hydra-settings)
 (require 'custom-keybindings)
 
-(require 'inf-clojure-addons)
+;;(require 'inf-clojure-addons)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -126,6 +125,13 @@
    (quote
     ("b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3b24f986084001ae46aa29ca791d2bc7f005c5c939646d2b800143526ab4d323" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "c1fb68aa00235766461c7e31ecfc759aa2dd905899ae6d95097061faeb72f9ee" "0ba649556dc51762e6794b92017f6f7406754ae3136eafef686d81c6da176cc5" "8288b9b453cdd2398339a9fd0cec94105bc5ca79b86695bd7bf0381b1fbe8147" "46fd293ff6e2f6b74a5edf1063c32f2a758ec24a5f63d13b07a20255c074d399" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "90d329edc17c6f4e43dbc67709067ccd6c0a3caa355f305de2041755986548f2" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "d809ca3cef02087b48f3f94279b86feca896f544ae4a82b523fba823206b6040" "1ba463f6ac329a56b38ae6ac8ca67c8684c060e9a6ba05584c90c4bffc8046c3" "f5e9f66da69f504cb61aacedeb8284d8f38f2e6f835fd658cac5f0ad5d924549" "bf648fd77561aae6722f3d53965a9eb29b08658ed045207fe32ffed90433eb52" "a99e7c91236b2aba4cd374080c73f390c55173c5a1b4ac662eeb3172b60a9814" "c3fb7a13857e799bba450bb81b9101ef4960281c4d5908e05ecac9204c526c8a" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "7dd515d883520286fc8936ce32381fb01b978d0d7cfb6fe56f7f55d8accbf63a" "57072d797dc09fcf563051a85a29d6a51d6f2b1a602e029c35b05c30df319b2a" "f0ea6118d1414b24c2e4babdc8e252707727e7b4ff2e791129f240a2b3093e32" "c4e6fe8f5728a5d5fd0e92538f68c3b4e8b218bcfb5e07d8afff8731cc5f3df0" "9bcb8ee9ea34ec21272bb6a2044016902ad18646bd09fdd65abae1264d258d89" "0e121ff9bef6937edad8dfcff7d88ac9219b5b4f1570fd1702e546a80dba0832" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
  '(fci-rule-color "#efefef")
+ '(helm-gtags-auto-update t)
+ '(helm-gtags-display-style (quote detail))
+ '(helm-gtags-fuzzy-match t)
+ '(helm-gtags-path-style (quote root))
+ '(package-selected-packages
+   (quote
+    (wrap-region whole-line-or-region whitespace-cleanup-mode which-key what-the-commit web-mode volatile-highlights visual-regexp-steroids undo-tree thingatpt+ tagedit state solarized-theme smex smartparens shrink-whitespace sexp-move rich-minority region-bindings-mode popwin popup paxedit paredit-menu org-projectile org-plus-contrib org-bullets neotree monokai-theme molokai-theme misc-cmds magit key-seq js2-mode indent-guide imenu-list iedit idomenu ido-vertical-mode ido-ubiquitous ido-select-window ido-at-point hl-sexp highlight-symbol highlight-defined helm-swoop helm-projectile helm-gtags helm-flycheck helm-emmet helm-descbinds helm-c-moccur helm-ag gist ggtags free-keys focus flycheck-pos-tip flycheck-clojure flx-ido flatui-theme fix-word eval-sexp-fu elisp-slime-nav drag-stuff diff-hl datomic-snippets company-web company-quickhelp company-flx comment-dwim-2 clojure-snippets clojure-mode-extra-font-locking clj-refactor change-inner browse-kill-ring bind-key beacon avy-zap auto-yasnippet anzu align-cljlet aggressive-indent ag)))
  '(sml/active-background-color "#34495e")
  '(sml/active-foreground-color "#ecf0f1")
  '(sml/inactive-background-color "#dfe4ea")
@@ -160,6 +166,7 @@
  '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
  '(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
  '(cursor ((t (:background "orange"))))
+ '(eval-sexp-fu-flash ((t (:background "dark orange" :foreground "white"))))
  '(flx-highlight-face ((t (:inherit font-lock-variable-name-face :foreground "#F92672"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "gray70" :slant italic))))
  '(font-lock-comment-face ((t (:foreground "gray60" :slant italic))))
