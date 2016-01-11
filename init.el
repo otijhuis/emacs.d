@@ -11,7 +11,7 @@
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
         '((magit . "melpa-stable")
-          ;;(cider . "melpa-stable")
+          (cider . "melpa-stable")
           ;;(clj-refactor . "melpa-stable")
           )))
 
@@ -30,6 +30,7 @@
                                      helm helm-projectile helm-ag helm-swoop ; helm
                                      helm-gtags ggtags ; tags
                                      helm-descbinds helm-c-moccur ; helm
+                                     ;;counsel flx ; ivy / counsel
                                      imenu-list ; imenu in a separate buffer
                                      shrink-whitespace
                                      state ; navigating between workspaces
@@ -59,7 +60,7 @@
                                      elisp-slime-nav highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      ag anzu       ; search / grep
-                                     clojure-mode cider clj-refactor ; clojure
+                                     clojure-mode clj-refactor ; clojure
                                      clojure-mode-extra-font-locking ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                                      paredit paredit-menu paxedit sexp-move smartparens ; working with parens / delimiters
@@ -75,7 +76,7 @@
                                      visual-regexp visual-regexp-steroids ; visualize your typed regexp
 
                                      ;; Web development
-                                     css-eldoc js2-mode company-web tagedit emmet-mode helm-emmet web-mode)
+                                     css-eldoc js2-mode company-web tagedit emmet-mode helm-emmet)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -100,6 +101,7 @@
 (require 'expand-region)
 (require 'ui-settings)
 (require 'lisp-settings)
+(require 'webdev-settings)
 (require 'navigation-settings)
 (require 'project-settings)
 (require 'auto-complete-settings)

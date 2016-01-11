@@ -13,4 +13,10 @@
 ;; Don't highlight matches with jump-char - it's distracting
 (setq jump-char-lazy-highlight-face nil)
 
+;; Cursor position at start of match, not at the end
+;; (add-hook 'isearch-mode-end-hook 'my-goto-match-beginning)
+;; (defun my-goto-match-beginning ()
+;;   (when (and isearch-forward (not isearch-mode-end-hook-quit))
+;;     (goto-char isearch-other-end)))
+
 (provide 'search-settings)

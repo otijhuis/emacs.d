@@ -35,6 +35,8 @@
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
+(bind-key "M-;" 'comment-dwim-2)
+
 (bind-key "M-\\" 'shrink-whitespace)
 
 (bind-key "M-k" 'kill-word)
@@ -82,7 +84,7 @@
 
 (bind-key "C-;" 'iedit-mode)
 
-(bind-key "C-c m" 'multiple-cursors-hydra/body)
+(key-seq-define-global ".," 'multiple-cursors-hydra/body)
 
 (bind-key "C-S-<mouse-1>" 'mc/add-cursor-on-click)
 
@@ -94,7 +96,7 @@
 (bind-key "H-z" 'avy-zap-to-char-dwim)
 (bind-key "H-Z" 'avy-zap-up-to-char-dwim)
 (key-seq-define-global ";l" 'avy-goto-char)
-(key-seq-define-global "zc" 'avy-goto-word-0)
+(key-seq-define-global "zc" 'ot/avy-goto-word-0)
 (key-seq-define-global "zv" 'avy-goto-word-or-subword-1)
 (key-seq-define-global "z," 'avy-zap-up-to-char)
 (key-seq-define-global "z." 'avy-zap-to-char)
@@ -114,6 +116,25 @@
 
 (bind-key "s-d" 'ot/duplicate-current-line-or-region)
 
+;;;;;;;;;;;;;;;;;;;;;
+;; Web development ;;
+;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;
+;; Tagedit ;;
+;;;;;;;;;;;;;
+
+(bind-key "M-]" 'tagedit-forward-slurp-tag sgml-mode-map)
+(bind-key "M-[" 'tagedit-forward-barf-tag sgml-mode-map)
+(bind-key "M-r" 'tagedit-raise-tag sgml-mode-map)
+(bind-key "M-s" 'tagedit-splice-tag sgml-mode-map)
+(bind-key "M-J" 'tagedit-join-tags sgml-mode-map)
+(bind-key "M-S" 'tagedit-split-tag sgml-mode-map)
+(bind-key "M-C" 'tagedit-convolute-tags sgml-mode-map)
+(bind-key "C-k" 'tagedit-kill sgml-mode-map)
+(bind-key "s-k" 'tagedit-kill-attribute sgml-mode-map)
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Paredit / Paxedit ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -125,6 +146,7 @@
 (bind-key "C-S-k" 'paxedit-kill paredit-mode-map)
 (bind-key "M-k" 'paxedit-symbol-kill paredit-mode-map)
 (bind-key [H-backspace] 'paredit-forward-delete paredit-mode-map)
+(bind-key [H-M-backspace] 'backward-kill-sexp paredit-mode-map)
 (bind-key "s-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
 (bind-key "M-D" 'ot/paredit-duplicate-closest-sexp paredit-mode-map)
 (bind-key [M-backspace] 'ot/paredit-kill-region-or-backward-word paredit-mode-map)
@@ -150,8 +172,6 @@
 (bind-key "M-I" 'helm-multi-swoop-all-from-isearch isearch-mode-map)
 (bind-key "M-m" 'helm-multi-swoop-current-mode-from-helm-swoop helm-swoop-map)
 (bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
-(bind-key "C-s" 'helm-swoop)
-(bind-key "C-r" 'helm-swoop)
 
 (bind-key "<M-return>" 'ot/open-line-below)
 
@@ -276,3 +296,19 @@
 ;; (key-seq-define clojure-mode-map "]u" 'hydra-clj-refactor-u/body)
 
 (provide 'custom-keybindings)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

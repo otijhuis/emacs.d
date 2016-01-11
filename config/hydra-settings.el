@@ -148,7 +148,8 @@
   ("e" eval-expression "S-expression")
   ("l" eval-last-sexp "Last s-expression")
   ("L" eval-last-sexp-print-value "Last s-expression and print value")
-  ("d" eval-defun "Defun / Function"))
+  ("d" eval-defun "Defun / Function")
+  ("f" eval-defun "Defun / Function"))
 
 (defhydra hydra-clj-eval (:exit t
                                 :columns 2

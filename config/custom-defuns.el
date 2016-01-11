@@ -489,4 +489,13 @@ Position the cursor at its beginning, according to the current mode."
           (forward-char)))
     (up-list)))
 
+(defun ot/avy-goto-word-0 ()
+  "avy-goto-word-0 with modified syntax table"
+  (interactive)
+  (let ((temp-syntax-table (make-syntax-table)))
+    (modify-syntax-entry ?_ "w" temp-syntax-table) ; add underscore as to words
+    (modify-syntax-entry ?: "w" temp-syntax-table)
+    (with-syntax-table temp-syntax-table
+      (avy-goto-word-0 nil))))
+
 (provide 'custom-defuns)

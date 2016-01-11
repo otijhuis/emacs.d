@@ -20,7 +20,7 @@
 
 ;; Indentation
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-(add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+;;(add-hook 'clojure-mode-hook #'aggressive-indent-mode)
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'ot/esk-remove-elc-on-save)
@@ -185,6 +185,8 @@
 
 ;; Indent and highlight more commands
 (put-clojure-indent 'match 'defun)
+
+(setq clojure-align-forms-automatically t)
 
 ;; Inf-Clojure
 ;; (require 'inf-clojure)
