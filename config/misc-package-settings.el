@@ -116,9 +116,15 @@
   :switch "*scratch*")
 
 (state-define-state
- message
- :key "m"
- :switch "*Messages*")
+  message
+  :key "m"
+  :switch "*Messages*")
+
+;; Ivy / Counsel
+(setq ivy-re-builders-alist
+      '((t . ivy--regex-fuzzy)))
+
+(setq ivy-initial-inputs-alist nil)
 
 (provide 'misc-package-settings)
 

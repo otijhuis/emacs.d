@@ -53,10 +53,10 @@
 ;;(helm-mode 1)
 (helm-adaptive-mode 1)
 
-(setq helm-autoresize-max-height 30)
-(setq helm-autoresize-min-height 30)
+(setq helm-autoresize-max-height 25)
+(setq helm-autoresize-min-height 25)
 
-;;(helm-autoresize-mode 1)
+(helm-autoresize-mode 1)
 
 ;;;;;;;;;;;;;;;;
 ;; Helm swoop ;;

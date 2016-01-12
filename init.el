@@ -30,7 +30,7 @@
                                      helm helm-projectile helm-ag helm-swoop ; helm
                                      helm-gtags ggtags ; tags
                                      helm-descbinds helm-c-moccur ; helm
-                                     ;;counsel flx ; ivy / counsel
+                                     swiper counsel flx ; ivy / counsel
                                      imenu-list ; imenu in a separate buffer
                                      shrink-whitespace
                                      state ; navigating between workspaces
