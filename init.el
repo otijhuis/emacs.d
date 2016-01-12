@@ -184,6 +184,7 @@
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
  '(iedit-occurrence ((t (:background "SystemHilight"))))
+ '(ivy-minibuffer-match-face-2 ((t (:foreground "#F92672" :weight bold))))
  '(region ((t (:background "SkyBlue4" :foreground "white"))))
  '(vhl/default-face ((t (:background "white"))))
  '(web-mode-current-element-highlight-face ((t (:background "black"))))

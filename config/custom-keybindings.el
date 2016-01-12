@@ -11,7 +11,6 @@
 
 (key-seq-define-global ",p" 'projectile-command-map)
 (key-seq-define-global ",a" 'hydra-ag/body)
-;;(key-seq-define-global "';" 'smex)
 (key-chord-define-global "';" 'smex)
 
 (key-seq-define-global ",l" 'ido-switch-buffer)
@@ -34,6 +33,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
+
+(bind-key "C-M-y" 'counsel-yank-pop)
+(bind-key "C-s" 'swiper)
 
 (bind-key "M-;" 'comment-dwim-2)
 
