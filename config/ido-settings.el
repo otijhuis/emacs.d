@@ -24,6 +24,7 @@
 (defun ido-ignore-most-star-buffers (name)
   (and
    (string-match-p "^*" name)
+   (not (string= "*scratch*" name))
    (not (member name ido-dont-ignore-buffer-names))))
 
 (setq ido-ignore-buffers (list "\\` " #'ido-ignore-most-star-buffers))

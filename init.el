@@ -27,8 +27,8 @@
 ;; Add in your own as you wish:
 (defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu ; mini-buffer on steroids
                                      smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
-                                     helm helm-projectile helm-ag helm-swoop ; helm
-                                     helm-gtags ggtags ; tags
+                                     helm helm-ag helm-swoop  ; helm
+                                     helm-gtags ggtags         ; tags
                                      helm-descbinds helm-c-moccur ; helm
                                      swiper counsel flx ; ivy / counsel
                                      imenu-list ; imenu in a separate buffer
@@ -184,7 +184,10 @@
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
  '(iedit-occurrence ((t (:background "SystemHilight"))))
+ '(ivy-current-match ((t nil)))
  '(ivy-minibuffer-match-face-2 ((t (:foreground "#F92672" :weight bold))))
+ '(ivy-minibuffer-match-face-3 ((t (:foreground "#F92672" :weight bold))))
+ '(ivy-minibuffer-match-face-4 ((t (:foreground "#F92672" :weight bold))))
  '(region ((t (:background "SkyBlue4" :foreground "white"))))
  '(vhl/default-face ((t (:background "white"))))
  '(web-mode-current-element-highlight-face ((t (:background "black"))))

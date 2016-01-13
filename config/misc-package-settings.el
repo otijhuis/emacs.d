@@ -131,7 +131,7 @@
 (setq ivy-re-builders-alist
       '((t . ivy--regex-fuzzy)))
 
-(setq ivy-initial-inputs-alist nil)
+;;(setq ivy-initial-inputs-alist nil)
 
 (setq ivy-extra-directories nil)
 

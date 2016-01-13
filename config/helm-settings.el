@@ -91,12 +91,6 @@
 (setq helm-multi-swoop-edit-save t)
 
 ;;;;;;;;;;;;;;;;
-;; Projectile ;;
-;;;;;;;;;;;;;;;;
-(require 'helm-projectile)
-(helm-projectile-on)
-
-;;;;;;;;;;;;;;;;
 ;; Helm Gtags ;;
 ;;;;;;;;;;;;;;;;
 (custom-set-variables

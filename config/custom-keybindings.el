@@ -36,6 +36,7 @@
 
 (bind-key "C-M-y" 'counsel-yank-pop)
 (bind-key "C-s" 'swiper)
+(bind-key "C-r" 'ivy-resume)
 
 (bind-key "M-;" 'comment-dwim-2)
 
