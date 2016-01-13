@@ -35,7 +35,7 @@
 
 ;;;; ido customization
 (require 'flx-ido)
-(ido-mode t)
+;;(ido-mode t)
 (flx-ido-mode 1)
 
 ;; Use ido everywhere

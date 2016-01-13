@@ -126,7 +126,7 @@
 
 (setq ivy-format-function 'ivy-format-function-arrow)
 
-;;(ivy-mode 1)
+(ivy-mode 1)
 
 (setq ivy-re-builders-alist
       '((t . ivy--regex-fuzzy)))

@@ -11,4 +11,6 @@
 
 ;;(setq projectile-switch-project-action 'neotree-projectile-action)
 
+(setq projectile-completion-system 'ivy)
+
 (provide 'project-settings)

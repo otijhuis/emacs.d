@@ -188,6 +188,7 @@
  '(ivy-minibuffer-match-face-2 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-minibuffer-match-face-3 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-minibuffer-match-face-4 ((t (:foreground "#F92672" :weight bold))))
+ '(ivy-virtual ((t nil)))
  '(region ((t (:background "SkyBlue4" :foreground "white"))))
  '(vhl/default-face ((t (:background "white"))))
  '(web-mode-current-element-highlight-face ((t (:background "black"))))

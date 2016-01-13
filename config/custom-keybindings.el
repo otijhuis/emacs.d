@@ -11,15 +11,14 @@
 
 (key-seq-define-global ",p" 'projectile-command-map)
 (key-seq-define-global ",a" 'hydra-ag/body)
-(key-chord-define-global "';" 'smex)
+(key-chord-define-global "';" 'counsel-M-x)
 
-(key-seq-define-global ",l" 'ido-switch-buffer)
-(key-seq-define-global ",f" 'ido-find-file)
+(key-seq-define-global ",l" 'ivy-switch-buffer)
+(key-seq-define-global ",f" 'counsel-find-file)
 
 (key-seq-define emacs-lisp-mode-map ",e" 'hydra-lisp-eval/body)
 
-(bind-key "M-x" 'smex)
-(bind-key "M-X" 'smex-major-mode-commands)
+(bind-key "M-x" 'counsel-M-x)
 (bind-key "C-x C-i" 'idomenu)
 (bind-key "C-x C-b" 'ibuffer)
 
@@ -27,12 +26,16 @@
 (key-seq-define-global "/." 'hydra-mark/body)
 (key-seq-define-global "zx" 'hydra-mark/body)
 (key-seq-define-global "][" 'hydra-transpose/body)
-(key-seq-define-global "/," 'multiple-cursors-hydra/body)
 ;;(symbol-function 'hydra-transpose/transpose-sexps-and-exit)
+(key-seq-define-global ",m" 'multiple-cursors-hydra/body)
+(bind-key "C-c m" 'multiple-cursors-hydra/body)
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
+
+(bind-key "C-m" 'ivy-alt-done ivy-minibuffer-map)
+(bind-key "C-j" 'ivy-done ivy-minibuffer-map)
 
 (bind-key "C-M-y" 'counsel-yank-pop)
 (bind-key "C-s" 'swiper)
@@ -44,16 +47,6 @@
 
 (bind-key "M-k" 'kill-word)
 (bind-key "s-w" 'hydra-copy/body)
-
-(bind-key "M-f" 'forward-to-word)
-(bind-key "M-F" 'forward-symbol)
-(bind-key "M-B" (lambda ()
-                  (interactive)
-                  (forward-symbol -1)))
-(bind-key "s-f" 'forward-whitespace-&-newlines)
-(bind-key "s-b" (lambda ()
-                  (interactive)
-                  (forward-whitespace-&-newlines -1)))
 
 (bind-key "M-l" #'fix-word-downcase)
 (bind-key "M-u" #'fix-word-upcase)
@@ -87,11 +80,29 @@
 
 (bind-key "C-;" 'iedit-mode)
 
-(key-seq-define-global ".," 'multiple-cursors-hydra/body)
-
 (bind-key "C-S-<mouse-1>" 'mc/add-cursor-on-click)
 
 (bind-key "M-i" 'helm-imenu)
+
+(bind-key "C-M-;" 'indent-new-comment-line)
+(bind-key "C-M-j" 'join-line)
+(bind-key "M-j" 'ot/join-line)
+
+(bind-key "s-d" 'ot/duplicate-current-line-or-region)
+
+;;;;;;;;;;;;;;
+;; Movement ;;
+;;;;;;;;;;;;;;
+
+(bind-key "M-f" 'forward-to-word)
+(bind-key "M-F" 'forward-symbol)
+(bind-key "M-B" (lambda ()
+                  (interactive)
+                  (forward-symbol -1)))
+(bind-key "s-f" 'forward-whitespace-&-newlines)
+(bind-key "s-b" (lambda ()
+                  (interactive)
+                  (forward-whitespace-&-newlines -1)))
 
 ;;;;;;;;;
 ;; Avy ;;
@@ -107,17 +118,14 @@
 (key-seq-define-global ".z" 'ot/avy-zap-to-char-save)
 (bind-key "C-'" 'avy-isearch isearch-mode-map)
 
-;; Smarter move to beginning/end of line
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Smarter move to beginning/end of line ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (bind-key "C-S-a" 'beginning-of-line+)
 (bind-key "C-a" 'ot/back-to-indentation-or-beginning)
 (bind-key "C-S-e" 'end-of-line+)
 (bind-key "C-e" 'ot/end-of-code-or-line+)
-
-(bind-key "C-M-;" 'indent-new-comment-line)
-(bind-key "C-M-j" 'join-line)
-(bind-key "M-j" 'ot/join-line)
-
-(bind-key "s-d" 'ot/duplicate-current-line-or-region)
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Web development ;;
@@ -141,6 +149,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Paredit / Paxedit ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
+
 (key-seq-define paredit-mode-map "\\]" 'hydra-paredit/body)
 (bind-key "s-j" 'paredit-backward-down paredit-mode-map)
 (bind-key "s-i" 'paxedit-backward-up paredit-mode-map)
@@ -170,11 +179,6 @@
                   (let ((case-fold-search isearch-case-fold-search))
                     (occur (if isearch-regexp isearch-string (regexp-quote isearch-string)))))
           isearch-mode-map)
-
-(bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map)
-(bind-key "M-I" 'helm-multi-swoop-all-from-isearch isearch-mode-map)
-(bind-key "M-m" 'helm-multi-swoop-current-mode-from-helm-swoop helm-swoop-map)
-(bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
 
 (bind-key "<M-return>" 'ot/open-line-below)
 
