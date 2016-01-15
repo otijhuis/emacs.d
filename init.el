@@ -76,7 +76,10 @@
                                      visual-regexp visual-regexp-steroids ; visualize your typed regexp
 
                                      ;; Web development
-                                     css-eldoc js2-mode company-web tagedit emmet-mode helm-emmet)
+                                     css-eldoc js2-mode company-web tagedit emmet-mode helm-emmet
+
+                                     ;; Haskell
+                                     haskell-mode flycheck-haskell haskell-snippets)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
