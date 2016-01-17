@@ -27,7 +27,7 @@
 (key-seq-define-global "zx" 'hydra-mark/body)
 (key-seq-define-global "][" 'hydra-transpose/body)
 ;;(symbol-function 'hydra-transpose/transpose-sexps-and-exit)
-(key-seq-define-global ",m" 'multiple-cursors-hydra/body)
+(key-seq-define-global ".," 'multiple-cursors-hydra/body)
 (bind-key "C-c m" 'multiple-cursors-hydra/body)
 
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -187,7 +187,7 @@
 (bind-key "C-M-/" 'hippie-expand-lines)
 
 ;; Version control
-(bind-key "<f10>" 'magit-status)
+(key-seq-define-global ",m" 'magit-status)
 (bind-key "<f11>" 'diff-hl-mode)
 
 ;; iMenu
