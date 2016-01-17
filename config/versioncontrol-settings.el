@@ -14,6 +14,8 @@
 ;; When c is pressed when nothing is staged commit all changes
 (setq magit-commit-all-when-nothing-staged t)
 
+(setq magit-save-repository-buffers 'dontask)
+
 ;; Highlight diffs in fringe
 ;;(global-diff-hl-mode)
 
