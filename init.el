@@ -12,6 +12,8 @@
   (setq package-pinned-packages
         '((magit . "melpa-stable")
           (cider . "melpa-stable")
+	  (with-editor . "melpa-stable")
+	  (magit-popup . "melpa-stable")
           ;;(clj-refactor . "melpa-stable")
           )))
 
@@ -66,7 +68,7 @@
                                      paredit paredit-menu paxedit sexp-move smartparens ; working with parens / delimiters
                                      solarized-theme flatui-theme ; color themes
                                      monokai-theme molokai-theme ; color themes
-                                     magit diff-hl gist ; git integration
+                                     diff-hl gist ; git integration
                                      what-the-commit ; funny commit messages
                                      projectile ; moving around in projects
                                      yasnippet auto-yasnippet clojure-snippets datomic-snippets ; snippets

@@ -121,6 +121,8 @@
   :switch "*Messages*")
 
 ;; Ivy / Swiper / Counsel
+(require 'ivy)
+(require 'counsel)
 (require 'swiper)
 (require 'flx)
 
@@ -141,8 +143,6 @@
 (setq ivy-count-format "")
 
 (setq ivy-wrap nil)
-
-(require 'counsel)
 
 (setq counsel-find-file-at-point t)
 
