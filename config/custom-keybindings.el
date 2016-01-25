@@ -34,6 +34,8 @@
 ;; Other keybindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
+(bind-key "C-x p" 'pop-to-mark-command)
+
 (bind-key "C-m" 'ivy-alt-done ivy-minibuffer-map)
 (bind-key "C-j" 'ivy-done ivy-minibuffer-map)
 
@@ -43,7 +45,7 @@
 
 (bind-key "M-;" 'comment-dwim-2)
 
-(bind-key "M-\\" 'shrink-whitespace)
+(bind-key "M-\\" 'cycle-spacing)
 
 (bind-key "M-k" 'kill-word)
 (bind-key "s-w" 'hydra-copy/body)

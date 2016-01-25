@@ -54,6 +54,8 @@
 (setq undo-tree-mode-lighter "")
 (require 'undo-tree)
 (global-undo-tree-mode)
+(setq undo-tree-visualizer-timestamps t)
+(setq undo-tree-visualizer-diff t)
 
 ;; Keep region when undoing in region
 (defadvice undo-tree-undo (around keep-region activate)
@@ -72,6 +74,7 @@
 
 ;; Wrap region
 (wrap-region-global-mode)
+(wrap-region-add-wrapper "`" "`" nil '(markdown-mode))
 
 ;; Drag stuff
 (setq drag-stuff-modifier 'hyper)

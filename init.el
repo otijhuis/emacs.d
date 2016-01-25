@@ -34,8 +34,9 @@
                                      helm-descbinds helm-c-moccur ; helm
                                      swiper counsel flx ; ivy / counsel
                                      imenu-list ; imenu in a separate buffer
-                                     shrink-whitespace
                                      state ; navigating between workspaces
+                                     engine-mode ; use search engines
+                                     smartscan ; quickly jump to symbols
                                      beacon ; find your cursor
                                      dash s thingatpt+ ; util libs
                                      comment-dwim-2    ; commenting
@@ -189,12 +190,13 @@
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
  '(iedit-occurrence ((t (:background "SystemHilight"))))
- '(ivy-current-match ((t nil)))
+ '(ivy-current-match ((t (:underline "#F92672" :weight bold))))
  '(ivy-minibuffer-match-face-2 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-minibuffer-match-face-3 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-minibuffer-match-face-4 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-virtual ((t nil)))
  '(region ((t (:background "SkyBlue4" :foreground "white"))))
+ '(swiper-line-face ((t (:background "medium spring green"))))
  '(vhl/default-face ((t (:background "white"))))
  '(web-mode-current-element-highlight-face ((t (:background "black"))))
  '(web-mode-html-attr-name-face ((t (:foreground "royal blue"))))

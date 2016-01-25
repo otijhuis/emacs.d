@@ -78,17 +78,24 @@
 (delete-selection-mode t)
 
 ;; Go back to the cursor location where you were the last time you opened the file
-;; (require 'saveplace)
-;; (setq-default
-;; save-place-file (concat user-emacs-directory "places")
-;; save-place t)
+(require 'saveplace)
+(setq-default
+ save-place-file (concat user-emacs-directory "places")
+ save-place t)
+
+(setq save-place-forget-unreadable-files nil)
 
 ;; minibuffer history
 (require 'savehist)
 (setq savehist-file (concat user-emacs-directory "savehist")
       enable-recursive-minibuffers t ; Allow commands in minibuffers
       history-length 1000
-      savehist-additional-variables '(kill-ring mark-ring global-mark-ring search-ring regexp-search-ring extended-command-history)
+      savehist-additional-variables '(kill-ring
+                                      mark-ring
+                                      global-mark-ring
+                                      search-ring
+                                      regexp-search-ring
+                                      extended-command-history)
       savehist-autosave-interval 60)
 (savehist-mode +1)
 
@@ -174,6 +181,8 @@
 (setq-default mac-function-modifier 'hyper)
 (setq-default mac-command-modifier 'meta)
 (setq-default mac-option-modifier 'super)
+;; Don't pass CMD to system so I can use CMD-h for instance
+(setq mac-pass-command-to-system nil)
 
 ;; Allow replacement of selected region or deletion of selected region by typing or using DEL
 (delete-selection-mode 1)
@@ -229,15 +238,17 @@
 ;; Save clipboard contents into kill-ring before replace them
 (setq save-interprogram-paste-before-kill t)
 
+(setq set-mark-command-repeat-pop t)
 ;; When popping the mark, continue popping until the cursor actually moves
 ;; Also, if the last command was a copy - skip past all the expand-region cruft.
-(defadvice pop-to-mark-command (around ensure-new-position activate)
+(defun modi/multi-pop-to-mark (orig-fun &rest args)
+  "Call ORIG-FUN until the cursor moves.
+Try the repeated popping up to 10 times."
   (let ((p (point)))
-    (when (eq last-command 'save-region-or-current-line)
-      ad-do-it
-      ad-do-it
-      ad-do-it)
     (dotimes (i 10)
-      (when (= p (point)) ad-do-it))))
+      (when (= p (point))
+        (apply orig-fun args)))))
+(advice-add 'pop-to-mark-command :around
+            #'modi/multi-pop-to-mark)
 
 (provide 'basic-settings)

@@ -13,4 +13,6 @@
 
 (setq projectile-completion-system 'ivy)
 
+;;(add-to-list 'projectile-globally-ignored-files "node-modules")
+
 (provide 'project-settings)
