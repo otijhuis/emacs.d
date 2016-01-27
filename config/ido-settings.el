@@ -18,16 +18,15 @@
       ido-vertical-define-keys 'C-n-C-p-up-down-left-right
       )
 
-;;(defvar ido-dont-ignore-buffer-names '("*scratch*"))
-(defvar ido-dont-ignore-buffer-names '())
+;; (defvar ido-dont-ignore-buffer-names '())
 
-(defun ido-ignore-most-star-buffers (name)
-  (and
-   (string-match-p "^*" name)
-   (not (string= "*scratch*" name))
-   (not (member name ido-dont-ignore-buffer-names))))
+;; (defun ido-ignore-most-star-buffers (name)
+;;   (and
+;;    (string-match-p "^*" name)
+;;    (not (string= "*scratch*" name))
+;;    (not (member name ido-dont-ignore-buffer-names))))
 
-(setq ido-ignore-buffers (list "\\` " #'ido-ignore-most-star-buffers))
+;; (setq ido-ignore-buffers (list "\\` " #'ido-ignore-most-star-buffers))
 
 (add-to-list 'ido-ignore-directories "target")
 (add-to-list 'ido-ignore-directories "node_modules")
@@ -35,7 +34,7 @@
 
 ;;;; ido customization
 (require 'flx-ido)
-;;(ido-mode t)
+(ido-mode t)
 (flx-ido-mode 1)
 
 ;; Use ido everywhere

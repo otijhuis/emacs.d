@@ -101,4 +101,11 @@
 
 (require 'helm-gtags)
 
+;;;;;;;;;;;;;;;;
+;; Projectile ;;
+;;;;;;;;;;;;;;;;
+
+;;(require 'helm-projectile)
+;;(helm-projectile-on)
+
 (provide 'helm-settings)

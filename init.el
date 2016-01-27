@@ -30,7 +30,7 @@
 ;; Add in your own as you wish:
 (defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu ; mini-buffer on steroids
                                      smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
-                                     helm helm-ag helm-swoop  ; helm
+                                     helm helm-ag helm-swoop helm-projectile ; helm
                                      helm-gtags ggtags         ; tags
                                      helm-descbinds helm-c-moccur ; helm
                                      swiper counsel flx ; ivy / counsel

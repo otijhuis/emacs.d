@@ -11,7 +11,7 @@
 
 ;;(setq projectile-switch-project-action 'neotree-projectile-action)
 
-(setq projectile-completion-system 'ivy)
+;;(setq projectile-completion-system 'ivy)
 
 ;;(add-to-list 'projectile-globally-ignored-files "node-modules")
 

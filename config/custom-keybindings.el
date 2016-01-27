@@ -11,14 +11,15 @@
 
 (key-seq-define-global ",p" 'projectile-command-map)
 (key-seq-define-global ",a" 'hydra-ag/body)
-(key-chord-define-global "';" 'counsel-M-x)
+(key-chord-define-global "';" 'smex)
 
-(key-seq-define-global ",l" 'ivy-switch-buffer)
-(key-seq-define-global ",f" 'counsel-find-file)
+(key-seq-define-global ",l" 'ido-switch-buffer)
+(key-seq-define-global ",f" 'ido-find-file)
 
 (key-seq-define emacs-lisp-mode-map ",e" 'hydra-lisp-eval/body)
 
-(bind-key "M-x" 'counsel-M-x)
+(bind-key "M-x" 'smex)
+(bind-key "M-X" 'smex-major-mode-commands)
 (bind-key "C-x C-i" 'idomenu)
 (bind-key "C-x C-b" 'ibuffer)
 
@@ -36,12 +37,7 @@
 
 (bind-key "C-x p" 'pop-to-mark-command)
 
-(bind-key "C-m" 'ivy-alt-done ivy-minibuffer-map)
-(bind-key "C-j" 'ivy-done ivy-minibuffer-map)
-
-(bind-key "C-M-y" 'helm-show-kill-ring)
-(bind-key "C-s" 'swiper)
-(bind-key "C-r" 'ivy-resume)
+;;(bind-key "C-r" 'ivy-resume)
 
 (bind-key "M-;" 'comment-dwim-2)
 
@@ -83,13 +79,28 @@
 
 (bind-key "C-S-<mouse-1>" 'mc/add-cursor-on-click)
 
-(bind-key "M-i" 'helm-imenu)
-
 (bind-key "C-M-;" 'indent-new-comment-line)
 (bind-key "C-M-j" 'join-line)
 (bind-key "M-j" 'ot/join-line)
 
 (bind-key "s-d" 'ot/duplicate-current-line-or-region)
+
+;;;;;;;;;;
+;; Helm ;;
+;;;;;;;;;;
+(bind-key "C-M-y" 'helm-show-kill-ring)
+(bind-key "C-s" 'helm-swoop)
+(bind-key "M-i" 'helm-imenu)
+(bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map)
+(bind-key "M-I" 'helm-multi-swoop-all-from-isearch isearch-mode-map)
+(bind-key "M-m" 'helm-multi-swoop-current-mode-from-helm-swoop helm-swoop-map)
+(bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
+
+;; Move up and down like isearch
+(bind-key "C-k" 'helm-previous-line helm-swoop-map)
+(bind-key "C-j" 'helm-next-line helm-swoop-map)
+(bind-key "C-k" 'helm-previous-line helm-multi-swoop-map)
+(bind-key "C-j" 'helm-next-line helm-multi-swoop-map)
 
 ;;;;;;;;;;;;;;
 ;; Movement ;;
@@ -219,18 +230,6 @@
   (bind-key "C-/" 'company-search-candidates company-active-map)
   (bind-key "C-M-/" 'company-filter-candidates company-active-map)
   (bind-key "C-d" 'company-show-doc-buffer company-active-map))
-
-;;;;;;;;;;
-;; Helm ;;
-;;;;;;;;;;
-
-;;(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-
-;; Move up and down like isearch
-(bind-key "C-k" 'helm-previous-line helm-swoop-map)
-(bind-key "C-j" 'helm-next-line helm-swoop-map)
-(bind-key "C-k" 'helm-previous-line helm-multi-swoop-map)
-(bind-key "C-j" 'helm-next-line helm-multi-swoop-map)
 
 ;;;;;;;;;;
 ;; Help ;;
