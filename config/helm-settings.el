@@ -53,8 +53,8 @@
 ;;(helm-mode 1)
 (helm-adaptive-mode 1)
 
-(setq helm-autoresize-max-height 25)
-(setq helm-autoresize-min-height 25)
+(setq helm-autoresize-max-height 40)
+(setq helm-autoresize-min-height 40)
 
 (helm-autoresize-mode 1)
 

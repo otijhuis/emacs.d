@@ -100,14 +100,19 @@
 (setq beacon-blink-duration 0.2)
 (setq beacon-blink-delay 0.2)
 (setq beacon-blink-when-focused t)
-(setq beacon-dont-blink-commands '())
+(setq beacon-dont-blink-commands '(avy-goto-char
+                                   avy-goto-char-in-line
+                                   avy-goto-line
+                                   avy-goto-word-0
+                                   avy-goto-word-1
+                                   avy-goto-char-timer
+                                   avy-goto-char-2
+                                   avy-zap-to-char
+                                   avy-zap-up-to-char
+                                   avy-zap-to-char-dwim
+                                   avy-zap-up-to-char-dwim
+                                   avy-goto-word-or-subword-1))
 (setq beacon-lighter " 💡")
-
-(add-hook 'beacon-dont-blink-predicates
-          (lambda ()
-            (if (string-prefix-p "avy-" (symbol-name (or this-command last-command)))
-                t
-              nil)))
 
 ;; State
 (require 'state)

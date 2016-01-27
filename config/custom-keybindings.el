@@ -64,9 +64,8 @@
 
 (bind-key "s-s" 'save-buffer)
 
-;; Perform general cleanup.
-(global-set-key (kbd "C-c n") 'cleanup-buffer)
-(global-set-key (kbd "C-c C-n") 'cleanup-buffer)
+(global-set-key (kbd "C-c n") 'ot/narrow-or-widen-dwim)
+
 (global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
 
 (require 'misc)

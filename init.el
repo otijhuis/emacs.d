@@ -10,10 +10,11 @@
 ;; Check if we're on Emacs 24.4 or newer, if so, use the pinned package feature
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
-        '((magit . "melpa-stable")
+        '(
+	  ;;(magit . "melpa-stable")
           (cider . "melpa-stable")
-	  (with-editor . "melpa-stable")
-	  (magit-popup . "melpa-stable")
+          ;;(with-editor . "melpa-stable")
+          ;;(magit-popup . "melpa-stable")
           ;;(clj-refactor . "melpa-stable")
           )))
 
@@ -63,7 +64,8 @@
                                      elisp-slime-nav highlight-defined ; extensions for elisp
                                      rich-minority ; don't clutter the modeline with minor mode names
                                      ag anzu       ; search / grep
-                                     clojure-mode clj-refactor ; clojure
+                                     magit ; version control
+                                     clojure-mode clj-refactor cider ; clojure
                                      clojure-mode-extra-font-locking ; clojure
                                      avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                                      paredit paredit-menu paxedit sexp-move smartparens ; working with parens / delimiters
@@ -190,7 +192,7 @@
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
  '(iedit-occurrence ((t (:background "SystemHilight"))))
- '(ivy-current-match ((t (:underline "#F92672" :weight bold))))
+ '(ivy-current-match ((t (:weight bold))))
  '(ivy-minibuffer-match-face-2 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-minibuffer-match-face-3 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-minibuffer-match-face-4 ((t (:foreground "#F92672" :weight bold))))
