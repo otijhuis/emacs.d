@@ -76,7 +76,7 @@
                                      projectile ; moving around in projects
                                      yasnippet auto-yasnippet clojure-snippets datomic-snippets ; snippets
                                      browse-kill-ring ; list / select / insert previously killed text
-                                     expand-region smart-forward ; easily select regions around point
+                                     expand-region ; easily select regions around point
                                      multiple-cursors iedit ; multiple cursors a la Sublime Text
                                      visual-regexp visual-regexp-steroids ; visualize your typed regexp
 
