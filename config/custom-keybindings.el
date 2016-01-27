@@ -39,7 +39,7 @@
 (bind-key "C-m" 'ivy-alt-done ivy-minibuffer-map)
 (bind-key "C-j" 'ivy-done ivy-minibuffer-map)
 
-(bind-key "C-M-y" 'counsel-yank-pop)
+(bind-key "C-M-y" 'helm-show-kill-ring)
 (bind-key "C-s" 'swiper)
 (bind-key "C-r" 'ivy-resume)
 
