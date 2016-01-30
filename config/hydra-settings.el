@@ -125,6 +125,8 @@
                                     :idle 1.0)
   "Transpose"
   ("w" transpose-words "Words")
+  ("W" ace-swap-window "Windows / Buffers" :color blue)
+  ("b" ace-swap-window "Windows / Buffers" :color blue)
   ("l" transpose-lines "Lines")
   ("e" transpose-sexps "S-expressions")
   ("s" transpose-sexps "S-expressions")

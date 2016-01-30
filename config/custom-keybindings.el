@@ -9,6 +9,7 @@
 ;; jq qg qk qy qz wq xz fq wx qx jx kq vq qj qh hx qp xk
 ;; sx
 
+(key-seq-define-global ",w" 'ace-window)
 (key-seq-define-global ",p" 'projectile-command-map)
 (key-seq-define-global ",a" 'hydra-ag/body)
 (key-chord-define-global "';" 'smex)
@@ -122,6 +123,7 @@
 (bind-key "H-z" 'avy-zap-to-char-dwim)
 (bind-key "H-Z" 'avy-zap-up-to-char-dwim)
 (key-seq-define-global ";l" 'avy-goto-char)
+(key-seq-define-global ";k" 'avy-goto-char-timer)
 (key-seq-define-global "zc" 'ot/avy-goto-word-0)
 (key-seq-define-global "zv" 'avy-goto-word-or-subword-1)
 (key-seq-define-global "z," 'avy-zap-up-to-char)
@@ -303,19 +305,3 @@
 ;; (key-seq-define clojure-mode-map "]u" 'hydra-clj-refactor-u/body)
 
 (provide 'custom-keybindings)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

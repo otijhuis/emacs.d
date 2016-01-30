@@ -119,7 +119,7 @@
 (state-global-mode 1)
 
 (state-define-state
-    scratch
+  scratch
   :key "s"
   :switch "*scratch*")
 
@@ -128,5 +128,9 @@
   :key "m"
   :switch "*Messages*")
 
-(provide 'misc-package-settings)
+;; Ace Window
+(require 'ace-window)
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+;;(ace-window-display-mode 1)
 
+(provide 'misc-package-settings)

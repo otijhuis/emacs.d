@@ -11,7 +11,7 @@
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
         '(
-	  ;;(magit . "melpa-stable")
+    ;;(magit . "melpa-stable")
           (cider . "melpa-stable")
           ;;(with-editor . "melpa-stable")
           ;;(magit-popup . "melpa-stable")
@@ -33,10 +33,12 @@
                                      helm helm-ag helm-swoop helm-projectile ; helm
                                      helm-gtags ggtags         ; tags
                                      helm-descbinds helm-c-moccur ; helm
+                                     loccur ; occur without new window
                                      swiper counsel flx ; ivy / counsel
-                                     imenu-list ; imenu in a separate buffer
+                                     imenu-list imenu-anywhere ; imenu in a separate buffer
                                      state ; navigating between workspaces
                                      engine-mode ; use search engines
+                                     ace-window ; window navigation
                                      smartscan ; quickly jump to symbols
                                      beacon ; find your cursor
                                      dash s thingatpt+ ; util libs

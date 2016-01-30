@@ -16,14 +16,14 @@
 (winner-mode 1)
 
 ;; Whitespace-style
-(setq whitespace-style '(trailing lines space-before-tab
-                                  indentation space-after-tab)
-      whitespace-line-column 100)
+;; (setq whitespace-style '(trailing lines space-before-tab
+;;                                   indentation space-after-tab
+;;                                   empty)
+;;       whitespace-line-column 100)
 
 ;; Remove useless whitespace before saving a file (only if the file was clean)
-(global-whitespace-cleanup-mode)
-;;(add-hook 'before-save-hook 'whitespace-cleanup)
-;;(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+;;(global-whitespace-cleanup-mode)
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; don't show trailing whitespace, is already fixed on save
 (setq-default show-trailing-whitespace nil)
