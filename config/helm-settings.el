@@ -58,6 +58,12 @@
 
 (helm-autoresize-mode 1)
 
+;;;;;;;;;;;;;;
+;; Helm flx ;;
+;;;;;;;;;;;;;;
+(require 'helm-flx)
+(helm-flx-mode +1)
+
 ;;;;;;;;;;;;;;;;
 ;; Helm swoop ;;
 ;;;;;;;;;;;;;;;;

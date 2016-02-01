@@ -235,6 +235,8 @@
 (setq-default indent-tabs-mode nil
               default-tab-width 2)
 
+(setq tab-always-indent 'complete)
+
 ;; Save clipboard contents into kill-ring before replace them
 (setq save-interprogram-paste-before-kill t)
 

@@ -30,11 +30,11 @@
 ;; Add in your own as you wish:
 (defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu ; mini-buffer on steroids
                                      smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
-                                     helm helm-ag helm-swoop helm-projectile ; helm
+                                     helm helm-ag helm-swoop helm-projectile helm-flx ; helm
                                      helm-gtags ggtags         ; tags
                                      helm-descbinds helm-c-moccur ; helm
-                                     loccur ; occur without new window
                                      swiper counsel flx ; ivy / counsel
+                                     noccur ; occur in project
                                      imenu-list imenu-anywhere ; imenu in a separate buffer
                                      state ; navigating between workspaces
                                      engine-mode ; use search engines
@@ -179,7 +179,7 @@
  '(flx-highlight-face ((t (:inherit font-lock-variable-name-face :foreground "#F92672"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "gray70" :slant italic))))
  '(font-lock-comment-face ((t (:foreground "gray60" :slant italic))))
- '(font-lock-function-name-face ((t (:foreground "#F92672"))))
+ '(font-lock-function-name-face ((t (:foreground "#F92672" :weight normal))))
  '(helm-header ((t (:background "dark slate gray" :foreground "white"))))
  '(helm-selection ((t (:background "orange1" :foreground "white" :underline nil :weight bold))))
  '(helm-separator ((t (:foreground "dodger blue"))))
@@ -199,6 +199,7 @@
  '(ivy-minibuffer-match-face-3 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-minibuffer-match-face-4 ((t (:foreground "#F92672" :weight bold))))
  '(ivy-virtual ((t nil)))
+ '(match ((t (:background "gray93" :foreground "dodger blue" :weight bold))))
  '(region ((t (:background "SkyBlue4" :foreground "white"))))
  '(swiper-line-face ((t (:background "medium spring green"))))
  '(vhl/default-face ((t (:background "white"))))
