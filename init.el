@@ -11,11 +11,7 @@
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
         '(
-    ;;(magit . "melpa-stable")
           (cider . "melpa-stable")
-          ;;(with-editor . "melpa-stable")
-          ;;(magit-popup . "melpa-stable")
-          ;;(clj-refactor . "melpa-stable")
           )))
 
 ;;(add-to-list 'package-archives
@@ -28,65 +24,129 @@
   (package-refresh-contents))
 
 ;; Add in your own as you wish:
-(defvar my-packages '(ido-ubiquitous ido-vertical-mode flx-ido ido-at-point ido-select-window idomenu ; mini-buffer on steroids
-                                     smex ido-completing-read+ ; mini-buffer on steroids (fuzzy completion etc)
-                                     helm helm-ag helm-swoop helm-projectile helm-flx ; helm
-                                     helm-gtags ggtags         ; tags
-                                     helm-descbinds helm-c-moccur ; helm
-                                     swiper counsel flx ; ivy / counsel
-                                     noccur ; occur in project
-                                     imenu-list imenu-anywhere ; imenu in a separate buffer
-                                     state ; navigating between workspaces
-                                     engine-mode ; use search engines
-                                     ace-window ; window navigation
-                                     smartscan ; quickly jump to symbols
-                                     beacon ; find your cursor
-                                     dash s thingatpt+ ; util libs
-                                     comment-dwim-2    ; commenting
-                                     wrap-region ; wrap region with quotes, parens etc
-                                     bind-key free-keys region-bindings-mode ; keybinding utilities
-                                     whole-line-or-region ; if no region selected act on the current line
-                                     misc-cmds ; misc useful functions
-                                     fix-word ; improved up-/downcase and capitalize functions
-                                     whitespace-cleanup-mode ; clean up whitespace on save
-                                     key-chord key-seq ; bind commands to multiple keypresses
-                                     focus ; focus mode (dim text you are not working on)
-                                     hydra ; sticky bindings
-                                     volatile-highlights highlight-symbol hl-sexp ; highlighting
-                                     change-inner ; Emacs version of vim's ci and co commands
-                                     aggressive-indent indent-guide ; indentation
-                                     flycheck flycheck-pos-tip helm-flycheck flycheck-clojure ; syntax checking
-                                     which-key ; display keybindings (guide-key replacement)
-                                     popup popwin ; popups
-                                     org-plus-contrib org-bullets org-projectile ; latest org-mode
-                                     undo-tree ; visualize undo as a tree (extremely handy)
-                                     neotree ; nerdtree style directory tree
-                                     company company-quickhelp company-flx ; autocomplete
-                                     drag-stuff ; moving lines/regions up/down
-                                     elisp-slime-nav highlight-defined ; extensions for elisp
-                                     rich-minority ; don't clutter the modeline with minor mode names
-                                     ag anzu       ; search / grep
-                                     magit ; version control
-                                     clojure-mode clj-refactor cider ; clojure
-                                     clojure-mode-extra-font-locking ; clojure
-                                     avy avy-zap ; move quickly around buffers (see vim EasyMotion as well)
-                                     paredit paredit-menu paxedit sexp-move smartparens ; working with parens / delimiters
-                                     solarized-theme flatui-theme ; color themes
-                                     monokai-theme molokai-theme ; color themes
-                                     diff-hl gist ; git integration
-                                     what-the-commit ; funny commit messages
-                                     projectile ; moving around in projects
-                                     yasnippet auto-yasnippet clojure-snippets datomic-snippets ; snippets
-                                     browse-kill-ring ; list / select / insert previously killed text
-                                     expand-region ; easily select regions around point
-                                     multiple-cursors iedit ; multiple cursors a la Sublime Text
-                                     visual-regexp visual-regexp-steroids ; visualize your typed regexp
+(defvar my-packages '(ido-ubiquitous
+                      ido-vertical-mode
+                      flx
+                      flx-ido
+                      ido-at-point
+                      ido-select-window
+                      idomenu
+                      ido-completing-read+
 
-                                     ;; Web development
-                                     css-eldoc js2-mode company-web tagedit emmet-mode helm-emmet
+                      smex
 
-                                     ;; Haskell
-                                     haskell-mode flycheck-haskell haskell-snippets)
+                      helm
+                      helm-ag
+                      helm-swoop
+                      helm-projectile
+                      helm-flx
+                      helm-gtags
+                      helm-descbinds
+                      helm-c-moccur
+                      helm-flycheck
+                      helm-emmet
+
+                      ggtags
+                      noccur ; occur in project
+                      state ; navigating between workspaces
+
+                      imenu-list
+                      imenu-anywhere ; imenu in a separate buffer
+
+                      engine-mode ; use search engines
+
+                      beacon ; find your cursor
+                      avy
+                      avy-zap ; move quickly around buffers (see vim EasyMotion as well)
+                      ace-window ; window navigation
+                      smartscan ; quickly jump to symbols
+
+                      dash
+                      s
+                      thingatpt+
+                      comment-dwim-2
+                      misc-cmds ; misc useful functions
+                      popup popwin ; popups
+
+                      whole-line-or-region ; if no region selected act on the current line
+                      wrap-region
+                      change-inner ; Emacs version of vim's ci and co commands
+                      drag-stuff ; moving lines/regions up/down
+                      rich-minority ; don't clutter the modeline with minor mode names
+                      fix-word ; improved up-/downcase and capitalize functions
+                      ag
+                      anzu
+                      browse-kill-ring ; list / select / insert previously killed text
+                      expand-region ; easily select regions around point
+                      multiple-cursors
+                      iedit
+                      visual-regexp
+                      visual-regexp-steroids
+
+                      bind-key
+                      free-keys
+                      region-bindings-mode
+                      key-chord key-seq ; bind commands to multiple keypresses
+                      hydra ; sticky bindings
+                      which-key ; display keybindings (guide-key replacement)
+
+                      focus ; focus mode (dim text you are not working on)
+                      volatile-highlights
+                      highlight-symbol
+                      hl-sexp
+                      highlight-defined
+                      diff-hl ; diff highlighting
+
+                      aggressive-indent
+                      indent-guide
+
+                      flycheck
+                      flycheck-pos-tip
+                      flycheck-clojure ; syntax checking
+                      flycheck-haskell
+
+                      org-plus-contrib
+
+                      undo-tree ; visualize undo as a tree (extremely handy)
+                      neotree ; nerdtree style directory tree
+
+                      company
+                      company-quickhelp
+                      company-flx
+                      company-web
+
+                      elisp-slime-nav
+
+                      magit ; version control
+
+                      clojure-mode
+                      clj-refactor
+                      cider
+                      clojure-mode-extra-font-locking
+
+                      paredit
+                      paredit-menu
+                      paxedit
+                      sexp-move
+                      smartparens
+
+                      flatui-theme
+
+                      projectile
+
+                      yasnippet
+                      auto-yasnippet
+                      clojure-snippets
+                      datomic-snippets
+                      haskell-snippets
+
+                      css-eldoc
+                      js2-mode
+                      tagedit
+                      emmet-mode
+
+                      haskell-mode
+                      )
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
