@@ -56,7 +56,6 @@
                       engine-mode ; use search engines
 
                       beacon ; find your cursor
-                      eno
                       avy
                       avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                       ace-window ; window navigation
@@ -202,9 +201,6 @@
  '(helm-gtags-display-style (quote detail))
  '(helm-gtags-fuzzy-match t)
  '(helm-gtags-path-style (quote root))
- '(package-selected-packages
-   (quote
-    (tagedit js2-mode css-eldoc haskell-snippets datomic-snippets clojure-snippets auto-yasnippet flatui-theme smartparens sexp-move paxedit paredit-menu clojure-mode-extra-font-locking clj-refactor magit elisp-slime-nav company-web company-flx company-quickhelp company neotree undo-tree org-plus-contrib flycheck-haskell flycheck-clojure flycheck-pos-tip indent-guide aggressive-indent diff-hl highlight-defined hl-sexp highlight-symbol volatile-highlights focus which-key hydra key-seq key-chord region-bindings-mode free-keys bind-key visual-regexp-steroids visual-regexp iedit multiple-cursors browse-kill-ring anzu ag fix-word rich-minority drag-stuff change-inner wrap-region whole-line-or-region popwin misc-cmds comment-dwim-2 thingatpt+ s smartscan ace-window avy-zap avy eno beacon engine-mode imenu-anywhere imenu-list state noccur ggtags helm-emmet helm-flycheck helm-c-moccur helm-descbinds helm-gtags helm-flx helm-projectile helm-swoop helm-ag helm smex idomenu ido-select-window ido-at-point flx-ido flx ido-vertical-mode ido-ubiquitous)))
  '(sml/active-background-color "#34495e")
  '(sml/active-foreground-color "#ecf0f1")
  '(sml/inactive-background-color "#dfe4ea")
