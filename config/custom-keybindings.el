@@ -110,7 +110,7 @@
 ;; Movement ;;
 ;;;;;;;;;;;;;;
 
-(bind-key "M-f" 'forward-to-word)
+;;(bind-key "M-f" 'forward-to-word)
 (bind-key "M-F" 'forward-symbol)
 (bind-key "M-B" (lambda ()
                   (interactive)

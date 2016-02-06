@@ -159,7 +159,10 @@
 (size-indication-mode 1) ; show the size of the buffer
 
 ;; Easily navigate sillycased words
-(global-subword-mode 1)
+;; Syntax subword
+(setq syntax-subword-skip-spaces t)
+(global-syntax-subword-mode)
+;;(global-subword-mode 1)
 ;;(global-superword-mode 1)
 
 (set-default 'indicate-empty-lines nil) ; don't indicate empty lines

@@ -74,6 +74,7 @@
                       drag-stuff ; moving lines/regions up/down
                       rich-minority ; don't clutter the modeline with minor mode names
                       fix-word ; improved up-/downcase and capitalize functions
+                      syntax-subword ; fine-grained subword movement
                       ag
                       browse-kill-ring ; list / select / insert previously killed text
                       expand-region ; easily select regions around point
