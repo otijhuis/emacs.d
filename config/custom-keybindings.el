@@ -216,8 +216,9 @@
 (with-eval-after-load "yasnippet"
   (bind-key "<tab>" nil yas-minor-mode-map)
   (bind-key "TAB" nil yas-minor-mode-map)
-  (bind-key "M-o" 'yas-expand yas-minor-mode-map)
+  (bind-key "M-o" 'yas-expand yas-minor-mode-map))
 
+(with-eval-after-load "popup"
   ;; popup for yasnippet
   (bind-key "M-n" 'popup-next popup-menu-keymap)
   (bind-key "TAB" 'popup-next popup-menu-keymap)
