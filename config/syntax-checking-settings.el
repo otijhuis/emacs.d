@@ -1,10 +1,8 @@
-(require 'flycheck-clojure)
-
-(eval-after-load 'flycheck '(flycheck-clojure-setup))
+(with-eval-after-load "flycheck"
+  (flycheck-clojure-setup)
+  (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
+  (add-to-list 'flycheck-checkers 'clojure-cider-eastwood))
 ;;(add-hook 'after-init-hook #'global-flycheck-mode)
-
-(eval-after-load 'flycheck
-  '(setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
 
 (add-hook 'cider-mode-hook
           (lambda () (setq next-error-function #'flycheck-next-error-function)))
@@ -15,7 +13,5 @@
     (flycheck-mode 1)))
 
 (add-hook 'cider-mode-hook 'my-cider-mode-enable-flycheck)
-
-(eval-after-load 'flycheck '(add-to-list 'flycheck-checkers 'clojure-cider-eastwood))
 
 (provide 'syntax-checking-settings)

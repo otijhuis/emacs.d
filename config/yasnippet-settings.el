@@ -1,26 +1,25 @@
-(require 'popup)
-(require 'yasnippet)
+;;(require 'popup)
+;;(require 'yasnippet)
 
-(yas-global-mode 1)
+(with-eval-after-load "yasnippet"
+  (yas-global-mode 1)
+  ;; Use only own snippets, do not use bundled ones
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  ;; Include snippets
+  (require 'datomic-snippets)
+  (setq yas-prompt-functions '(yas/popup-isearch-prompt yas-no-prompt))
+  ;;(setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
 
-;; Use only own snippets, do not use bundled ones
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  ;; No need to be so verbose
+  (setq yas-verbosity 1)
 
-;; Include snippets
-(require 'datomic-snippets)
+  ;; Wrap around region
+  (setq yas-wrap-around-region t)
+  )
 
 ;; Snippets
 (add-to-list 'auto-mode-alist '("yasnippet/snippets" . snippet-mode))
 (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode))
-
-(setq yas-prompt-functions '(yas/popup-isearch-prompt yas-no-prompt))
-;;(setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
-
-;; No need to be so verbose
-(setq yas-verbosity 1)
-
-;; Wrap around region
-(setq yas-wrap-around-region t)
 
 ;; Inter-field navigation
 (defun yas/goto-end-of-active-field ()

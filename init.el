@@ -75,7 +75,6 @@
                       rich-minority ; don't clutter the modeline with minor mode names
                       fix-word ; improved up-/downcase and capitalize functions
                       ag
-                      anzu
                       browse-kill-ring ; list / select / insert previously killed text
                       expand-region ; easily select regions around point
                       multiple-cursors

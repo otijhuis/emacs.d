@@ -1,5 +1,5 @@
 (eval-after-load "org"
-	'(require 'ox-md nil t))
+  '(require 'ox-md nil t))
 
 (setq
  org-directory (expand-file-name "~/orgs")
@@ -64,19 +64,18 @@
       org-src-tab-acts-natively t ; inside a src block let tab act like it was in major mode of the src type
       )
 
-;; make it possible to embed clojure code in org documents with org-babel(setq org-confirm-babel-evaluate nil ; stop asking if you are sure you want to evaluate a src block
-(require 'ob)
-
 ;; ob-clojure is loaded from lisp folder
 ;; current stable version doesn't support cider, the development version does
-(require 'cider)
-(setq org-babel-clojure-backend 'cider)
-(require 'ob-clojure)
+(with-eval-after-load "cider"
+  ;; make it possible to embed clojure code in org documents with org-babel(setq org-confirm-babel-evaluate nil ; stop asking if you are sure you want to evaluate a src block
+  (setq org-babel-clojure-backend 'cider)
+  (require 'ob)
+  (require 'ob-clojure)
+  (defvar org-babel-default-header-args:clojure
+    '((:results . "silent") (:tangle . "yes")))
 
-(defvar org-babel-default-header-args:clojure
-  '((:results . "silent") (:tangle . "yes")))
-  
-(defvar org-babel-default-header-args:emacs-lisp
-  '((:results . "silent")))
+  (defvar org-babel-default-header-args:emacs-lisp
+    '((:results . "silent")))
+  )
 
 (provide 'org-mode-settings)

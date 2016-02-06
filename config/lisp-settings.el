@@ -1,5 +1,5 @@
-(require 'clojure-mode)
-(require 'clojure-mode-extra-font-locking)
+;;(require 'clojure-mode)
+;;(require 'clojure-mode-extra-font-locking)
 
 ;; making paredit work with delete-selection-mode
 (put 'paredit-forward-delete 'delete-selection 'supersede)
@@ -16,7 +16,7 @@
 (add-to-list 'auto-mode-alist '("\.boot$" . clojure-mode))
 
 ;; ENHANCE lISP MODES
-(require 'paxedit)
+;;(require 'paxedit)
 
 ;; Indentation
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
@@ -82,7 +82,7 @@
 ;;---------------------------------------------------------
 
 ;;; CIDER CONFIG
-(require 'cider)
+;;(require 'cider)
 
 ;; Show what was eval'd
 ;;(require 'cider-eval-sexp-fu)
@@ -142,7 +142,7 @@
 (add-hook 'clojure-mode-hook 'cider-mode)
 
 ;; clj-refactor
-(require 'clj-refactor)
+;;(require 'clj-refactor)
 
 (setq cljr-favor-prefix-notation nil)
 (setq cljr-favor-private-functions nil)
@@ -167,10 +167,11 @@
                                ;;(core-async-mode 1)
                                (cljr-add-keybindings-with-prefix "C-=")))
 
-(add-to-list 'cljr-project-clean-functions 'cleanup-buffer)
-(setq cljr-project-clean-sorts-project-dependencies t)
-(setq cljr-project-clean-prompt t)
-(setq cljr-auto-sort-ns t)
+(with-eval-after-load "clj-refactor"
+  (add-to-list 'cljr-project-clean-functions 'cleanup-buffer)
+  (setq cljr-project-clean-sorts-project-dependencies t)
+  (setq cljr-project-clean-prompt t)
+  (setq cljr-auto-sort-ns t))
 
 ;; Highlight matching parentheses when the point is on them.
 ;; (show-paren-mode)
@@ -179,21 +180,12 @@
 ;; highlight surrounding parentheses
 ;; (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
 
-(require 'symbol-focus)
-
-;;(require 'yesql-ghosts)
+;;(require 'symbol-focus)
 
 ;; Indent and highlight more commands
-(put-clojure-indent 'match 'defun)
-
-(setq clojure-align-forms-automatically t)
-
-;; Inf-Clojure
-;; (require 'inf-clojure)
-;; (setq inf-clojure-prompt-read-only nil)
-;; (add-hook 'inf-clojure-minor-mode-hook   ;; prevent company-mode from freezing Emacs when the REPL is busy
-;;           (lambda () (setq completion-at-point-functions nil)))
-;; (add-hook 'clojure-mode-hook 'inf-clojure-minor-mode)
+(with-eval-after-load "clojure-mode"
+  (put-clojure-indent 'match 'defun)
+  (setq clojure-align-forms-automatically t))
 
 ;; Figwheel
 
@@ -214,4 +206,3 @@
   (window-configuration-to-register ?$))
 
 (provide 'lisp-settings)
-

@@ -1,66 +1,56 @@
 ;; ido-mode is like magic pixie dust!
-(setq ido-enable-prefix nil
-      ido-enable-flex-matching t
-      ido-case-fold  nil                 ; be case-sensitive
-      ido-auto-merge-work-directories-length -1
-      ido-create-new-buffer 'always
-      ido-use-filename-at-point 'guess
-      ido-use-virtual-buffers t
-      ido-enable-regexp nil
-      ido-enable-last-directory-history nil
-      ido-handle-duplicate-virtual-buffers 2
-      confirm-nonexistent-file-or-buffer nil
-      ido-file-extension-order '(".clj" ".cljs" ".cljc" ".html" ".el" ".org" ".txt" ".js") ; give priority to certain file types
-      ido-ignore-extensions t
-      ido-max-prospects 10
-      ido-use-faces nil ;; disable ido faces to see flx highlights
-      flx-ido-use-faces t ;; enable flx highlights
-      ido-vertical-define-keys 'C-n-C-p-up-down-left-right
-      )
+(with-eval-after-load "ido"
+  (setq ido-enable-prefix nil
+        ido-enable-flex-matching t
+        ido-case-fold  nil                 ; be case-sensitive
+        ido-auto-merge-work-directories-length -1
+        ido-create-new-buffer 'always
+        ido-use-filename-at-point 'guess
+        ido-use-virtual-buffers t
+        ido-enable-regexp nil
+        ido-enable-last-directory-history nil
+        ido-handle-duplicate-virtual-buffers 2
+        confirm-nonexistent-file-or-buffer nil
+        ido-file-extension-order '(".clj" ".cljs" ".cljc" ".html" ".el" ".org" ".txt" ".js") ; give priority to certain file types
+        ido-ignore-extensions t
+        ido-max-prospects 10
+        ido-use-faces nil ;; disable ido faces to see flx highlights
+        ido-vertical-define-keys 'C-n-C-p-up-down-left-right
+        )
 
-;; (defvar ido-dont-ignore-buffer-names '())
+  (add-to-list 'ido-ignore-directories "target")
+  (add-to-list 'ido-ignore-directories "node_modules")
+  (add-to-list 'ido-ignore-directories "out")
 
-;; (defun ido-ignore-most-star-buffers (name)
-;;   (and
-;;    (string-match-p "^*" name)
-;;    (not (string= "*scratch*" name))
-;;    (not (member name ido-dont-ignore-buffer-names))))
+  (setq flx-ido-use-faces t) ;; enable flx highlights
+  (flx-ido-mode 1)
+  (ido-ubiquitous-mode 1)
+  (ido-vertical-mode 1)
 
-;; (setq ido-ignore-buffers (list "\\` " #'ido-ignore-most-star-buffers))
+  ;; Ido at point (C-,)
+  (setq ido-at-point-use-helm nil)
+  (setq ido-at-point-partial t)
+  (setq ido-at-point-fuzzy t)
+  (ido-at-point-mode)
+  )
 
-(add-to-list 'ido-ignore-directories "target")
-(add-to-list 'ido-ignore-directories "node_modules")
-(add-to-list 'ido-ignore-directories "out")
-
-;;;; ido customization
-(require 'flx-ido)
 (ido-mode t)
-(flx-ido-mode 1)
 
 ;; Use ido everywhere
-(require 'ido-ubiquitous)
-(ido-ubiquitous-mode 1)
+;;(require 'ido-ubiquitous)
+(with-eval-after-load "ido-ubiquitous"
 
-;; Fix ido-ubiquitous for newer packages
-(defmacro ido-ubiquitous-use-new-completing-read (cmd package)
-  `(eval-after-load ,package
-     '(defadvice ,cmd (around ido-ubiquitous-new activate)
-        (let ((ido-ubiquitous-enable-compatibility nil))
-          ad-do-it))))
 
-(ido-ubiquitous-use-new-completing-read webjump 'webjump)
-(ido-ubiquitous-use-new-completing-read yas-expand 'yasnippet)
-(ido-ubiquitous-use-new-completing-read yas-visit-snippet-file 'yasnippet)
+  ;; Fix ido-ubiquitous for newer packages
+  (defmacro ido-ubiquitous-use-new-completing-read (cmd package)
+    `(eval-after-load ,package
+       '(defadvice ,cmd (around ido-ubiquitous-new activate)
+          (let ((ido-ubiquitous-enable-compatibility nil))
+            ad-do-it))))
 
-(require 'ido-vertical-mode)
-(ido-vertical-mode 1)
-
-;; Ido at point (C-,)
-(require 'ido-at-point)
-(setq ido-at-point-use-helm nil)
-(setq ido-at-point-partial t)
-(setq ido-at-point-fuzzy t)
-(ido-at-point-mode)
+  (ido-ubiquitous-use-new-completing-read webjump 'webjump)
+  (ido-ubiquitous-use-new-completing-read yas-expand 'yasnippet)
+  (ido-ubiquitous-use-new-completing-read yas-visit-snippet-file 'yasnippet))
 
 (require 'dash)
 

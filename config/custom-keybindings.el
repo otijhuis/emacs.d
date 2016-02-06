@@ -1,8 +1,15 @@
-(require 'bind-key)
-
 ;;;;;;;;;;;;;;;;;
 ;; Keybindings ;;
 ;;;;;;;;;;;;;;;;;
+
+(key-seq-define-global ",l" 'ido-switch-buffer)
+(key-seq-define-global ",f" 'ido-find-file)
+
+;; Ido Menu
+(bind-key "C-x C-i" 'idomenu)
+
+;; Ido select window
+(bind-key "C-x o" 'ido-select-window)
 
 ;; Key chords to use:
 ;; yy jj '; zx ., \] /. ?? ^^ '/ ;. ;, .; /' =- -=
@@ -14,14 +21,10 @@
 (key-seq-define-global ",a" 'hydra-ag/body)
 (key-chord-define-global "';" 'smex)
 
-(key-seq-define-global ",l" 'ido-switch-buffer)
-(key-seq-define-global ",f" 'ido-find-file)
-
 (key-seq-define emacs-lisp-mode-map ",e" 'hydra-lisp-eval/body)
 
 (bind-key "M-x" 'smex)
 (bind-key "M-X" 'smex-major-mode-commands)
-(bind-key "C-x C-i" 'idomenu)
 (bind-key "C-x C-b" 'ibuffer)
 
 (key-seq-define-global ",u" 'undo-tree-visualize)
@@ -56,7 +59,6 @@
 (bind-key "<f9>" 'quick-switch-buffer)
 
 ;; NeoTree
-(require 'neotree)
 (bind-key "<f8>" 'neotree-toggle)
 
 (bind-key "s-s" 'save-buffer)
@@ -94,14 +96,15 @@
 (bind-key "M-i" 'helm-imenu)
 (bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map)
 (bind-key "M-I" 'helm-multi-swoop-all-from-isearch isearch-mode-map)
-(bind-key "M-m" 'helm-multi-swoop-current-mode-from-helm-swoop helm-swoop-map)
-(bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
 
-;; Move up and down like isearch
-(bind-key "C-k" 'helm-previous-line helm-swoop-map)
-(bind-key "C-j" 'helm-next-line helm-swoop-map)
-(bind-key "C-k" 'helm-previous-line helm-multi-swoop-map)
-(bind-key "C-j" 'helm-next-line helm-multi-swoop-map)
+(with-eval-after-load "helm-swoop"
+  (bind-key "M-m" 'helm-multi-swoop-current-mode-from-helm-swoop helm-swoop-map)
+  (bind-key "M-i" 'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
+  ;; Move up and down like isearch
+  (bind-key "C-k" 'helm-previous-line helm-swoop-map)
+  (bind-key "C-j" 'helm-next-line helm-swoop-map)
+  (bind-key "C-k" 'helm-previous-line helm-multi-swoop-map)
+  (bind-key "C-j" 'helm-next-line helm-multi-swoop-map))
 
 ;;;;;;;;;;;;;;
 ;; Movement ;;
@@ -150,39 +153,41 @@
 ;; Tagedit ;;
 ;;;;;;;;;;;;;
 
-(bind-key "M-]" 'tagedit-forward-slurp-tag sgml-mode-map)
-(bind-key "M-[" 'tagedit-forward-barf-tag sgml-mode-map)
-(bind-key "M-r" 'tagedit-raise-tag sgml-mode-map)
-(bind-key "M-s" 'tagedit-splice-tag sgml-mode-map)
-(bind-key "M-J" 'tagedit-join-tags sgml-mode-map)
-(bind-key "M-S" 'tagedit-split-tag sgml-mode-map)
-(bind-key "M-C" 'tagedit-convolute-tags sgml-mode-map)
-(bind-key "C-k" 'tagedit-kill sgml-mode-map)
-(bind-key "s-k" 'tagedit-kill-attribute sgml-mode-map)
+(with-eval-after-load "sgml-mode"
+  (bind-key "M-]" 'tagedit-forward-slurp-tag sgml-mode-map)
+  (bind-key "M-[" 'tagedit-forward-barf-tag sgml-mode-map)
+  (bind-key "M-r" 'tagedit-raise-tag sgml-mode-map)
+  (bind-key "M-s" 'tagedit-splice-tag sgml-mode-map)
+  (bind-key "M-J" 'tagedit-join-tags sgml-mode-map)
+  (bind-key "M-S" 'tagedit-split-tag sgml-mode-map)
+  (bind-key "M-C" 'tagedit-convolute-tags sgml-mode-map)
+  (bind-key "C-k" 'tagedit-kill sgml-mode-map)
+  (bind-key "s-k" 'tagedit-kill-attribute sgml-mode-map))
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Paredit / Paxedit ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(key-seq-define paredit-mode-map "\\]" 'hydra-paredit/body)
-(bind-key "s-j" 'paredit-backward-down paredit-mode-map)
-(bind-key "s-i" 'paxedit-backward-up paredit-mode-map)
-(bind-key "s-l" 'paxedit-backward-end paredit-mode-map)
-(bind-key "s-k" 'paredit-forward-down paredit-mode-map)
-(bind-key "C-S-k" 'paxedit-kill paredit-mode-map)
-(bind-key "M-k" 'paxedit-symbol-kill paredit-mode-map)
-(bind-key [H-backspace] 'paredit-forward-delete paredit-mode-map)
-(bind-key [H-M-backspace] 'backward-kill-sexp paredit-mode-map)
-(bind-key "s-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
-(bind-key "M-D" 'ot/paredit-duplicate-closest-sexp paredit-mode-map)
-(bind-key [M-backspace] 'ot/paredit-kill-region-or-backward-word paredit-mode-map)
-(bind-key "M-]" 'paredit-forward-slurp-sexp paredit-mode-map)
-(bind-key "M-[" 'paredit-forward-barf-sexp paredit-mode-map)
-(bind-key "M-s-[" 'paredit-backward-slurp-sexp paredit-mode-map)
-(bind-key "M-s-]" 'paredit-backward-barf-sexp paredit-mode-map)
-(bind-key "M-9" 'paredit-wrap-round paredit-mode-map)
-(bind-key "M-0" 'ot/paredit-wrap-round-from-behind paredit-mode-map)
-(bind-key ")" 'ot/step-out-forward paredit-mode-map)
+(with-eval-after-load "paredit"
+  (key-seq-define paredit-mode-map "\\]" 'hydra-paredit/body)
+  (bind-key "s-j" 'paredit-backward-down paredit-mode-map)
+  (bind-key "s-i" 'paxedit-backward-up paredit-mode-map)
+  (bind-key "s-l" 'paxedit-backward-end paredit-mode-map)
+  (bind-key "s-k" 'paredit-forward-down paredit-mode-map)
+  (bind-key "C-S-k" 'paxedit-kill paredit-mode-map)
+  (bind-key "M-k" 'paxedit-symbol-kill paredit-mode-map)
+  (bind-key [H-backspace] 'paredit-forward-delete paredit-mode-map)
+  (bind-key [H-M-backspace] 'backward-kill-sexp paredit-mode-map)
+  (bind-key "s-d" 'ot/paredit-duplicate-after-point paredit-mode-map)
+  (bind-key "M-D" 'ot/paredit-duplicate-closest-sexp paredit-mode-map)
+  (bind-key [M-backspace] 'ot/paredit-kill-region-or-backward-word paredit-mode-map)
+  (bind-key "M-]" 'paredit-forward-slurp-sexp paredit-mode-map)
+  (bind-key "M-[" 'paredit-forward-barf-sexp paredit-mode-map)
+  (bind-key "M-s-[" 'paredit-backward-slurp-sexp paredit-mode-map)
+  (bind-key "M-s-]" 'paredit-backward-barf-sexp paredit-mode-map)
+  (bind-key "M-9" 'paredit-wrap-round paredit-mode-map)
+  (bind-key "M-0" 'ot/paredit-wrap-round-from-behind paredit-mode-map)
+  (bind-key ")" 'ot/step-out-forward paredit-mode-map))
 
 (bind-key [H-backspace] 'delete-char)
 
@@ -208,16 +213,17 @@
 (bind-key "<f7>" #'imenu-list-minor-mode)
 
 ;; yasnippet
-(bind-key "<tab>" nil yas-minor-mode-map)
-(bind-key "TAB" nil yas-minor-mode-map)
-(bind-key "M-o" 'yas-expand yas-minor-mode-map)
+(with-eval-after-load "yasnippet"
+  (bind-key "<tab>" nil yas-minor-mode-map)
+  (bind-key "TAB" nil yas-minor-mode-map)
+  (bind-key "M-o" 'yas-expand yas-minor-mode-map)
 
-;; popup for yasnippet
-(bind-key "M-n" 'popup-next popup-menu-keymap)
-(bind-key "TAB" 'popup-next popup-menu-keymap)
-(bind-key "<tab>" 'popup-next popup-menu-keymap)
-(bind-key "<backtab>" 'popup-previous popup-menu-keymap)
-(bind-key "M-p" 'popup-previous popup-menu-keymap)
+  ;; popup for yasnippet
+  (bind-key "M-n" 'popup-next popup-menu-keymap)
+  (bind-key "TAB" 'popup-next popup-menu-keymap)
+  (bind-key "<tab>" 'popup-next popup-menu-keymap)
+  (bind-key "<backtab>" 'popup-previous popup-menu-keymap)
+  (bind-key "M-p" 'popup-previous popup-menu-keymap))
 
 ;;;;;;;;;;;;;;;;;;
 ;; company-mode ;;
@@ -255,7 +261,6 @@
 ;; Windows / Frames ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-(bind-key "C-x o" 'ido-select-window)
 (global-set-key (kbd "C-x 3") 'ot/split-window-right-and-move-there-dammit)
 (bind-key "<f12>" 'hydra-frame/body)
 
@@ -272,22 +277,18 @@
 ;; Clojure ;;
 ;;;;;;;;;;;;;
 
-;; (bind-key ",ch" 'ot/helm-clojure-headlines clojure-mode-map)
-(bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
-;;(bind-key "<C-return>" 'inf-clojure-eval-defun clojure-mode-map)
+(with-eval-after-load "clojure-mode"
+  ;; (bind-key ",ch" 'ot/helm-clojure-headlines clojure-mode-map)
+  (bind-key "<C-return>" 'ot/cider-eval-defun-or-region clojure-mode-map)
+  ;;(bind-key "<C-return>" 'inf-clojure-eval-defun clojure-mode-map)
 
-(bind-key (kbd "M-.") 'cider-jump-to-var clojure-mode-map)
-(bind-key (kbd "M-,") 'cider-jump-back clojure-mode-map)
+  (bind-key (kbd "M-.") 'cider-jump-to-var clojure-mode-map)
+  (bind-key (kbd "M-,") 'cider-jump-back clojure-mode-map)
 
-;;(bind-key "M-." 'ot/find-tag-without-ns clojure-mode-map)
+  ;;(bind-key "M-." 'ot/find-tag-without-ns clojure-mode-map)
 
-(key-seq-define clojure-mode-map ",e" 'hydra-clj-eval/body)
-(key-seq-define clojure-mode-map ",c" 'hydra-clj-cider/body)
-
-;;(define-key clojure-mode-map "\C-c\C-k" 'ot/reload-current-clj-ns)
-;;(define-key clojure-mode-map "\C-cl" 'ot/erase-inf-buffer)
-;;(define-key clojure-mode-map "\C-c\C-t" 'clojure-toggle-keyword-string)
-;;(define-key inf-clojure-mode-map "\C-cl" 'ot/erase-inf-buffer)
+  (key-seq-define clojure-mode-map ",e" 'hydra-clj-eval/body)
+  (key-seq-define clojure-mode-map ",c" 'hydra-clj-cider/body))
 
 ;; (bind-key "s-a" 'hydra-clj-refactor-a/body clojure-mode-map)
 ;; (key-seq-define clojure-mode-map "]a" 'hydra-clj-refactor-a/body)

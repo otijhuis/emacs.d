@@ -13,7 +13,8 @@
 (setq large-file-warning-threshold 100000000)
 
 ;; allow undo/redo of window layout
-(winner-mode 1)
+(with-eval-after-load "winner"
+  (winner-mode 1))
 
 ;; Whitespace-style
 ;; (setq whitespace-style '(trailing lines space-before-tab
@@ -59,8 +60,9 @@
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 
 ;; smex
-(setq smex-save-file (concat user-emacs-directory ".smex-items"))
-(smex-initialize)
+(with-eval-after-load "smex"
+  (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+  (smex-initialize))
 
 ;; Truncate lines instead of wrapping
 (set-default 'truncate-lines t)
@@ -78,26 +80,28 @@
 (delete-selection-mode t)
 
 ;; Go back to the cursor location where you were the last time you opened the file
-(require 'saveplace)
-(setq-default
- save-place-file (concat user-emacs-directory "places")
- save-place t)
-
-(setq save-place-forget-unreadable-files nil)
+;;(require 'saveplace)
+(with-eval-after-load "saveplace"
+  (setq-default
+   save-place-file (concat user-emacs-directory "places")
+   save-place t
+   save-place-forget-unreadable-files nil))
 
 ;; minibuffer history
-(require 'savehist)
-(setq savehist-file (concat user-emacs-directory "savehist")
-      enable-recursive-minibuffers t ; Allow commands in minibuffers
-      history-length 1000
-      savehist-additional-variables '(kill-ring
-                                      mark-ring
-                                      global-mark-ring
-                                      search-ring
-                                      regexp-search-ring
-                                      extended-command-history)
-      savehist-autosave-interval 60)
-(savehist-mode +1)
+;;(require 'savehist)
+(with-eval-after-load "savehist"
+  (setq savehist-file (concat user-emacs-directory "savehist")
+        enable-recursive-minibuffers t ; Allow commands in minibuffers
+        history-length 1000
+        savehist-additional-variables '(kill-ring
+                                        mark-ring
+                                        global-mark-ring
+                                        search-ring
+                                        regexp-search-ring
+                                        extended-command-history)
+        savehist-autosave-interval 60)
+  (savehist-mode +1))
+
 
 ;; bookmarks
 (setq bookmark-default-file (concat user-emacs-directory "bookmarks")
@@ -172,10 +176,11 @@
 (put 'set-goal-column 'disabled nil) ; handy for moving down a column (always goes to the same position when set)
 
 ;; Recent files
-(recentf-mode 1)
-(setq recentf-max-saved-items 100)
-(setq recentf-max-menu-items 100)
-(add-to-list 'recentf-exclude "/elpa")
+(with-eval-after-load "recentf"
+  (recentf-mode 1)
+  (setq recentf-max-saved-items 100)
+  (setq recentf-max-menu-items 100)
+  (add-to-list 'recentf-exclude "/elpa"))
 
 ;; Mac settings, switch meta and command
 (setq-default mac-function-modifier 'hyper)

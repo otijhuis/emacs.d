@@ -2,7 +2,6 @@
 ;; Helm ;;
 ;;;;;;;;;;
 
-(require 'helm)
 (require 'helm-config)
 
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
@@ -21,7 +20,6 @@
       helm-dabbrev-cycle-threshold                5
       helm-boring-file-regexp-list               '("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "\\.i$")
       helm-buffer-skip-remote-checking            t
-      ido-use-virtual-buffers                     t             ; Needed in helm-buffers-list
       helm-org-headings-fontify                   t
       helm-buffers-to-resize-on-pa                '("*helm apropos*" "*helm ack-grep*"
                                                     "*helm grep*" "*helm occur*"
@@ -36,11 +34,12 @@
       helm-semantic-fuzzy-match t
       helm-imenu-fuzzy-match t
       helm-apropos-fuzzy-match t
-      helm-lisp-fuzzy-completion t)
+      helm-lisp-fuzzy-completion t
+
+      helm-autoresize-max-height 40
+      helm-autoresize-min-height 40)
 
 ;;; Describe key-bindings
-;;
-;;
 (helm-descbinds-install)            ; C-h b, C-x C-h
 
 ;; Avoid hitting forbidden directory .gvfs when using find.
@@ -53,65 +52,50 @@
 ;;(helm-mode 1)
 (helm-adaptive-mode 1)
 
-(setq helm-autoresize-max-height 40)
-(setq helm-autoresize-min-height 40)
-
 (helm-autoresize-mode 1)
 
 ;;;;;;;;;;;;;;
 ;; Helm flx ;;
 ;;;;;;;;;;;;;;
-(require 'helm-flx)
 (helm-flx-mode +1)
 
 ;;;;;;;;;;;;;;;;
 ;; Helm swoop ;;
 ;;;;;;;;;;;;;;;;
 
-(require 'helm-swoop)
-;; match only for symbol
-;; (setq helm-swoop-pre-input-function
-;; (lambda () (format "\\_<%s\\_> " (thing-at-point 'symbol))))
+(with-eval-after-load "helm-swoop"
+  ;; disable pre-input
+  (setq helm-swoop-pre-input-function
+        (lambda () ""))
 
-;; disable pre-input
-(setq helm-swoop-pre-input-function
-      (lambda () ""))
-
-;; Optional face for line numbers
-;; Face name is `helm-swoop-line-number-face`
-(setq helm-swoop-use-line-number-face t)
-
-;; Split direcion. 'split-window-vertically or 'split-window-horizontally
-(setq helm-swoop-split-direction 'split-window-vertically)
-
-;; If nil, you can slightly boost invoke speed in exchange for text color
-(setq helm-swoop-speed-or-color nil)
-
-;; If this value is t, split window inside the current window
-(setq helm-swoop-split-with-multiple-windows t)
-
-;; ;; Go to the opposite side of line from the end or beginning of line
-(setq helm-swoop-move-to-line-cycle t)
-
-;; Save buffer when helm-multi-swoop-edit complete
-(setq helm-multi-swoop-edit-save t)
+  ;; Optional face for line numbers
+  ;; Face name is `helm-swoop-line-number-face`
+  (setq helm-swoop-use-line-number-face t)
+  ;; Split direcion. 'split-window-vertically or 'split-window-horizontally
+  (setq helm-swoop-split-direction 'split-window-vertically)
+  ;; If nil, you can slightly boost invoke speed in exchange for text color
+  (setq helm-swoop-speed-or-color nil)
+  ;; If this value is t, split window inside the current window
+  (setq helm-swoop-split-with-multiple-windows t)
+  ;; Go to the opposite side of line from the end or beginning of line
+  (setq helm-swoop-move-to-line-cycle t)
+  ;; Save buffer when helm-multi-swoop-edit complete
+  (setq helm-multi-swoop-edit-save t))
 
 ;;;;;;;;;;;;;;;;
 ;; Helm Gtags ;;
 ;;;;;;;;;;;;;;;;
-(custom-set-variables
- '(helm-gtags-path-style 'root)
- '(helm-gtags-display-style 'detail)
- '(helm-gtags-auto-update t)
- '(helm-gtags-fuzzy-match t))
 
-(require 'helm-gtags)
+(with-eval-after-load "gtags"
+  (setq helm-gtags-path-style 'root
+        helm-gtags-display-style 'detail
+        helm-gtags-auto-update t
+        helm-gtags-fuzzy-match t))
 
 ;;;;;;;;;;;;;;;;
 ;; Projectile ;;
 ;;;;;;;;;;;;;;;;
 
-;;(require 'helm-projectile)
 ;;(helm-projectile-on)
 
 (provide 'helm-settings)
