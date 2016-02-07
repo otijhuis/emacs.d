@@ -92,7 +92,7 @@
 ;; Helm ;;
 ;;;;;;;;;;
 (bind-key "C-M-y" 'helm-show-kill-ring)
-(bind-key "C-s" 'helm-swoop)
+(bind-key "C-s" 'isearch-forward-regexp)
 (bind-key "M-i" 'helm-imenu)
 (bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map)
 (bind-key "M-I" 'helm-multi-swoop-all-from-isearch isearch-mode-map)
