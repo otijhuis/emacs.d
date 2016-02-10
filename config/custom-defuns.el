@@ -88,7 +88,7 @@
       (setq ch "("))
     (avy--generic-jump ch nil 'pre)))
 
-	(defun ot/cider-eval-count-defun-at-point ()
+(defun ot/cider-eval-count-defun-at-point ()
   (interactive)
   (cider-interactive-eval
    (format "(count %s)"
@@ -523,5 +523,17 @@ already narrowed."
         ((derived-mode-p 'latex-mode)
          (LaTeX-narrow-to-environment))
         (t (narrow-to-defun))))
+
+(defun ot/move-backward ()
+  (interactive)
+  (when (search-backward-regexp "\\s(.?" nil 'noerror)
+    (goto-char (- (match-end 0) 1))))
+
+(defun ot/move-forward ()
+  (interactive)
+  (if (looking-at-p "\\s)")
+      (forward-char)
+    (when (search-forward-regexp "\\s)" nil 'noerror)
+      (goto-char (match-beginning 0)))))
 
 (provide 'custom-defuns)

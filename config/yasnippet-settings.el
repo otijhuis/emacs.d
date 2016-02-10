@@ -2,11 +2,9 @@
 ;;(require 'yasnippet)
 
 (with-eval-after-load "yasnippet"
-  (yas-global-mode 1)
   ;; Use only own snippets, do not use bundled ones
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-  ;; Include snippets
-  (require 'datomic-snippets)
+
   (setq yas-prompt-functions '(yas/popup-isearch-prompt yas-no-prompt))
   ;;(setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
 
@@ -15,6 +13,7 @@
 
   ;; Wrap around region
   (setq yas-wrap-around-region t)
+  (yas-global-mode 1)
   )
 
 ;; Snippets

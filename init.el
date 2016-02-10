@@ -123,6 +123,9 @@
                       clj-refactor
                       cider
                       clojure-mode-extra-font-locking
+                      clojure-cheatsheet
+                      evalator
+                      evalator-clojure
 
                       paredit
                       paredit-menu
@@ -136,8 +139,6 @@
 
                       yasnippet
                       auto-yasnippet
-                      clojure-snippets
-                      datomic-snippets
                       haskell-snippets
 
                       css-eldoc
@@ -265,7 +266,7 @@
  '(match ((t (:background "gray93" :foreground "dodger blue" :weight bold))))
  '(region ((t (:background "SkyBlue4" :foreground "white"))))
  '(swiper-line-face ((t (:background "medium spring green"))))
- '(vhl/default-face ((t (:background "white"))))
+ '(vhl/default-face ((t (:background "LightSteelBlue1"))))
  '(web-mode-current-element-highlight-face ((t (:background "black"))))
  '(web-mode-html-attr-name-face ((t (:foreground "royal blue"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "dim gray"))))

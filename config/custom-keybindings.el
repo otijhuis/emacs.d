@@ -187,7 +187,13 @@
   (bind-key "M-s-]" 'paredit-backward-barf-sexp paredit-mode-map)
   (bind-key "M-9" 'paredit-wrap-round paredit-mode-map)
   (bind-key "M-0" 'ot/paredit-wrap-round-from-behind paredit-mode-map)
-  (bind-key ")" 'ot/step-out-forward paredit-mode-map))
+  (bind-key ")" 'ot/step-out-forward paredit-mode-map)
+  (bind-key "C-," 'ot/move-backward paredit-mode-map)
+  (bind-key "C-." 'ot/move-forward paredit-mode-map)
+  (bind-key "<C-M-return>" (lambda ()
+                             (interactive)
+                             (ot/open-line-below)
+                             (paredit-open-round)) paredit-mode-map))
 
 (bind-key [H-backspace] 'delete-char)
 
