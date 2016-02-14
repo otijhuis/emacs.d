@@ -186,7 +186,7 @@
   )
 
 ;; First time loading takes long so require it in advance but don't slow down emacs startup
-(run-with-idle-timer 5 nil (lambda ()(require 'clj-refactor)))
+;;(run-with-idle-timer 5 nil (lambda ()(require 'clj-refactor)))
 
 ;; Highlight matching parentheses when the point is on them.
 ;; (show-paren-mode)

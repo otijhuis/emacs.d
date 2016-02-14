@@ -62,6 +62,7 @@
 ;; smex
 (with-eval-after-load "smex"
   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+  (setq smex-prompt-string "Commands: ")
   (smex-initialize))
 
 ;; Truncate lines instead of wrapping
@@ -80,16 +81,16 @@
 (delete-selection-mode t)
 
 ;; Go back to the cursor location where you were the last time you opened the file
+(require 'saveplace)
 (setq-default
  save-place-file (concat user-emacs-directory "places")
  save-place t
  save-place-forget-unreadable-files nil)
 
 ;; minibuffer history
-;;(require 'savehist)
 (with-eval-after-load "savehist"
   (setq savehist-file (concat user-emacs-directory "savehist")
-        enable-recursive-minibuffers t ; Allow commands in minibuffers
+        enable-recursive-minibuffers t  ; Allow commands in minibuffers
         history-length 1000
         savehist-additional-variables '(kill-ring
                                         mark-ring
@@ -97,9 +98,9 @@
                                         search-ring
                                         regexp-search-ring
                                         extended-command-history)
-        savehist-autosave-interval 60)
-  (savehist-mode +1))
+        savehist-autosave-interval 60))
 
+(savehist-mode +1)
 
 ;; bookmarks
 (setq bookmark-default-file (concat user-emacs-directory "bookmarks")

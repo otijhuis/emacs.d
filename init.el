@@ -11,7 +11,7 @@
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
         '(
-          (cider . "melpa-stable")
+          ;;(cider . "melpa-stable")
           )))
 
 ;;(add-to-list 'package-archives
@@ -122,6 +122,7 @@
                       clojure-mode
                       clj-refactor
                       cider
+                      cider-eval-sexp-fu
                       clojure-mode-extra-font-locking
                       clojure-cheatsheet
                       evalator

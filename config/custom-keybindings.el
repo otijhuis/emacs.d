@@ -192,8 +192,11 @@
   (bind-key "C-." 'ot/move-forward paredit-mode-map)
   (bind-key "<C-M-return>" (lambda ()
                              (interactive)
-                             (ot/open-line-below)
-                             (paredit-open-round)) paredit-mode-map))
+                             (if (nth 3 (syntax-ppss (point)))
+                                 (paredit-forward-up))
+                             (paredit-forward-up)
+                             (backward-char)
+                             (newline-and-indent)) paredit-mode-map))
 
 (bind-key [H-backspace] 'delete-char)
 
