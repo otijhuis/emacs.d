@@ -524,16 +524,62 @@ already narrowed."
          (LaTeX-narrow-to-environment))
         (t (narrow-to-defun))))
 
-(defun ot/move-backward ()
+(defun ot/ispell-word-then-abbrev (p)
+  "Call `ispell-word', then create an abbrev for it.
+With prefix P, create local abbrev. Otherwise it will
+be global.
+If there's nothing wrong with the word at point, keep
+looking for a typo until the beginning of buffer. You can
+skip typos you don't want to fix with `SPC', and you can
+abort completely with `C-g'."
+  (interactive "P")
+  (let (bef aft)
+    (save-excursion
+      (while (if (setq bef (thing-at-point 'word))
+                 ;; Word was corrected or used quit.
+                 (if (ispell-word nil 'quiet)
+                     nil ; End the loop.
+                   ;; Also end if we reach `bob'.
+                   (not (bobp)))
+               ;; If there's no word at point, keep looking
+               ;; until `bob'.
+               (not (bobp)))
+        (backward-word))
+      (setq aft (thing-at-point 'word)))
+    (if (and aft bef (not (equal aft bef)))
+        (let ((aft (downcase aft))
+              (bef (downcase bef)))
+          (define-abbrev
+            (if p local-abbrev-table global-abbrev-table)
+            bef aft)
+          (message "\"%s\" now expands to \"%s\" %sally"
+                   bef aft (if p "loc" "glob")))
+      (user-error "No typo at or before point"))))
+
+(defun ot/parens-move-backward ()
   (interactive)
   (when (search-backward-regexp "\\s(.?" nil 'noerror)
     (goto-char (- (match-end 0) 1))))
 
-(defun ot/move-forward ()
+(defun ot/parens-move-forward ()
   (interactive)
-  (if (looking-at-p "\\s)")
-      (forward-char)
-    (when (search-forward-regexp "\\s)" nil 'noerror)
-      (goto-char (match-beginning 0)))))
+  (when (looking-at-p "\\s(\\|\\s)\\|\"")
+    (forward-char))
+  (while (and (not (eobp))
+              (or (nth 3 (syntax-ppss (point)))
+                  (not (looking-at-p "\\s(\\|\\s)\\|\""))))
+    (forward-char)))
+
+(defun ot/paredit-open-line-below ()
+  (interactive)
+  (let ((ppss (syntax-ppss (point))))
+    (if (= 0 (nth 0 ppss))
+        (newline-and-indent)
+      (progn
+        (when (nth 3 ppss)
+          (paredit-forward-up))
+        (paredit-forward-up)
+        (backward-char)
+        (newline-and-indent)))))
 
 (provide 'custom-defuns)

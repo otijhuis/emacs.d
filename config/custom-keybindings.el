@@ -6,10 +6,12 @@
 (key-seq-define-global ",f" 'ido-find-file)
 
 ;; Ido Menu
-(bind-key "C-x C-i" 'idomenu)
+;;(bind-key "C-x C-i" 'idomenu)
 
 ;; Ido select window
 (bind-key "C-x o" 'ido-select-window)
+
+(bind-key "C-x C-i" 'ot/ispell-word-then-abbrev)
 
 ;; Key chords to use:
 ;; yy jj '; zx ., \] /. ?? ^^ '/ ;. ;, .; /' =- -=
@@ -188,15 +190,9 @@
   (bind-key "M-9" 'paredit-wrap-round paredit-mode-map)
   (bind-key "M-0" 'ot/paredit-wrap-round-from-behind paredit-mode-map)
   (bind-key ")" 'ot/step-out-forward paredit-mode-map)
-  (bind-key "C-," 'ot/move-backward paredit-mode-map)
-  (bind-key "C-." 'ot/move-forward paredit-mode-map)
-  (bind-key "<C-M-return>" (lambda ()
-                             (interactive)
-                             (if (nth 3 (syntax-ppss (point)))
-                                 (paredit-forward-up))
-                             (paredit-forward-up)
-                             (backward-char)
-                             (newline-and-indent)) paredit-mode-map))
+  (bind-key "C-," 'ot/parens-move-backward paredit-mode-map)
+  (bind-key "C-." 'ot/parens-move-forward paredit-mode-map)
+  (bind-key "<C-M-return>" 'ot/paredit-open-line-below paredit-mode-map))
 
 (bind-key [H-backspace] 'delete-char)
 
