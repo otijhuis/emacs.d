@@ -556,6 +556,12 @@ abort completely with `C-g'."
                    bef aft (if p "loc" "glob")))
       (user-error "No typo at or before point"))))
 
+(defun ot/kill-sexp ()
+  (interactive)
+  (if (looking-at-p "\\s(")
+      (kill-sexp)
+    (paxedit-kill)))
+
 (defun ot/parens-move-backward ()
   (interactive)
   (when (search-backward-regexp "\\s(.?" nil 'noerror)

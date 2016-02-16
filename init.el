@@ -137,6 +137,7 @@
                       flatui-theme
 
                       projectile
+                      ibuffer-vc
 
                       yasnippet
                       auto-yasnippet

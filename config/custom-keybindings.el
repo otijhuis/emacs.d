@@ -4,6 +4,7 @@
 
 (key-seq-define-global ",l" 'ido-switch-buffer)
 (key-seq-define-global ",f" 'ido-find-file)
+(key-seq-define-global ",;" 'ot/ido-choose-from-recentf)
 
 ;; Ido Menu
 ;;(bind-key "C-x C-i" 'idomenu)
@@ -95,6 +96,10 @@
 ;;;;;;;;;;
 (bind-key "C-M-y" 'helm-show-kill-ring)
 (bind-key "C-s" 'isearch-forward-regexp)
+(bind-key "C-M-s" 'helm-swoop)
+;; (bind-key "C-M-s" (lambda () (interactive)
+;;                     (setq current-prefix-arg '(2)) ; C-u
+;;                     (call-interactively 'helm-swoop)))
 (bind-key "M-i" 'helm-imenu)
 (bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map)
 (bind-key "M-I" 'helm-multi-swoop-all-from-isearch isearch-mode-map)
@@ -125,8 +130,6 @@
 ;;;;;;;;;
 ;; Avy ;;
 ;;;;;;;;;
-(bind-key "H-z" 'avy-zap-to-char-dwim)
-(bind-key "H-Z" 'avy-zap-up-to-char-dwim)
 (key-seq-define-global ";l" 'avy-goto-char)
 (key-seq-define-global ";k" 'avy-goto-char-timer)
 (key-seq-define-global "zc" 'ot/avy-goto-word-0)
@@ -172,11 +175,7 @@
 
 (with-eval-after-load "paredit"
   (key-seq-define paredit-mode-map "\\]" 'hydra-paredit/body)
-  (bind-key "s-j" 'paredit-backward-down paredit-mode-map)
-  (bind-key "s-i" 'paxedit-backward-up paredit-mode-map)
-  (bind-key "s-l" 'paxedit-backward-end paredit-mode-map)
-  (bind-key "s-k" 'paredit-forward-down paredit-mode-map)
-  (bind-key "C-S-k" 'paxedit-kill paredit-mode-map)
+  (bind-key "C-M-k" 'ot/kill-sexp paredit-mode-map)
   (bind-key "M-k" 'paxedit-symbol-kill paredit-mode-map)
   (bind-key [H-backspace] 'paredit-forward-delete paredit-mode-map)
   (bind-key [H-M-backspace] 'backward-kill-sexp paredit-mode-map)
@@ -187,6 +186,8 @@
   (bind-key "M-[" 'paredit-forward-barf-sexp paredit-mode-map)
   (bind-key "M-s-[" 'paredit-backward-slurp-sexp paredit-mode-map)
   (bind-key "M-s-]" 'paredit-backward-barf-sexp paredit-mode-map)
+  (bind-key "C-M-9" 'paxedit-wrap-parent-sexp paredit-mode-map)
+  (bind-key "C-M-0" 'paxedit-wrap-symbol paredit-mode-map)
   (bind-key "M-9" 'paredit-wrap-round paredit-mode-map)
   (bind-key "M-0" 'ot/paredit-wrap-round-from-behind paredit-mode-map)
   (bind-key ")" 'ot/step-out-forward paredit-mode-map)
@@ -205,6 +206,7 @@
           isearch-mode-map)
 
 (bind-key "<M-return>" 'ot/open-line-below)
+(bind-key "C-o" 'ot/open-line-above)
 
 ;; use hippie-expand instead of abbrev
 (bind-key "M-/" 'hippie-expand)

@@ -90,15 +90,15 @@
 ;; minibuffer history
 (with-eval-after-load "savehist"
   (setq savehist-file (concat user-emacs-directory "savehist")
-        enable-recursive-minibuffers t  ; Allow commands in minibuffers
-        history-length 1000
-        savehist-additional-variables '(kill-ring
-                                        mark-ring
-                                        global-mark-ring
-                                        search-ring
-                                        regexp-search-ring
-                                        extended-command-history)
-        savehist-autosave-interval 60))
+  enable-recursive-minibuffers t  ; Allow commands in minibuffers
+  history-length 1000
+  savehist-additional-variables '(kill-ring
+          mark-ring
+          global-mark-ring
+          search-ring
+          regexp-search-ring
+          extended-command-history)
+  savehist-autosave-interval 60))
 
 (savehist-mode +1)
 
@@ -142,6 +142,7 @@
  mouse-yank-at-point t
  uniquify-buffer-name-style 'post-forward
  uniquify-ignore-buffers-re "^\\*"
+ uniquify-strip-common-suffix t
  ediff-diff-options "-w"
  ediff-window-setup-function 'ediff-setup-windows-plain
  ediff-split-window-function 'split-window-horizontally
@@ -180,7 +181,7 @@
 ;; Recent files
 (with-eval-after-load "recentf"
   (recentf-mode 1)
-  (setq recentf-max-saved-items 100)
+  (setq recentf-max-saved-items 150)
   (setq recentf-max-menu-items 100)
   (add-to-list 'recentf-exclude "/elpa"))
 
@@ -240,7 +241,7 @@
 
 ;; use only spaces and no tabs
 (setq-default indent-tabs-mode nil
-              default-tab-width 2)
+        default-tab-width 2)
 
 (setq tab-always-indent 'complete)
 
@@ -256,9 +257,9 @@ Try the repeated popping up to 10 times."
   (let ((p (point)))
     (dotimes (i 10)
       (when (= p (point))
-        (apply orig-fun args)))))
+  (apply orig-fun args)))))
 (advice-add 'pop-to-mark-command :around
-            #'modi/multi-pop-to-mark)
+      #'modi/multi-pop-to-mark)
 
 ;; if (aspell installed) { use aspell}
 ;; else if (hunspell installed) { use hunspell }
@@ -275,7 +276,7 @@ Try the repeated popping up to 10 times."
       ;; force the English dictionary, support Camel Case spelling check (tested with aspell 0.6)
       (setq args (list "--sug-mode=ultra" "--lang=en_US"))
       (if RUN-TOGETHER
-          (setq args (append args '("--run-together" "--run-together-limit=5" "--run-together-min=2")))))
+    (setq args (append args '("--run-together" "--run-together-limit=5" "--run-together-min=2")))))
      ((string-match "hunspell$" ispell-program-name)
       (setq args nil)))
     args
@@ -290,7 +291,7 @@ Try the repeated popping up to 10 times."
   ;; if we need use different dictionary, we specify it in command line arguments
   (setq ispell-local-dictionary "en_US")
   (setq ispell-local-dictionary-alist
-        '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
+  '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
  (t (setq ispell-program-name nil)))
 
 ;; ispell-cmd-args is useless, it's the list of *extra* arguments we will append to the ispell process when "ispell-word" is called.

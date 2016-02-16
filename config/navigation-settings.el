@@ -1,5 +1,4 @@
 ;; Avy
-;;(require 'avy)
 (with-eval-after-load "avy"
   (setq avy-keys (number-sequence ?a ?z))
   (setq avy-all-windows 'all-frames)

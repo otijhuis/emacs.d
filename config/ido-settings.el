@@ -9,11 +9,12 @@
         ido-use-virtual-buffers t
         ido-enable-regexp nil
         ido-enable-last-directory-history nil
-        ido-handle-duplicate-virtual-buffers 2
+        ido-handle-duplicate-virtual-buffers 3
         confirm-nonexistent-file-or-buffer nil
         ido-file-extension-order '(".clj" ".cljs" ".cljc" ".html" ".el" ".org" ".txt" ".js") ; give priority to certain file types
         ido-ignore-extensions t
         ido-default-file-method 'selected-window
+        ido-default-buffer-method 'selected-window
         ido-max-prospects 10
         ido-use-faces nil ;; disable ido faces to see flx highlights
         ido-vertical-define-keys 'C-n-C-p-up-down-left-right

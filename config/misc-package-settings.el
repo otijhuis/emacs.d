@@ -91,7 +91,7 @@
 (setq beacon-color "orange")
 (setq beacon-size 50)
 (setq beacon-blink-when-point-moves-vertically 3)
-(setq beacon-blink-when-point-moves-horizontally 20)
+(setq beacon-blink-when-point-moves-horizontally 75)
 (setq beacon-blink-duration 0.2)
 (setq beacon-blink-delay 0.2)
 (setq beacon-blink-when-focused t)
@@ -106,7 +106,8 @@
                                    avy-zap-up-to-char
                                    avy-zap-to-char-dwim
                                    avy-zap-up-to-char-dwim
-                                   avy-goto-word-or-subword-1))
+                                   avy-goto-word-or-subword-1
+                                   exchange-point-and-mark))
 (setq beacon-lighter " 💡")
 
 ;; State
@@ -125,5 +126,24 @@
 ;; Ace Window
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 ;;(ace-window-display-mode 1)
+
+;; ibuffer
+(add-hook 'ibuffer-hook
+          (lambda ()
+            (ibuffer-vc-set-filter-groups-by-vc-root)
+            (unless (eq ibuffer-sorting-mode 'alphabetic)
+              (ibuffer-do-sort-by-alphabetic))))
+
+(setq ibuffer-formats
+      '((mark modified read-only vc-status-mini " "
+              (name 18 18 :left :elide)
+              " "
+              (size 9 -1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " "
+              (vc-status 16 16 :left)
+              " "
+              filename-and-process)))
 
 (provide 'misc-package-settings)
