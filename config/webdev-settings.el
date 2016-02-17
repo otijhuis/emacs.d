@@ -1,6 +1,6 @@
 ;; (require 'tagedit)
 
-;; (require 'company)                                   ; load company mode
 ;; (require 'company-web-html)                          ; load company mode html backend
+;; (require 'css-eldoc)
 
 (provide 'webdev-settings)
