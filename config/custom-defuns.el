@@ -482,12 +482,15 @@ Position the cursor at its beginning, according to the current mode."
 (defun ot/step-out-forward ()
   "Step forward out of current list or string."
   (interactive)
-  (if (nth 3 (syntax-ppss (point)))
-      (progn
-        (forward-char)
-        (while (and (not (eobp)) (nth 3 (syntax-ppss (point))))
-          (forward-char)))
-    (up-list)))
+  (cond
+   ;; if inside comment just insert paren
+   ((nth 4 (syntax-ppss (point))) (insert ")"))
+   ;; if inside string keep moving forward
+   ((nth 3 (syntax-ppss (point)))
+    (forward-char)
+    (while (and (not (eobp)) (nth 3 (syntax-ppss (point))))
+      (forward-char)))
+   (t (up-list))))
 
 (defun ot/avy-goto-word-0 ()
   "avy-goto-word-0 with modified syntax table"
