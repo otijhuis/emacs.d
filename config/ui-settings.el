@@ -1,25 +1,28 @@
-(global-font-lock-mode t)
-
-(if (string= (symbol-name system-type) "windows-nt")
-    (setq default-frame-alist '((font . "Consolas-11")))
-  (modify-frame-parameters nil '((wait-for-wm . nil))))
-
-(if (string= (symbol-name system-type) "darwin")
-    (setq default-frame-alist '((font . "Inconsolata-14")))
-  (modify-frame-parameters nil '((wait-for-wm . nil))))
-
-;; Disable bold
-(mapc
- (lambda (face)
-   (set-face-attribute face nil :weight 'normal))
- (face-list))
-
 ;; Make frame transparent
 ;;(set-frame-parameter (selected-frame) 'alpha '(95 90))
 ;;(add-to-list 'default-frame-alist '(alpha 95 90))
 
 (load-theme 'flatui t)
-;;(load-theme 'molokai t)
+
+;; Disable bold by default
+(mapc
+ (lambda (face)
+   (set-face-attribute face nil :weight 'normal))
+ (face-list))
+
+(global-font-lock-mode t)
+
+;; (if (string= (symbol-name system-type) "windows-nt")
+;;     (setq default-frame-alist '((font . "Consolas-11")))
+;;   (modify-frame-parameters nil '((wait-for-wm . nil))))
+
+;; (if (string= (symbol-name system-type) "darwin")
+;;     (setq default-frame-alist '((font . "Inconsolata-16")))
+;;   (modify-frame-parameters nil '((wait-for-wm . nil))))
+
+;; Set font
+(set-default-font "Source Code Pro" nil t)
+(set-face-attribute 'default nil :height 155)
 
 ;; Flat modeline
 (set-face-attribute 'mode-line nil :box nil)

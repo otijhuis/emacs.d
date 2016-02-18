@@ -1,3 +1,8 @@
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; Unbind keybindings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+(unbind-key "C-x m")
+
 ;;;;;;;;;;;;;;;;;
 ;; Keybindings ;;
 ;;;;;;;;;;;;;;;;;
@@ -38,9 +43,7 @@
 (key-seq-define-global ".," 'multiple-cursors-hydra/body)
 (bind-key "C-c m" 'multiple-cursors-hydra/body)
 
-;;;;;;;;;;;;;;;;;;;;;;;
-;; Other keybindings ;;
-;;;;;;;;;;;;;;;;;;;;;;;
+(bind-key "M-%" 'vr/query-replace)
 
 (bind-key "C-x p" 'pop-to-mark-command)
 
