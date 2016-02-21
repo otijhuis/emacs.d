@@ -97,6 +97,9 @@
 ;;;;;;;;;;
 ;; Helm ;;
 ;;;;;;;;;;
+;; (with-eval-after-load "helm"
+;;   (bind-key "<M-backspace>" 'subword-backward-kill helm-map))
+
 (bind-key "C-M-y" 'helm-show-kill-ring)
 (bind-key "C-s" 'isearch-forward-regexp)
 (bind-key "C-M-s" 'helm-swoop)

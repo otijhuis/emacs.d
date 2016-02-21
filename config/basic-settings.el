@@ -93,15 +93,15 @@
 ;; minibuffer history
 (with-eval-after-load "savehist"
   (setq savehist-file (concat user-emacs-directory "savehist")
-  enable-recursive-minibuffers t  ; Allow commands in minibuffers
-  history-length 1000
-  savehist-additional-variables '(kill-ring
-          mark-ring
-          global-mark-ring
-          search-ring
-          regexp-search-ring
-          extended-command-history)
-  savehist-autosave-interval 60))
+        enable-recursive-minibuffers t  ; Allow commands in minibuffers
+        history-length 1000
+        savehist-additional-variables '(kill-ring
+                                        mark-ring
+                                        global-mark-ring
+                                        search-ring
+                                        regexp-search-ring
+                                        extended-command-history)
+        savehist-autosave-interval 60))
 
 (savehist-mode +1)
 
@@ -162,11 +162,8 @@
 (size-indication-mode 1) ; show the size of the buffer
 
 ;; Easily navigate sillycased words
-;; Syntax subword
-(setq syntax-subword-skip-spaces t)
-(global-syntax-subword-mode)
 ;;(global-subword-mode 1)
-;;(global-superword-mode 1)
+(global-superword-mode 1)
 
 (set-default 'indicate-empty-lines nil) ; don't indicate empty lines
 
@@ -244,7 +241,7 @@
 
 ;; use only spaces and no tabs
 (setq-default indent-tabs-mode nil
-        default-tab-width 2)
+  default-tab-width 2)
 
 (setq tab-always-indent 'complete)
 

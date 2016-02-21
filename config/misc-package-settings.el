@@ -78,8 +78,9 @@
 (drag-stuff-global-mode t)
 
 ;; Thing at point
-;;(require 'thingatpt)
-;;(require 'thingatpt+)
+(eval-after-load "thingatpt"
+  '(when (require 'thingatpt+)
+     (tap-redefine-std-fns)))
 
 ;; iMenu list
 (setq imenu-list-focus-after-activation t)

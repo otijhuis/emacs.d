@@ -45,6 +45,7 @@
                       helm-c-moccur
                       helm-flycheck
                       helm-emmet
+                      helm-clojuredocs
 
                       ggtags
                       noccur ; occur in project
@@ -60,6 +61,7 @@
                       avy-zap ; move quickly around buffers (see vim EasyMotion as well)
                       ace-window ; window navigation
                       smartscan ; quickly jump to symbols
+                      goto-chg
 
                       dash
                       s
@@ -74,7 +76,6 @@
                       drag-stuff ; moving lines/regions up/down
                       rich-minority ; don't clutter the modeline with minor mode names
                       fix-word ; improved up-/downcase and capitalize functions
-                      syntax-subword ; fine-grained subword movement
                       ag
                       browse-kill-ring ; list / select / insert previously killed text
                       expand-region ; easily select regions around point
@@ -257,6 +258,7 @@
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
  '(iedit-occurrence ((t (:background "SystemHilight"))))
+ '(indent-guide-face ((t (:foreground "gainsboro"))))
  '(isearch ((t (:background "dark orange" :foreground "white" :weight bold))))
  '(isearch-fail ((t (:background "#c0392b" :foreground "white" :weight bold))))
  '(ivy-current-match ((t (:weight bold))))
