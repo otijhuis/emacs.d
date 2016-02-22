@@ -33,6 +33,9 @@
                       idomenu
                       ido-completing-read+
 
+                      swiper
+                      counsel
+
                       smex
 
                       helm
