@@ -7,9 +7,11 @@
 ;; Keybindings ;;
 ;;;;;;;;;;;;;;;;;
 
-(key-seq-define-global ",l" 'ido-switch-buffer)
-(key-seq-define-global ",f" 'ido-find-file)
-(key-seq-define-global ",;" 'ot/ido-choose-from-recentf)
+;;(key-seq-define-global ",l" 'ido-switch-buffer)
+;;(key-seq-define-global ",f" 'ido-find-file)
+;;(key-seq-define-global ",;" 'ot/ido-choose-from-recentf)
+(key-seq-define-global ",l" 'ivy-switch-buffer)
+(key-seq-define-global ",f" 'counsel-find-file)
 
 ;; Ido Menu
 ;;(bind-key "C-x C-i" 'idomenu)
@@ -27,7 +29,8 @@
 (key-seq-define-global ",w" 'ace-window)
 (key-seq-define-global ",p" 'projectile-command-map)
 (key-seq-define-global ",a" 'hydra-ag/body)
-(key-chord-define-global "';" 'smex)
+;;(key-chord-define-global "';" 'smex)
+(key-chord-define-global "';" 'counsel-M-x)
 
 (key-seq-define emacs-lisp-mode-map ",e" 'hydra-lisp-eval/body)
 
@@ -94,6 +97,12 @@
 
 (bind-key "s-d" 'ot/duplicate-current-line-or-region)
 
+(bind-key "C-m" 'ivy-alt-done ivy-minibuffer-map)
+(bind-key "C-j" 'ivy-done ivy-minibuffer-map)
+
+(bind-key "C-r" 'ivy-resume)
+(bind-key "C-s" 'swiper)
+
 ;;;;;;;;;;
 ;; Helm ;;
 ;;;;;;;;;;
@@ -101,11 +110,7 @@
 ;;   (bind-key "<M-backspace>" 'subword-backward-kill helm-map))
 
 (bind-key "C-M-y" 'helm-show-kill-ring)
-(bind-key "C-s" 'isearch-forward-regexp)
-(bind-key "C-M-s" 'helm-swoop)
-;; (bind-key "C-M-s" (lambda () (interactive)
-;;                     (setq current-prefix-arg '(2)) ; C-u
-;;                     (call-interactively 'helm-swoop)))
+;;(bind-key "C-M-s" 'helm-swoop)
 (bind-key "M-i" 'helm-imenu)
 (bind-key "M-i" 'helm-swoop-from-isearch isearch-mode-map)
 (bind-key "M-I" 'helm-multi-swoop-all-from-isearch isearch-mode-map)

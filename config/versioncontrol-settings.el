@@ -8,6 +8,8 @@
 
   (setq magit-save-repository-buffers 'dontask)
 
+  (setq magit-completing-read-function 'ivy-completing-read)
+
   ;; full screen magit-status
   (setq magit-display-buffer-function
         (lambda (buffer)

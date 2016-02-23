@@ -36,7 +36,7 @@
   (ido-at-point-mode)
   )
 
-(ido-mode t)
+;;(ido-mode t)
 
 ;; Use ido everywhere
 ;;(require 'ido-ubiquitous)
