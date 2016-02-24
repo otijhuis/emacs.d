@@ -7,9 +7,6 @@
 ;; Keybindings ;;
 ;;;;;;;;;;;;;;;;;
 
-;;(key-seq-define-global ",l" 'ido-switch-buffer)
-;;(key-seq-define-global ",f" 'ido-find-file)
-;;(key-seq-define-global ",;" 'ot/ido-choose-from-recentf)
 (key-seq-define-global ",l" 'ivy-switch-buffer)
 (key-seq-define-global ",f" 'counsel-find-file)
 
@@ -21,26 +18,21 @@
 
 (bind-key "C-x C-i" 'ot/ispell-word-then-abbrev)
 
-;; Key chords to use:
-;; yy jj '; zx ., \] /. ?? ^^ '/ ;. ;, .; /' =- -=
-;; jq qg qk qy qz wq xz fq wx qx jx kq vq qj qh hx qp xk
-;; sx
-
 (key-seq-define-global ",w" 'ace-window)
 (key-seq-define-global ",p" 'projectile-command-map)
 (key-seq-define-global ",a" 'hydra-ag/body)
-;;(key-chord-define-global "';" 'smex)
 (key-chord-define-global "';" 'counsel-M-x)
 
 (key-seq-define emacs-lisp-mode-map ",e" 'hydra-lisp-eval/body)
 
-(bind-key "M-x" 'smex)
-(bind-key "M-X" 'smex-major-mode-commands)
+(bind-key "M-x" 'counsel-M-x)
 (bind-key "C-x C-b" 'ibuffer)
 
 (key-seq-define-global ",u" 'undo-tree-visualize)
 (key-seq-define-global "/." 'hydra-mark/body)
+(key-seq-define-global "./" 'hydra-mark/body)
 (key-seq-define-global "zx" 'hydra-mark/body)
+(key-seq-define-global "xz" 'hydra-mark/body)
 (key-seq-define-global "][" 'hydra-transpose/body)
 ;;(symbol-function 'hydra-transpose/transpose-sexps-and-exit)
 (key-seq-define-global ".," 'multiple-cursors-hydra/body)
@@ -224,8 +216,7 @@
 (bind-key "C-M-/" 'hippie-expand-lines)
 
 ;; Version control
-(key-seq-define-global ",m" 'magit-status)
-(bind-key "<f11>" 'diff-hl-mode)
+(bind-key "<f10>" 'magit-status)
 
 ;; iMenu
 (bind-key "<f7>" #'imenu-list-minor-mode)
