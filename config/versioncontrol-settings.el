@@ -40,8 +40,7 @@
   )
 
 ;; Highlight diffs in fringe
-(with-eval-after-load "diff-hl"
-  (global-diff-hl-mode)
-  (diff-hl-flydiff-mode))
+(global-diff-hl-mode)
+(diff-hl-flydiff-mode)
 
 (provide 'versioncontrol-settings)
