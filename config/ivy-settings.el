@@ -9,6 +9,7 @@
   ;;(setq ivy-initial-inputs-alist nil)
 
   (setq ivy-extra-directories nil)
+  (setq ivy-fixed-height-minibuffer t)
 
   (setq ivy-use-virtual-buffers t)
   (setq ivy-height 10)
