@@ -196,6 +196,7 @@
   (bind-key ")" 'ot/step-out-forward paredit-mode-map)
   (bind-key "C-," 'ot/parens-move-backward paredit-mode-map)
   (bind-key "C-." 'ot/parens-move-forward paredit-mode-map)
+  (bind-key "M-r" 'paxedit-sexp-raise paredit-mode-map)
   (bind-key "<C-M-return>" 'ot/paredit-open-line-below paredit-mode-map))
 
 (bind-key [H-backspace] 'delete-char)
