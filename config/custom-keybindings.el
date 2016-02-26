@@ -217,7 +217,7 @@
 (bind-key "C-M-/" 'hippie-expand-lines)
 
 ;; Version control
-(bind-key "<f10>" 'magit-status)
+(bind-key "C-x g" 'magit-status)
 
 ;; iMenu
 (bind-key "<f7>" #'imenu-list-minor-mode)

@@ -7,6 +7,8 @@
   (setq magit-commit-all-when-nothing-staged t)
 
   (setq magit-save-repository-buffers 'dontask)
+  (setq magit-auto-revert-immediately t)
+  (add-to-list 'magit-no-confirm 'safe-with-wip)
 
   (setq magit-completing-read-function 'ivy-completing-read)
 
