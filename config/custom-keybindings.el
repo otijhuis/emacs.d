@@ -42,8 +42,6 @@
 
 (bind-key "C-x p" 'pop-to-mark-command)
 
-;;(bind-key "C-r" 'ivy-resume)
-
 (bind-key "M-;" 'comment-dwim-2)
 
 (bind-key "M-\\" 'cycle-spacing)
