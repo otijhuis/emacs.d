@@ -66,6 +66,9 @@
                       smartscan ; quickly jump to symbols
                       goto-chg
 
+                      dired+
+                      dired-sort
+
                       dash
                       s
                       thingatpt+
@@ -190,6 +193,7 @@
 (require 'org-mode-settings)
 (require 'syntax-checking-settings)
 (require 'hippie-expand-settings)
+(require 'dired-settings)
 (require 'misc-package-settings)
 (require 'hydra-settings)
 (require 'custom-keybindings)
