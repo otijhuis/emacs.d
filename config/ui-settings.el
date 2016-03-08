@@ -22,7 +22,7 @@
 
 ;; Set font
 (set-default-font "Source Code Pro" nil t)
-(set-face-attribute 'default nil :height 155)
+(set-face-attribute 'default nil :height 135)
 
 ;; Flat modeline
 (set-face-attribute 'mode-line nil :box nil)
