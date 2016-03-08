@@ -132,7 +132,7 @@
   (setq cider-overlays-use-font-lock t)
 
   (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode) ; Enable eldoc in clojure buffers
-  (add-hook 'cider-repl-mode-hook #'syntax-subword-mode) ;Enabling CamelCase support for editing commands(like forward-word, backward-word, etc) in nREPL
+  (add-hook 'cider-repl-mode-hook #'subword-mode) ;Enabling CamelCase support for editing commands(like forward-word, backward-word, etc) in nREPL
   (add-hook 'cider-repl-mode-hook #'paredit-mode) ;Enable paredit in nRepl buffer
   ;;(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode) ; rainbow delimiters
 
