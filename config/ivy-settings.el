@@ -12,8 +12,10 @@
   (setq ivy-fixed-height-minibuffer t)
 
   (setq ivy-use-virtual-buffers t)
+  (setq ivy-virtual-abbreviate 'name)
+
   (setq ivy-height 10)
-  ;;(setq ivy-count-format "(%d/%d) ")
+  ;; (setq ivy-count-format "(%d/%d) ")
   (setq ivy-count-format "")
   (setq ivy-flx-limit 1000)
 

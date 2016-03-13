@@ -88,7 +88,8 @@
 (bind-key "s-d" 'ot/duplicate-current-line-or-region)
 
 (bind-key "C-m" 'ivy-alt-done ivy-minibuffer-map)
-(bind-key "C-j" 'ivy-done ivy-minibuffer-map)
+(bind-key "C-j" 'ivy-immediate-done ivy-minibuffer-map)
+(bind-key "C-M-j" 'ivy-done ivy-minibuffer-map)
 
 (bind-key "C-r" 'ivy-resume)
 (bind-key "C-s" 'swiper)
@@ -194,7 +195,7 @@
   (bind-key ")" 'ot/step-out-forward paredit-mode-map)
   (bind-key "C-," 'ot/parens-move-backward paredit-mode-map)
   (bind-key "C-." 'ot/parens-move-forward paredit-mode-map)
-  (bind-key "M-r" 'paxedit-sexp-raise paredit-mode-map)
+  (bind-key "M-r" 'paredit-raise-sexp paredit-mode-map)
   (bind-key "<C-M-return>" 'ot/paredit-open-line-below paredit-mode-map))
 
 (bind-key [H-backspace] 'delete-char)

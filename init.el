@@ -71,6 +71,7 @@
 
                       dash
                       s
+                      f ; api for working with files/directories
                       thingatpt+
                       comment-dwim-2
                       misc-cmds ; misc useful functions

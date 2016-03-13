@@ -112,7 +112,7 @@
   ("M-J" paredit-join-with-previous-list "Join prev list")
   ("C" paredit-convolute-sexp "Convolute")
   ("M-c" paredit-copy-as-kill "Copy as kill")
-  ("r" paxedit-sexp-raise "Raise s-expression (paxedit)")
+  ("r" paredit-raise-sexp "Raise s-expression")
   ("R" cljr-raise-sexp "Raise s-expression (cljr)")
   ("c" paxedit-copy "Copy explicit expression, implicit expression, or comment")
   ("d" paxedit-delete "Delete expression")
