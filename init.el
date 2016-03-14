@@ -197,6 +197,7 @@
 (require 'dired-settings)
 (require 'misc-package-settings)
 (require 'hydra-settings)
+(require 'clojure-utils)
 (require 'custom-keybindings)
 
 ;;(require 'inf-clojure-addons)

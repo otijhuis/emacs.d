@@ -1,40 +1,46 @@
 (require 'f)
-(require 's)
 (require 'ivy)
-(require 'cl-lib)
+(autoload 'magit-call-git
+  "magit" "magit package" nil)
 
-(defvar clj-projects-dir "/Users/okke/Projects/clojure"
+(defvar clj-utils-projects-dir "/Users/okke/Projects/clojure"
   "Directory containing the Clojure projects")
 
-(defun list-clj-projects ()
-  (mapcar
-   (lambda (s)
-     (cons (car (last (f-split (f-dirname s)))) s))
-   (cl-remove-if 's-blank?
-                 (s-lines
-                  (shell-command-to-string
-                   (format "find %s -depth 2 -name \"project.clj\" -print0 | xargs -0 ls -t"
-                           clj-projects-dir))))))
+(defvar clj-utils-lein-templates '(app compojure)
+  "Leiningen templates to select from")
 
-(defun create-clj-project (&optional name template)
-  (interactive)
+(defun clj-utils-find-projects (directory)
+  "Return the leiningen projects in the provided directory. Not recursive"
+  (mapcar (lambda (dir)
+            (cons (f-filename dir) dir))
+          (f-directories directory
+                         (lambda (dir)
+                           (f-exists? (f-join dir "project.clj")))
+                         nil)))
+
+(defun clj-utils-create-project (directory &optional name template)
+  "Create new leiningen project and git repo"
   (let ((name (or name
                   (read-string "Project name: ")))
         (template (or template
                       (ivy-read "Lein template: "
-                                '(app compojure)))))
-    (shell-command (format "cd %s && lein new %s %s" clj-projects-dir template name))
-    (magit-call-git "init" (f-join clj-projects-dir name))))
+                                clj-utils-lein-templates))))
+    (shell-command (format "cd %s && lein new %s %s" directory template name))
+    (magit-call-git "init" (f-join directory name))))
 
-(defun switch-clj-project ()
-  "Open Clojure project. Create new project if it doesn't exist yet."
+(defun clj-utils-switch-project ()
+  "Open Clojure project. Create new project if it doesn't exist yet"
   (interactive)
   (ivy-read
    "Clojure project: "
-   (list-clj-projects)
+   (clj-utils-find-projects clj-utils-projects-dir)
+   :sort t
    :action (lambda (name)
              (if name
-                 (find-file name)
-               (create-clj-project ivy-text)))))
+                 (find-file (f-join name "project.clj"))
+               (let ((project-name ivy--current))
+                 (clj-utils-create-project clj-utils-projects-dir project-name)
+                 (find-file (f-join clj-utils-projects-dir project-name "project.clj"))))))
+  nil)
 
-(switch-clj-project)
+(provide 'clojure-utils)
