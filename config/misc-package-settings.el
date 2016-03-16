@@ -147,4 +147,10 @@
               " "
               filename-and-process)))
 
+;; peep-dired
+;; (setq peep-dired-cleanup-on-disable t)
+(setq peep-dired-cleanup-eagerly t)
+(setq peep-dired-ignored-extensions '("mkv" "iso" "mp4" "mov" "elc" "jar" "war" "ear"))
+;; (setq peep-dired-enable-on-directories t)
+
 (provide 'misc-package-settings)

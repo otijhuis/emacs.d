@@ -94,6 +94,7 @@
 (bind-key "C-r" 'ivy-resume)
 (bind-key "C-s" 'swiper)
 
+(bind-key "P" 'peep-dired dired-mode-map)
 ;;;;;;;;;;
 ;; Helm ;;
 ;;;;;;;;;;

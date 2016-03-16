@@ -68,6 +68,7 @@
 
                       dired+
                       dired-sort
+                      peep-dired
 
                       dash
                       s
