@@ -123,6 +123,7 @@
                       company-quickhelp
                       company-flx
                       company-web
+                      company-ghc
 
                       elisp-slime-nav
 
@@ -158,6 +159,9 @@
                       emmet-mode
 
                       haskell-mode
+                      shm
+                      hindent
+                      ghc
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -199,6 +203,7 @@
 (require 'misc-package-settings)
 (require 'hydra-settings)
 (require 'clojure-utils)
+(require 'haskell-settings)
 (require 'custom-keybindings)
 
 ;;(require 'inf-clojure-addons)
