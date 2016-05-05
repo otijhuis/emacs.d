@@ -123,7 +123,7 @@
                       company-quickhelp
                       company-flx
                       company-web
-                      company-ghc
+                      ;; company-ghc
 
                       elisp-slime-nav
 
@@ -161,7 +161,8 @@
                       haskell-mode
                       shm
                       hindent
-                      ghc
+                      hi2
+                      ;; ghc
                       )
   "A list of packages to ensure are installed at launch.")
 
