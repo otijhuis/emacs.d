@@ -123,6 +123,7 @@
                       company-quickhelp
                       company-flx
                       company-web
+                      company-ghci
                       ;; company-ghc
 
                       elisp-slime-nav

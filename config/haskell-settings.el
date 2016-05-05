@@ -20,11 +20,19 @@
 
 (setq haskell-process-suggest-remove-import-lines t
       haskell-process-auto-import-loaded-modules t
+      haskell-process-load-or-reload-prompt t
+      haskell-process-suggest-no-warn-orphans t
+      haskell-process-use-presentation-mode t
       haskell-process-type 'stack-ghci
+      ;; haskell-process-type 'auto
       haskell-indent-spaces 2
       haskell-process-path-ghci "stack"
+      haskell-interactive-mode-hide-multi-line-errors nil
       haskell-stylish-on-save t
+      haskell-process-suggest-remove-import-lines t
+      inferior-haskell-wait-and-jump t
       ;; haskell-enable-ghci-ng-support t
+      haskell-compile-cabal-build-command "stack build"
       haskell-tags-on-save t
       haskell-process-log t)
 
@@ -32,13 +40,22 @@
 ;; (autoload 'ghc-debug "ghc" nil t)
 ;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
+(add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+
+(add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
+
 (add-hook 'haskell-mode-hook
           (lambda ()
             (set (make-local-variable 'company-backends)
-                 (append '((company-capf company-dabbrev-code))
+                 (append '((company-ghci company-capf company-dabbrev-code))
                          company-backends))))
 
-(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+
+;; structured haskell has its own indent
+(add-hook 'haskell-mode-hook (lambda ()
+                               (haskell-indentation-mode 0)
+                               (structured-haskell-mode t)))
 
 ;; don't turn this on! will mess with key-seq keyboard shortcuts
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-unicode-input-method)
@@ -47,6 +64,6 @@
 ;; (setq company-ghc-show-info t)
 
 ;; (add-hook 'haskell-mode-hook #'hindent-mode)
-(add-hook 'haskell-mode-hook 'turn-on-hi2)
+;; (add-hook 'haskell-mode-hook 'turn-on-hi2)
 
 (provide 'haskell-settings)
