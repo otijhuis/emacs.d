@@ -94,8 +94,8 @@
 
                       bind-key
                       free-keys
-                      region-bindings-mode
                       key-chord key-seq ; bind commands to multiple keypresses
+                      selected
                       hydra ; sticky bindings
                       which-key ; display keybindings (guide-key replacement)
 
