@@ -34,6 +34,7 @@
                       ido-completing-read+
 
                       swiper
+                      ivy
                       counsel
 
                       smex
