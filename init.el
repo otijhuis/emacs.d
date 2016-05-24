@@ -36,6 +36,7 @@
                       swiper
                       ivy
                       counsel
+                      counsel-projectile
 
                       smex
 
