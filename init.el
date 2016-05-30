@@ -126,6 +126,7 @@
                       company-flx
                       company-web
                       company-ghci
+                      company-tern
                       ;; company-ghc
 
                       elisp-slime-nav
@@ -160,6 +161,9 @@
 
                       css-eldoc
                       js2-mode
+                      json-mode
+                      js2-refactor
+                      tern
                       tagedit
                       emmet-mode
 

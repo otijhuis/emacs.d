@@ -23,6 +23,10 @@
 
 (ivy-mode 1)
 
+(with-eval-after-load "swiper"
+  ;; Always recentre when leaving Swiper
+  (setq swiper-action-recenter t))
+
 (with-eval-after-load "counsel"
   (setq counsel-find-file-at-point t)
 
