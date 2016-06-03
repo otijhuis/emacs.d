@@ -1,6 +1,5 @@
 ;; Avy
 (with-eval-after-load "avy"
-  (setq avy-keys (number-sequence ?a ?z))
   (setq avy-all-windows 'all-frames)
   (setq avy-style 'at-full)
   (setq avy-background t)
