@@ -121,17 +121,17 @@
   ("k" paxedit-kill "Kill explicit expression, implicit expression, or comment")
   (";" paxedit-wrap-comment "Wrap with comment"))
 
-(defhydra hydra-transpose (:columns 3
-                                    :idle 1.0)
+(defhydra hydra-transpose (:exit t
+                                 :columns 3
+                                 :idle 1.0)
   "Transpose"
   ("w" transpose-words "Words")
-  ("W" ace-swap-window "Windows / Buffers" :color blue)
-  ("b" ace-swap-window "Windows / Buffers" :color blue)
+  ("W" ace-swap-window "Windows / Buffers")
+  ("b" ace-swap-window "Windows / Buffers")
   ("l" transpose-lines "Lines")
   ("e" transpose-sexps "S-expressions")
   ("s" transpose-sexps "S-expressions")
-  ("p" transpose-paragraphs "Paragraphs")
-  ("q" nil "cancel" :exit t))
+  ("p" transpose-paragraphs "Paragraphs"))
 
 (defhydra hydra-frame (:exit t
                              :idle 1.0)

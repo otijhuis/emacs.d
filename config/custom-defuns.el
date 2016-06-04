@@ -591,4 +591,35 @@ abort completely with `C-g'."
         (backward-char)
         (newline-and-indent)))))
 
+(defun ot/current-line-empty-p ()
+  (save-excursion
+    (beginning-of-line)
+    (looking-at "[[:space:]]*$")))
+
+(defun ot/first-char-closing-pair-p ()
+  (save-excursion
+    (beginning-of-line)
+    (looking-at-p "[^\\s\-]+\)")))
+
+(defun ot/avy-action-move-here (pt)
+  "Move sexp at PT to current location."
+  (save-excursion
+    (goto-char pt)
+    (forward-sexp)
+    (kill-region pt (point))
+    (if (or (ot/current-line-empty-p)
+            (ot/first-char-closing-pair-p))
+        (join-line)
+      (fixup-whitespace)))
+  (yank)
+  (just-one-space))
+
+(defun ot/avy-move-here (arg)
+  (let ((avy-action #'ot/avy-action-move-here))
+    (avy--generic-jump arg nil 'pre)))
+
+(defun ot/avy-move-sexp-here ()
+  (interactive)
+  (ot/avy-move-here "\\s([^\\)]"))
+
 (provide 'custom-defuns)
