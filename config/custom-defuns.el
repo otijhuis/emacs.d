@@ -80,14 +80,6 @@
     (move-beginning-of-line nil)
     (newline-and-indent)))
 
-(defun ot/avy-goto-paren (&optional prefix)
-  (interactive "P")
-  (let (ch)
-    (if prefix
-        (setq ch ")")
-      (setq ch "("))
-    (avy--generic-jump ch nil 'pre)))
-
 (defun ot/cider-eval-count-defun-at-point ()
   (interactive)
   (cider-interactive-eval
@@ -492,15 +484,6 @@ Position the cursor at its beginning, according to the current mode."
       (forward-char)))
    (t (up-list))))
 
-(defun ot/avy-goto-word-0 ()
-  "avy-goto-word-0 with modified syntax table"
-  (interactive)
-  (let ((temp-syntax-table (make-syntax-table)))
-    (modify-syntax-entry ?_ "w" temp-syntax-table) ; add underscore as to words
-    (modify-syntax-entry ?: "w" temp-syntax-table)
-    (with-syntax-table temp-syntax-table
-      (avy-goto-word-0 nil))))
-
 ;; From http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
 (defun ot/narrow-or-widen-dwim (p)
   "Widen if buffer is narrowed, narrow-dwim otherwise.
@@ -612,7 +595,18 @@ abort completely with `C-g'."
         (join-line)
       (fixup-whitespace)))
   (yank)
-  (just-one-space))
+  (if (looking-at-p "[\\s_\|\\s(]")
+      (just-one-space)))
+
+(defun ot/avy-action-copy-here (pt)
+  "Copy sexp at PT to current location."
+  (save-excursion
+    (goto-char pt)
+    (forward-sexp)
+    (copy-region-as-kill pt (point)))
+  (yank)
+  (if (looking-at-p "[\\s_\|\\s(]")
+      (just-one-space)))
 
 (defun ot/avy-move-here (arg)
   (let ((avy-action #'ot/avy-action-move-here))
@@ -621,5 +615,20 @@ abort completely with `C-g'."
 (defun ot/avy-move-sexp-here ()
   (interactive)
   (ot/avy-move-here "\\s([^\\)]"))
+
+(defun ot/avy-goto-sexp ()
+  (interactive)
+  (avy--generic-jump "\\s([^\\)]\\|\\s\"[[:alnum:]]" nil 'pre))
+
+(defun ot/avy-goto-word-0 ()
+  "avy-goto-word-0 with modified syntax table"
+  (interactive)
+  (let ((temp-syntax-table (make-syntax-table))
+        (avy-goto-word-0-regexp "\\b\\sw"))
+    (modify-syntax-entry ?_ "w" temp-syntax-table)
+    (modify-syntax-entry ?: "w" temp-syntax-table)
+    (modify-syntax-entry ?- "w" temp-syntax-table)
+    (with-syntax-table temp-syntax-table
+      (avy-goto-word-0 nil))))
 
 (provide 'custom-defuns)

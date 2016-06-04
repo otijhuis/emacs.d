@@ -134,7 +134,8 @@
 ;; Avy ;;
 ;;;;;;;;;
 (key-seq-define-global ";l" 'avy-goto-word-or-subword-1)
-(key-seq-define-global "zc" 'ot/avy-goto-word-0)
+(key-seq-define-global "zc" 'ot/avy-goto-sexp)
+(key-seq-define-global "/," 'ot/avy-goto-word-0)
 (key-seq-define-global "zv" 'avy-goto-char)
 (key-seq-define-global "z," 'avy-zap-up-to-char)
 (key-seq-define-global "z." 'avy-zap-to-char)
