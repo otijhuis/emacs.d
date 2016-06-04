@@ -53,7 +53,7 @@
 
 ;; Indentation
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-;;(add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+(add-hook 'clojure-mode-hook #'aggressive-indent-mode)
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'ot/esk-remove-elc-on-save)

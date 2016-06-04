@@ -610,6 +610,7 @@ abort completely with `C-g'."
 
 (defun ot/avy-move-here (arg)
   (let ((avy-action #'ot/avy-action-move-here))
+    (setq avy-action nil)
     (avy--generic-jump arg nil 'pre)))
 
 (defun ot/avy-move-sexp-here ()
@@ -618,17 +619,19 @@ abort completely with `C-g'."
 
 (defun ot/avy-goto-sexp ()
   (interactive)
+  (setq avy-action nil)
   (avy--generic-jump "\\s([^\\)]\\|\\s\"[[:alnum:]]" nil 'pre))
 
 (defun ot/avy-goto-word-0 ()
   "avy-goto-word-0 with modified syntax table"
   (interactive)
-  (let ((temp-syntax-table (make-syntax-table))
+  (let ((temp-syntax-table (make-syntax-table (syntax-table)))
         (avy-goto-word-0-regexp "\\b\\sw"))
     (modify-syntax-entry ?_ "w" temp-syntax-table)
     (modify-syntax-entry ?: "w" temp-syntax-table)
     (modify-syntax-entry ?- "w" temp-syntax-table)
     (with-syntax-table temp-syntax-table
+      (setq avy-action nil)
       (avy-goto-word-0 nil))))
 
 (provide 'custom-defuns)

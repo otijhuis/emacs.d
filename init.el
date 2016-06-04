@@ -40,6 +40,8 @@
 
                       smex
 
+                      command-log-mode
+
                       helm
                       helm-ag
                       helm-swoop
