@@ -622,16 +622,16 @@ abort completely with `C-g'."
   (setq avy-action nil)
   (avy--generic-jump "\\s([^\\)]\\|\\s\"[[:alnum:]]" nil 'pre))
 
-(defun ot/avy-goto-word-0 ()
+(defun ot/avy-goto-word-0 (arg)
   "avy-goto-word-0 with modified syntax table"
-  (interactive)
+  (interactive "P")
   (let ((temp-syntax-table (make-syntax-table (syntax-table)))
         (avy-goto-word-0-regexp "\\b\\sw"))
     (modify-syntax-entry ?_ "w" temp-syntax-table)
     (modify-syntax-entry ?: "w" temp-syntax-table)
     (modify-syntax-entry ?- "w" temp-syntax-table)
     (with-syntax-table temp-syntax-table
-      (setq avy-action nil)
-      (avy-goto-word-0 nil))))
+      (avy-with ot/avy-goto-word-0
+        (avy--generic-jump avy-goto-word-0-regexp arg avy-style)))))
 
 (provide 'custom-defuns)
