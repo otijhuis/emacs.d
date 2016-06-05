@@ -609,27 +609,86 @@ abort completely with `C-g'."
                  (fixup-whitespace))))
 
 (defun ot/avy-copy-here (pt command)
-  "Copy region from PT to PT after COMMAND to current location."
+  "Copy region from PT to PT after COMMAND to current location"
   (ot/avy-here pt command
                (copy-region-as-kill pt (point))))
 
+(defvar ot/avy-selected-pt nil)
+
+;; Avy copy actions
+
+(defun ot/avy-action-copy-hydra (pt)
+  (setq ot/avy-selected-pt pt)
+  (hydra-avy-copy-actions/body))
+
+(defun ot/avy-action-copy-sexp-here (pt)
+  "Move sexp at PT to current location"
+  (ot/avy-copy-here pt 'forward-sexp))
+
+(defun ot/avy-action-copy-symbol-here (pt)
+  "Move symbol at PT to current location"
+  (ot/avy-copy-here pt (lambda () (forward-symbol 1))))
+
+(defun ot/avy-action-copy-surrounding-sexp-here (pt)
+  "Move surrounding sexp at PT to current location"
+  (let ((new-pt (save-excursion
+                  (goto-char pt)
+                  (paredit-backward-up)
+                  (point))))
+    (ot/avy-copy-here new-pt 'forward-sexp)))
+
+(defun ot/avy-action-copy-sexp-forward-here (pt)
+  "Move from PT to end of sexp to current location"
+  (ot/avy-copy-here pt (lambda ()
+                         (ot/step-out-forward)
+                         (backward-char))))
+
+(defun ot/avy-action-copy-sexp-backward-here (pt)
+  "Move from PT to beginning of sexp to current location"
+  (ot/avy-copy-here pt (lambda ()
+                         (paredit-backward-up)
+                         (forward-char))))
+
 ;; Avy move actions
 
+(defun ot/avy-action-move-hydra (pt)
+  (setq ot/avy-selected-pt pt)
+  (hydra-avy-move-actions/body))
+
 (defun ot/avy-action-move-sexp-here (pt)
-  "Move sexp at PT to current location."
+  "Move sexp at PT to current location"
   (ot/avy-move-here pt 'forward-sexp))
 
+(defun ot/avy-action-move-symbol-here (pt)
+  "Move symbol at PT to current location"
+  (ot/avy-move-here pt (lambda () (forward-symbol 1))))
+
+(defun ot/avy-action-move-surrounding-sexp-here (pt)
+  "Move surrounding sexp at PT to current location"
+  (let ((new-pt (save-excursion
+                  (goto-char pt)
+                  (paredit-backward-up)
+                  (point))))
+    (ot/avy-move-here new-pt 'forward-sexp)))
+
 (defun ot/avy-action-move-sexp-forward-here (pt)
+  "Move from PT to end of sexp to current location"
   (ot/avy-move-here pt (lambda ()
                          (ot/step-out-forward)
                          (backward-char))))
+
+(defun ot/avy-action-move-sexp-backward-here (pt)
+  "Move from PT to beginning of sexp to current location"
+  (ot/avy-move-here pt (lambda ()
+                         (paredit-backward-up)
+                         (forward-char))))
 
 ;; Avy goto commands
 
 (defun ot/avy-goto-sexp (arg)
   (interactive "P")
   (avy-with ot/avy-goto-sexp
-    (avy--generic-jump "\\s([^\\)]\\|\\s\"[[:alnum:]]" arg 'pre)))
+    (avy--generic-jump "\\s(\\|\\s\"[[:alnum:]]" arg avy-style)))
 
 (defun ot/avy-goto-word-0 (arg)
   "avy-goto-word-0 with modified syntax table"
@@ -639,6 +698,8 @@ abort completely with `C-g'."
     (modify-syntax-entry ?_ "w" temp-syntax-table)
     (modify-syntax-entry ?: "w" temp-syntax-table)
     (modify-syntax-entry ?- "w" temp-syntax-table)
+    (modify-syntax-entry ?/ "w" temp-syntax-table)
+    (modify-syntax-entry ?. "w" temp-syntax-table)
     (with-syntax-table temp-syntax-table
       (avy-with ot/avy-goto-word-0
         (avy--generic-jump avy-goto-word-0-regexp arg avy-style)))))

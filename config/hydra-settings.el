@@ -2,6 +2,31 @@
 ;; Hydra's ;;
 ;;;;;;;;;;;;;
 
+;; Avy action hydra
+(defhydra hydra-avy-move-actions (:exit t
+                                        :columns 2
+                                        :after-exit (setq ot/avy-selected-pt nil)
+                                        :idle 1.0)
+  "Avy actions"
+  ("f" (ot/avy-action-move-sexp-forward-here ot/avy-selected-pt) "Forward until end of expression")
+  ("b" (ot/avy-action-move-sexp-backward-here ot/avy-selected-pt) "Backward until begin of expression")
+  ("e" (ot/avy-action-move-sexp-here ot/avy-selected-pt) "Sexp")
+  ("RET" (ot/avy-action-move-sexp-here ot/avy-selected-pt) "Sexp")
+  ("s" (ot/avy-action-move-symbol-here ot/avy-selected-pt) "Symbol")
+  ("(" (ot/avy-action-move-surrounding-sexp-here ot/avy-selected-pt) "Surrounding sexp"))
+
+(defhydra hydra-avy-copy-actions (:exit t
+                                        :columns 2
+                                        :after-exit (setq ot/avy-selected-pt nil)
+                                        :idle 1.0)
+  "Avy actions"
+  ("f" (ot/avy-action-copy-sexp-forward-here ot/avy-selected-pt) "Forward until end of expression")
+  ("b" (ot/avy-action-copy-sexp-backward-here ot/avy-selected-pt) "Backward until begin of expression")
+  ("e" (ot/avy-action-copy-sexp-here ot/avy-selected-pt) "Sexp")
+  ("RET" (ot/avy-action-copy-sexp-here ot/avy-selected-pt) "Sexp")
+  ("s" (ot/avy-action-copy-symbol-here ot/avy-selected-pt) "Symbol")
+  ("(" (ot/avy-action-copy-surrounding-sexp-here ot/avy-selected-pt) "Surrounding sexp"))
+
 ;; Hydra - Marking
 (defhydra hydra-mark (:exit t
                             :columns 3
