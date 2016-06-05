@@ -4,7 +4,7 @@
   (setq avy-dispatch-alist '((?X . avy-action-kill-move)
                              (?x . avy-action-kill-stay)
                              (?M . avy-action-mark)
-                             (?m . ot/avy-action-move-here)
+                             (?m . ot/avy-action-move-sexp-forward-here)
                              (?C . avy-action-copy)
                              (?c . ot/avy-action-copy-here)
                              (?i . avy-action-ispell)))

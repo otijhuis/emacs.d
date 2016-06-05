@@ -582,45 +582,54 @@ abort completely with `C-g'."
 (defun ot/first-char-closing-pair-p ()
   (save-excursion
     (beginning-of-line)
-    (looking-at-p "[^\\s\-]+\)")))
+    (looking-at-p "[^\\s\-]+\\s)")))
 
-(defun ot/avy-action-move-here (pt)
+;; Avy base movement macros/functions
+
+(defmacro ot/avy-here (pt command &rest body)
+  "Avy here"
+  (declare (indent 1)
+           (debug (form body)))
+  `(progn
+     (save-excursion
+       (goto-char ,pt)
+       (funcall ,command)
+       ,@body)
+     (yank)
+     (if (looking-at-p "[\\s_\|\\s(]")
+         (just-one-space))))
+
+(defun ot/avy-move-here (pt command)
+  "Move region from PT to PT after COMMAND to current location."
+  (ot/avy-here pt command
+               (kill-region pt (point))
+               (if (or (ot/current-line-empty-p)
+                       (ot/first-char-closing-pair-p))
+                   (join-line)
+                 (fixup-whitespace))))
+
+(defun ot/avy-copy-here (pt command)
+  "Copy region from PT to PT after COMMAND to current location."
+  (ot/avy-here pt command
+               (copy-region-as-kill pt (point))))
+
+;; Avy move actions
+
+(defun ot/avy-action-move-sexp-here (pt)
   "Move sexp at PT to current location."
-  (save-excursion
-    (goto-char pt)
-    (forward-sexp)
-    (kill-region pt (point))
-    (if (or (ot/current-line-empty-p)
-            (ot/first-char-closing-pair-p))
-        (join-line)
-      (fixup-whitespace)))
-  (yank)
-  (if (looking-at-p "[\\s_\|\\s(]")
-      (just-one-space)))
+  (ot/avy-move-here pt 'forward-sexp))
 
-(defun ot/avy-action-copy-here (pt)
-  "Copy sexp at PT to current location."
-  (save-excursion
-    (goto-char pt)
-    (forward-sexp)
-    (copy-region-as-kill pt (point)))
-  (yank)
-  (if (looking-at-p "[\\s_\|\\s(]")
-      (just-one-space)))
+(defun ot/avy-action-move-sexp-forward-here (pt)
+  (ot/avy-move-here pt (lambda ()
+                         (ot/step-out-forward)
+                         (backward-char))))
 
-(defun ot/avy-move-here (arg)
-  (let ((avy-action #'ot/avy-action-move-here))
-    (setq avy-action nil)
-    (avy--generic-jump arg nil 'pre)))
+;; Avy goto commands
 
-(defun ot/avy-move-sexp-here ()
-  (interactive)
-  (ot/avy-move-here "\\s([^\\)]"))
-
-(defun ot/avy-goto-sexp ()
-  (interactive)
-  (setq avy-action nil)
-  (avy--generic-jump "\\s([^\\)]\\|\\s\"[[:alnum:]]" nil 'pre))
+(defun ot/avy-goto-sexp (arg)
+  (interactive "P")
+  (avy-with ot/avy-goto-sexp
+    (avy--generic-jump "\\s([^\\)]\\|\\s\"[[:alnum:]]" arg 'pre)))
 
 (defun ot/avy-goto-word-0 (arg)
   "avy-goto-word-0 with modified syntax table"
