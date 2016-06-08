@@ -288,7 +288,7 @@
  '(ido-indicator ((t (:foreground "#ffffff"))))
  '(ido-only-match ((t (:foreground "#ffcc33"))))
  '(ido-subdir ((t (:foreground "#66ff00"))))
- '(iedit-occurrence ((t (:background "SystemHilight"))))
+ '(iedit-occurrence ((t (:background "SystemHilight" :foreground "blue"))))
  '(indent-guide-face ((t (:foreground "gainsboro"))))
  '(isearch ((t (:background "white" :foreground "magenta" :weight bold))))
  '(isearch-fail ((t (:background "#c0392b" :foreground "white" :weight bold))))
