@@ -134,6 +134,7 @@
                       elisp-slime-nav
 
                       magit ; version control
+                      git-timemachine
 
                       clojure-mode
                       clj-refactor
