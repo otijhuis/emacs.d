@@ -116,7 +116,7 @@
                       flycheck
                       flycheck-pos-tip
                       flycheck-clojure ; syntax checking
-                      flycheck-haskell
+                      ;; flycheck-haskell
 
                       org-plus-contrib
 
@@ -160,7 +160,7 @@
 
                       yasnippet
                       auto-yasnippet
-                      haskell-snippets
+                      ;; haskell-snippets
 
                       css-eldoc
                       js2-mode
@@ -170,11 +170,13 @@
                       tagedit
                       emmet-mode
 
-                      haskell-mode
-                      shm
-                      hindent
-                      hi2
-                      ;; ghc
+                      typescript-mode
+                      tide
+
+                      ;;haskell-mode
+                      ;; shm
+                      ;; hindent
+                      ;; hi2
                       )
   "A list of packages to ensure are installed at launch.")
 
