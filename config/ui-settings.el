@@ -2,7 +2,7 @@
 ;;(set-frame-parameter (selected-frame) 'alpha '(95 90))
 ;;(add-to-list 'default-frame-alist '(alpha 95 90))
 
-(load-theme 'flatui t)
+(load-theme 'spacemacs-light t)
 
 ;; Disable bold by default
 (mapc
