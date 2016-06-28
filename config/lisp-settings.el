@@ -1,3 +1,4 @@
+;; Paredit
 (with-eval-after-load "paredit"
   ;; making paredit work with delete-selection-mode
   (put 'paredit-forward-delete 'delete-selection 'supersede)

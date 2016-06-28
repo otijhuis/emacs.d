@@ -42,7 +42,9 @@
   )
 
 ;; Highlight diffs in fringe
+(setq diff-hl-draw-borders nil)
 (global-diff-hl-mode)
 (diff-hl-flydiff-mode)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
 (provide 'versioncontrol-settings)
