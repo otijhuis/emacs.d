@@ -163,12 +163,14 @@
                       ;; haskell-snippets
 
                       css-eldoc
+                      js-doc
                       js2-mode
                       json-mode
                       js2-refactor
                       tern
                       tagedit
                       emmet-mode
+                      web-beautify
 
                       typescript-mode
                       tide

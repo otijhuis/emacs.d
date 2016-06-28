@@ -199,6 +199,33 @@
   (bind-key "M-r" 'paredit-raise-sexp paredit-mode-map)
   (bind-key "<C-M-return>" 'ot/paredit-open-line-below paredit-mode-map))
 
+;;;;;;;;;;;;;;;;;
+;; Smartparens ;;
+;;;;;;;;;;;;;;;;;
+
+(with-eval-after-load "smartparens"
+  (key-seq-define smartparens-mode-map "\\]" 'hydra-paredit/body)
+  (bind-key "C-M-k" 'ot/kill-sexp smartparens-mode-map)
+  (bind-key "M-k" 'paxedit-symbol-kill smartparens-mode-map)
+  (bind-key [H-backspace] 'paredit-forward-delete smartparens-mode-map)
+  (bind-key [H-M-backspace] 'backward-kill-sexp smartparens-mode-map)
+  (bind-key "s-d" 'ot/paredit-duplicate-after-point smartparens-mode-map)
+  (bind-key "M-D" 'ot/paredit-duplicate-closest-sexp smartparens-mode-map)
+  (bind-key [M-backspace] 'ot/paredit-kill-region-or-backward-word smartparens-mode-map)
+  (bind-key "M-]" 'paredit-forward-slurp-sexp smartparens-mode-map)
+  (bind-key "M-[" 'paredit-forward-barf-sexp smartparens-mode-map)
+  (bind-key "M-s-[" 'paredit-backward-slurp-sexp smartparens-mode-map)
+  (bind-key "M-s-]" 'paredit-backward-barf-sexp smartparens-mode-map)
+  (bind-key "C-M-9" 'paxedit-wrap-parent-sexp smartparens-mode-map)
+  (bind-key "C-M-0" 'paxedit-wrap-symbol smartparens-mode-map)
+  (bind-key "M-9" 'paredit-wrap-round smartparens-mode-map)
+  (bind-key "M-0" 'ot/paredit-wrap-round-from-behind smartparens-mode-map)
+  (bind-key ")" 'ot/step-out-forward smartparens-mode-map)
+  (bind-key "C-," 'ot/parens-move-backward smartparens-mode-map)
+  (bind-key "C-." 'ot/parens-move-forward smartparens-mode-map)
+  (bind-key "M-r" 'paredit-raise-sexp smartparens-mode-map)
+  (bind-key "<C-M-return>" 'ot/paredit-open-line-below smartparens-mode-map))
+
 (bind-key [H-backspace] 'delete-char)
 
 (bind-key "M-g M-g" 'avy-goto-line)
