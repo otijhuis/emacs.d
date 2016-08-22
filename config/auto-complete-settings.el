@@ -32,6 +32,11 @@
   (setq company-backends '((company-etags company-capf company-dabbrev))))
 (add-hook 'clojure-mode-hook 'clojure-company-backends)
 
+(defun elm-company-backends ()
+  (make-local-variable 'company-backends)
+  (setq company-backends '((company-etags company-capf company-dabbrev company-elm))))
+(add-hook 'elm-mode-hook 'elm-company-backends)
+
 (defun tern-company-backends ()
   (make-local-variable 'company-backends)
   (setq company-backends '((company-etags company-capf company-dabbrev company-files company-tern))))

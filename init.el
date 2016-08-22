@@ -54,6 +54,9 @@
                       helm-emmet
                       helm-clojuredocs
 
+                      elm-mode
+                      elm-yasnippets
+
                       ggtags
                       noccur ; occur in project
                       state ; navigating between workspaces
@@ -225,6 +228,7 @@
 (require 'hydra-settings)
 (require 'clojure-utils)
 (require 'haskell-settings)
+(require 'elm-settings)
 (require 'custom-keybindings)
 
 ;;(require 'inf-clojure-addons)
@@ -239,6 +243,14 @@
  '(helm-gtags-display-style (quote detail))
  '(helm-gtags-fuzzy-match t)
  '(helm-gtags-path-style (quote root))
+ '(package-selected-packages
+   (quote
+    (wrap-region whole-line-or-region which-key web-beautify volatile-highlights visual-regexp-steroids undo-tree tide thingatpt+ tagedit state spacemacs-theme smex smartscan smartparens sexp-move selected rich-minority popwin peep-dired paxedit paredit-menu org-plus-contrib noccur neotree misc-cmds magit key-seq json-mode js2-refactor js-doc indent-guide imenu-list imenu-anywhere iedit idomenu ido-vertical-mode ido-ubiquitous ido-select-window ido-at-point ibuffer-vc hl-sexp highlight-symbol highlight-defined helm-swoop helm-projectile helm-gtags helm-flycheck helm-flx helm-emmet helm-descbinds helm-clojuredocs helm-c-moccur helm-ag goto-chg git-timemachine ggtags free-keys focus flycheck-pos-tip flycheck-clojure flx-ido flatui-theme fix-word f evalator-clojure engine-mode elisp-slime-nav drag-stuff dracula-theme dired-sort dired+ diff-hl darkokai-theme css-eldoc counsel-projectile company-web company-tern company-quickhelp company-ghci company-flx comment-dwim-2 command-log-mode clojure-mode-extra-font-locking clojure-cheatsheet clj-refactor cider-eval-sexp-fu change-inner browse-kill-ring bind-key beacon avy-zap auto-yasnippet aggressive-indent ag ace-window)))
+ '(safe-local-variable-values
+   (quote
+    ((eval turn-on-orgtbl)
+     (whitespace-line-column . 80)
+     (lexical-binding . t))))
  '(sml/active-background-color "#34495e")
  '(sml/active-foreground-color "#ecf0f1")
  '(sml/inactive-background-color "#dfe4ea")
