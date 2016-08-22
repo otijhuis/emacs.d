@@ -13,5 +13,6 @@
 ;;   (add-hook 'cider-mode-hook 'my-cider-mode-enable-flycheck)
 ;;   (add-hook 'cider-mode-hook
 ;;             (lambda () (setq next-error-function #'flycheck-next-error-function))))
+(add-hook 'flycheck-mode-hook 'flycheck-elm-setup)
 
 (provide 'syntax-checking-settings)

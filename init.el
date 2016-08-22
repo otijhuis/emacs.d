@@ -56,6 +56,7 @@
 
                       elm-mode
                       elm-yasnippets
+                      flycheck-elm
 
                       ggtags
                       noccur ; occur in project
