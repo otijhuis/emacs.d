@@ -6,6 +6,7 @@
 
 (add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
 (add-hook 'elm-mode-hook (lambda ()
+                           (electric-indent-local-mode -1)
                            (flycheck-mode 1)))
 
 (provide 'elm-settings)
