@@ -9,8 +9,9 @@
 
 (key-seq-define-global ",l" 'ivy-switch-buffer)
 (key-seq-define-global ",f" 'counsel-find-file)
+(key-seq-define-global ",g" 'counsel-git)
 
-;; Ido Menu
+;; Menu
 ;;(bind-key "C-x C-i" 'idomenu)
 
 ;; Ido select window
@@ -95,7 +96,7 @@
 (bind-key "C-s" 'swiper)
 
 (with-eval-after-load "dired"
-	(bind-key "P" 'peep-dired dired-mode-map))
+        (bind-key "P" 'peep-dired dired-mode-map))
 ;;;;;;;;;;
 ;; Helm ;;
 ;;;;;;;;;;
