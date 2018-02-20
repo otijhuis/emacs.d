@@ -74,16 +74,16 @@
                       smartscan ; quickly jump to symbols
                       goto-chg
 
-                      dired+
-                      dired-sort
+                      ; dired+ ; emacs wiki
+                      ; dired-sort ; emacs wiki
                       peep-dired
 
                       dash
                       s
                       f ; api for working with files/directories
-                      thingatpt+
+                      ; thingatpt+ ; emacs wiki
                       comment-dwim-2
-                      misc-cmds ; misc useful functions
+                      ; misc-cmds ; misc useful functions , emacs wiki
                       popup popwin ; popups
 
                       whole-line-or-region ; if no region selected act on the current line

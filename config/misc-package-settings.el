@@ -31,7 +31,7 @@
 (volatile-highlights-mode t)
 
 ;; Indent Guide
-(indent-guide-global-mode)
+;; (indent-guide-global-mode)
 
 (setq indent-guide-threshold 0)
 (setq indent-guide-recursive t)
