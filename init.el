@@ -310,6 +310,7 @@
  '(helm-source-header ((t (:background "gray30" :foreground "white" :weight normal :height 1 :family "Sans Serif"))))
  '(helm-swoop-target-word-face ((t (:foreground "dodger blue"))))
  '(helm-visible-mark ((t (:background "dark orange" :foreground "white"))))
+ '(hl-paren-face ((t (:weight extra-bold))) t)
  '(hl-sexp-face ((t (:background nil :weight bold))))
  '(ido-first-match ((t (:foreground "#ccff66"))))
  '(ido-incomplete-regexp ((t (:foreground "#ffffff"))))

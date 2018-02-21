@@ -29,14 +29,15 @@
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
+  (add-node-modules-path)
   (setq typescript-indent-level 2)
   (setq show-paren-delay 0)
   (setq show-paren-style 'parenthesis)
   (set-face-background 'show-paren-match (face-background 'default))
-  (set-face-foreground 'show-paren-match "firebrick1")
+  (set-face-foreground 'show-paren-match "dark orange")
   (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
   (show-paren-mode 1)
-  (setq hl-paren-colors '("firebrick1"))
+  (setq hl-paren-colors '("dark orange"))
   (highlight-parentheses-mode +1)
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
@@ -45,7 +46,8 @@
   ;; company is an optional dependency. You have to
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
-  (company-mode +1))
+  (company-mode +1)
+  (smartparens-strict-mode +1))
 
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
