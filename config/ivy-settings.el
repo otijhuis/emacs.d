@@ -1,6 +1,7 @@
 ;; Ivy / Swiper / Counsel
 (with-eval-after-load "ivy"
   (require 'flx)
+  (require 'ivy-hydra)
   (setq ivy-format-function 'ivy-format-function-line)
 
   (setq ivy-re-builders-alist
@@ -29,7 +30,8 @@
 
 (with-eval-after-load "counsel"
   (setq counsel-find-file-at-point t)
-
+  (setq counsel-grep-base-command
+        "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
   (setq counsel-find-file-ignore-regexp
         (concat
          ;; file names beginning with # or .

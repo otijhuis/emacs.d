@@ -25,7 +25,7 @@
   ;; open boot build tool files in clojure mode
   (add-to-list 'auto-mode-alist '("\.boot$" . clojure-mode))
 
-  (add-hook 'clojure-mode-hook 'highlight-symbol-mode)
+  (add-hook 'clojure-mode-hook 'symbol-overlay-mode)
 
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'paxedit-mode)
@@ -35,13 +35,13 @@
             (lambda ()
               (add-hook 'activate-mark-hook (lambda ()
                                               (hl-sexp-mode -1)
-                                              (highlight-symbol-mode -1)) nil 'make-it-local)))
+                                              (symbol-overlay-mode -1)) nil 'make-it-local)))
 
   (add-hook 'clojure-mode-hook
             (lambda ()
               (add-hook 'deactivate-mark-hook (lambda ()
                                                 (hl-sexp-mode 1)
-                                                (highlight-symbol-mode 1)) nil 'make-it-local)))
+                                                (symbol-overlay-mode 1)) nil 'make-it-local)))
 
   (add-hook 'clojure-mode-hook 'clj-pretty-symbols)
   (add-hook 'clojurescript-mode-hook 'clj-pretty-symbols)
@@ -60,7 +60,7 @@
 (add-hook 'emacs-lisp-mode-hook 'ot/esk-remove-elc-on-save)
 (add-hook 'emacs-lisp-mode-hook 'ot/esk-prog-mode-hook)
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
-(add-hook 'emacs-lisp-mode-hook 'highlight-symbol-mode)
+(add-hook 'emacs-lisp-mode-hook 'symbol-overlay-mode)
 
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)

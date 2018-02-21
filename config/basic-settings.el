@@ -322,4 +322,8 @@ Try the repeated popping up to 10 times."
 (setq save-abbrevs 'silently)
 (setq-default abbrev-mode t)
 
+;; symbol overlays
+(require 'symbol-overlay)
+(symbol-overlay-mode +1)
+
 (provide 'basic-settings)

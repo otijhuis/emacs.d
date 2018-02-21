@@ -35,6 +35,8 @@
 
                       swiper
                       ivy
+                      ivy-hydra
+                      ivy-todo
                       counsel
                       counsel-projectile
 
@@ -74,16 +76,16 @@
                       smartscan ; quickly jump to symbols
                       goto-chg
 
-                      ; dired+ ; emacs wiki
-                      ; dired-sort ; emacs wiki
+                                        ; dired+ ; emacs wiki
+                                        ; dired-sort ; emacs wiki
                       peep-dired
 
                       dash
                       s
                       f ; api for working with files/directories
-                      ; thingatpt+ ; emacs wiki
+                                        ; thingatpt+ ; emacs wiki
                       comment-dwim-2
-                      ; misc-cmds ; misc useful functions , emacs wiki
+                                        ; misc-cmds ; misc useful functions , emacs wiki
                       popup popwin ; popups
 
                       whole-line-or-region ; if no region selected act on the current line
@@ -109,7 +111,8 @@
 
                       focus ; focus mode (dim text you are not working on)
                       volatile-highlights
-                      highlight-symbol
+                      ;; highlight-symbol
+                      symbol-overlay
                       hl-sexp
                       highlight-defined
                       diff-hl ; diff highlighting
@@ -133,6 +136,7 @@
                       company-web
                       company-ghci
                       company-tern
+                      company-lsp
                       ;; company-ghc
 
                       elisp-slime-nav
@@ -172,10 +176,15 @@
                       js2-mode
                       json-mode
                       js2-refactor
+                      vue-mode
+                      lsp-mode
+                      lsp-vue
+                      prettier-js
                       tern
                       tagedit
                       emmet-mode
                       web-beautify
+                      add-node-modules-path
 
                       typescript-mode
                       tide

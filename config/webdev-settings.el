@@ -14,4 +14,42 @@
 ;; json-mode
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
+;; vue
+(require 'vue-mode)
+(add-to-list 'vue-mode-hook #'smartparens-mode)
+(require 'lsp-mode)
+(require 'lsp-vue)
+(add-hook 'vue-mode-hook #'lsp-vue-mmm-enable)
+(with-eval-after-load 'lsp-mode
+  (require 'lsp-flycheck))
+;; (require 'company-lsp)
+;; (push 'company-lsp company-backends)
+
+;; typescript
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving - disable, use prettier instead
+;; (add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+;; prettier
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode)
+(add-hook 'typescript-mode-hook 'prettier-js-mode)
+(add-hook 'vue-mode-hook 'prettier-js-mode)
+
 (provide 'webdev-settings)
