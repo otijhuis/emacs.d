@@ -114,11 +114,11 @@
                       ;; highlight-symbol
                       symbol-overlay
                       hl-sexp
+                      highlight-parentheses
                       highlight-defined
                       diff-hl ; diff highlighting
 
                       aggressive-indent
-                      indent-guide
 
                       flycheck
                       flycheck-pos-tip

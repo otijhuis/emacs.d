@@ -29,7 +29,7 @@
 
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'paxedit-mode)
-  (add-hook 'clojure-mode-hook 'hl-sexp-mode)
+  ;; (add-hook 'clojure-mode-hook 'hl-sexp-mode)
 
   (add-hook 'clojure-mode-hook
             (lambda ()

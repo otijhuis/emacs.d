@@ -30,13 +30,6 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
-;; Indent Guide
-;; (indent-guide-global-mode)
-
-(setq indent-guide-threshold 0)
-(setq indent-guide-recursive t)
-(setq indent-guide-delay 0.1)
-
 ;; Key chords
 (with-eval-after-load "key-chord"
   (setq key-chord-two-keys-delay 0.2))

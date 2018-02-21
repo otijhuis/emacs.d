@@ -326,4 +326,8 @@ Try the repeated popping up to 10 times."
 (require 'symbol-overlay)
 (symbol-overlay-mode +1)
 
+;; highlight parens
+(require 'highlight-parentheses)
+(require 'paren)
+
 (provide 'basic-settings)

@@ -57,22 +57,6 @@
 
 (add-hook 'company-mode-hook 'company-quickhelp-mode)
 
-;; disable indent guide while completion is active
-(add-hook 'company-mode-hook
-          (lambda ()
-            (add-hook 'company-completion-started-hook (lambda (&optional arg)
-                                                         (indent-guide-mode -1)) nil 'make-it-local)))
-
-(add-hook 'company-mode-hook
-          (lambda ()
-            (add-hook 'company-completion-cancelled-hook (lambda (&optional arg)
-                                                           (indent-guide-mode 1)) nil 'make-it-local)))
-
-(add-hook 'company-mode-hook
-          (lambda ()
-            (add-hook 'company-completion-finished-hook (lambda (&optional arg)
-                                                          (indent-guide-mode 1)) nil 'make-it-local)))
-
 ;; company-flx
 (with-eval-after-load 'company
   (company-flx-mode +1))

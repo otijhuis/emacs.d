@@ -43,13 +43,15 @@
 (defun th-activate-mark-init ()
   (setq cursor-type 'bar)
   (set-cursor-color "orange")
-  (hl-sexp-mode -1))
+  ;; (hl-sexp-mode -1)
+  )
 (add-hook 'activate-mark-hook 'th-activate-mark-init)
 
 (defun th-deactivate-mark-init ()
   (setq cursor-type 'box)
   (set-cursor-color th--default-cursor-color)
-  (hl-sexp-mode 1))
+  ;; (hl-sexp-mode 1)
+  )
 (add-hook 'deactivate-mark-hook 'th-deactivate-mark-init)
 
 ;; Use a red cursor in overwrite-mode
