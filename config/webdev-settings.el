@@ -40,7 +40,7 @@
   (setq hl-paren-colors '("dark orange"))
   (highlight-parentheses-mode +1)
   (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (setq flycheck-check-syntax-automatically '(save mode-enabled idle-change))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   ;; company is an optional dependency. You have to
