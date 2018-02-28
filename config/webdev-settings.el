@@ -15,15 +15,23 @@
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 ;; vue
+(defun vue-company-backends ()
+  (require 'company-lsp)
+  (make-local-variable 'company-backends)
+  (setq company-backends '((company-lsp company-capf company-dabbrev))))
+
+(defun setup-vue-mode ()
+  (require 'lsp-mode)
+  (with-eval-after-load 'lsp-mode
+    (require 'lsp-flycheck))
+  (require 'lsp-vue)
+  (add-node-modules-path)
+  (smartparens-mode +1)
+  (lsp-vue-mmm-enable)
+  (vue-company-backends))
+
 (require 'vue-mode)
-(add-to-list 'vue-mode-hook #'smartparens-mode)
-(require 'lsp-mode)
-(require 'lsp-vue)
-(add-hook 'vue-mode-hook #'lsp-vue-mmm-enable)
-(with-eval-after-load 'lsp-mode
-  (require 'lsp-flycheck))
-;; (require 'company-lsp)
-;; (push 'company-lsp company-backends)
+(add-hook 'vue-mode-hook #'setup-vue-mode)
 
 ;; typescript
 (defun setup-tide-mode ()

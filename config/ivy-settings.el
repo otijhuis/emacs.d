@@ -5,7 +5,8 @@
   (setq ivy-format-function 'ivy-format-function-line)
 
   (setq ivy-re-builders-alist
-        '((t . ivy--regex-fuzzy)))
+        '((swiper . ivy--regex-plus)
+          (t . ivy--regex-fuzzy)))
 
   ;;(setq ivy-initial-inputs-alist nil)
 
@@ -15,7 +16,7 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-virtual-abbreviate 'name)
 
-  (setq ivy-height 10)
+  (setq ivy-height 6)
   ;; (setq ivy-count-format "(%d/%d) ")
   (setq ivy-count-format "")
   (setq ivy-flx-limit 1000)

@@ -185,6 +185,8 @@
 
                       typescript-mode
                       tide
+
+                      exec-path-from-shell
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -202,8 +204,8 @@
 ;;(require 'inf-clojure)
 
 ;; On OSX add /usr/local/bin to exec-path for lein command (installed with brew install leiningen)
-(if (eq system-type 'darwin)
-    (add-to-list 'exec-path "/usr/local/bin"))
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 (require 'misc)
 (require 'uniquify)
