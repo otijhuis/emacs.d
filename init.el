@@ -134,10 +134,8 @@
                       company-quickhelp
                       company-flx
                       company-web
-                      company-ghci
                       company-tern
                       company-lsp
-                      ;; company-ghc
 
                       elisp-slime-nav
 
@@ -169,7 +167,6 @@
 
                       yasnippet
                       auto-yasnippet
-                      ;; haskell-snippets
 
                       css-eldoc
                       js-doc
@@ -188,11 +185,6 @@
 
                       typescript-mode
                       tide
-
-                      ;;haskell-mode
-                      ;; shm
-                      ;; hindent
-                      ;; hi2
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -237,8 +229,6 @@
 (require 'misc-package-settings)
 (require 'hydra-settings)
 (require 'clojure-utils)
-(require 'haskell-settings)
-(require 'elm-settings)
 (require 'custom-keybindings)
 
 ;;(require 'inf-clojure-addons)
